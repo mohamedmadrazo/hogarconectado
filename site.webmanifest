@@ -1,0 +1,28 @@
+{
+  "name": "Hogar Conectado",
+  "short_name": "Hogar Conectado",
+  "description": "Guías y reviews independientes de domótica en español.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050714",
+  "theme_color": "#22d3ee",
+  "lang": "es",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["lifestyle", "news", "technology"]
+}

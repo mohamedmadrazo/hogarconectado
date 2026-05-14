@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto — Hogar Conectado</title>
+  <meta name="description" content="Contacta con el equipo editorial de Hogar Conectado: sugerencias de productos, correcciones, prensa o colaboraciones comerciales.">
+  <link rel="canonical" href="https://hogarconectado.co/contacto.html">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .contact-form { display: grid; gap: 18px; margin-top: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 8px; }
+    .field label { font-size: 0.88rem; color: var(--text-muted); }
+    .field input, .field textarea, .field select {
+      padding: 14px 16px;
+      background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--r-md);
+      color: var(--text); font-family: inherit; font-size: 1rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      outline: none; border-color: var(--accent); background: rgba(34,211,238,0.04);
+    }
+    .field textarea { min-height: 160px; resize: vertical; }
+    .checkbox { display: flex; gap: 12px; align-items: start; color: var(--text-muted); font-size: 0.9rem; }
+    .checkbox input { margin-top: 4px; }
+  </style>
+  <meta property="og:image" content="https://hogarconectado.co/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://hogarconectado.co/assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#050714">
+  <link rel="stylesheet" href="/assets/cookie-consent.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a href="/" class="brand"><span class="brand-dot"></span><span>Hogar<span style="color:var(--accent)">Conectado</span></span></a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <ul class="nav-links">
+      <li><a href="/#categorias">Categorías</a></li>
+      <li><a href="/guias/">Guías</a></li>
+      <li><a href="/#ecosistemas">Ecosistemas</a></li>
+      <li><a href="/about.html">Nosotros</a></li>
+      <li><a href="/contacto.html">Contacto</a></li>
+    </ul>
+    <a class="nav-cta" href="/guias/mejores-alarmas-hogar-2026.html">Guía alarmas →</a>
+  </div>
+</header>
+
+<main class="legal-body container">
+  <h1>Contacto</h1>
+  <p class="legal-date">Respondemos normalmente en 2-3 días laborables</p>
+
+  <p>Si has detectado un error en una guía, quieres proponer un producto para que lo analicemos, eres periodista o representas a una marca, rellena este formulario y te responderemos lo antes posible. Para el tratamiento de datos revisa nuestra <a href="/privacidad.html">política de privacidad</a>.</p>
+
+  <form class="contact-form" action="https://formsubmit.co/demadrazobruno@gmail.com" method="POST" novalidate>
+    <input type="hidden" name="_subject" value="Nuevo mensaje desde hogarconectado.co">
+    <input type="hidden" name="_captcha" value="true">
+    <input type="hidden" name="_template" value="table">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+    <div class="form-row">
+      <div class="field">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" type="text" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required autocomplete="email">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="asunto">Motivo del contacto</label>
+      <select id="asunto" name="asunto" required>
+        <option value="">— Selecciona —</option>
+        <option value="correccion">Corrección o error en una guía</option>
+        <option value="sugerencia">Sugerencia de producto o tema</option>
+        <option value="prensa">Prensa / medios</option>
+        <option value="colaboracion">Colaboración comercial</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="mensaje">Mensaje</label>
+      <textarea id="mensaje" name="mensaje" required minlength="20"></textarea>
+    </div>
+
+    <label class="checkbox">
+      <input type="checkbox" name="rgpd" required>
+      <span>He leído y acepto la <a href="/privacidad.html">política de privacidad</a>. Entiendo que mis datos se usarán únicamente para responder a este mensaje.</span>
+    </label>
+
+    <div>
+      <button type="submit" class="btn btn-primary">
+        Enviar mensaje
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </form>
+
+  <h2 style="margin-top:48px">Otros canales</h2>
+  <p>Para temas comerciales, prensa o propuestas formales también puedes escribirnos directamente a <strong>contacto [arroba] hogarconectado [punto] co</strong> (reemplaza las palabras entre corchetes por los símbolos correspondientes — es para evitar spam).</p>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="brand"><span class="brand-dot"></span><span>Hogar<span style="color:var(--accent)">Conectado</span></span></a>
+        <p>Guías y reviews independientes de domótica en español.</p>
+      </div>
+      <div class="footer-col"><h4>Contenido</h4><ul><li><a href="/guias/">Guías</a></li><li><a href="/#categorias">Categorías</a></li><li><a href="/about.html">Nosotros</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="/privacidad.html">Privacidad</a></li><li><a href="/cookies.html">Cookies</a></li><li><a href="/about.html#aviso">Aviso legal</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="/contacto.html">Formulario</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><div>© <span data-year></span> Hogar Conectado</div><div>Hecho con cuidado en España</div></div>
+  </div>
+</footer>
+<script src="assets/main.js" defer></script>
+  <script src="/assets/cookie-consent.js" defer></script>
+  <!-- Cloudflare Web Analytics (privacy-friendly, no cookie consent required). Replace TOKEN or delete this block after launch. -->
+  <!-- <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "REPLACE_ME"}'></script> -->
+</body>
+</html>

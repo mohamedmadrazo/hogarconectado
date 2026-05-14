@@ -1,0 +1,11 @@
+# www → apex (301)
+https://www.hogarconectado.co/*   https://hogarconectado.co/:splat   301!
+
+# Common misspellings / legacy paths (extend as needed)
+/guia/*         /guias/:splat        301
+/guides/*       /guias/:splat        301
+/guia           /guias/              301
+/blog/*         /guias/:splat        301
+
+# SPA-style fallback (static site: let Cloudflare serve the 404 page naturally)
+# /*            /404.html            404

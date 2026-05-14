@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050714"/>
+      <stop offset="1" stop-color="#0a0f1f"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0.2" cy="0.3" r="0.5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.85" cy="0.8" r="0.45">
+      <stop offset="0" stop-color="#a855f7" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#a855f7" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="txt" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#67e8f9"/>
+      <stop offset="1" stop-color="#c084fc"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+  <!-- Nodo decorativos -->
+  <g opacity="0.35" stroke="#22d3ee" stroke-width="1" fill="none">
+    <circle cx="920" cy="160" r="5" fill="#22d3ee"/>
+    <circle cx="1060" cy="260" r="4" fill="#22d3ee"/>
+    <circle cx="880" cy="330" r="4" fill="#a855f7"/>
+    <circle cx="1020" cy="420" r="5" fill="#a855f7"/>
+    <circle cx="1100" cy="530" r="3" fill="#22d3ee"/>
+    <line x1="920" y1="160" x2="1060" y2="260"/>
+    <line x1="1060" y1="260" x2="880" y2="330"/>
+    <line x1="880" y1="330" x2="1020" y2="420"/>
+    <line x1="1020" y1="420" x2="1100" y2="530"/>
+  </g>
+  <!-- Logo dot -->
+  <circle cx="110" cy="115" r="16" fill="#22d3ee"/>
+  <text x="140" y="125" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700" fill="#ffffff">
+    Hogar<tspan fill="#22d3ee">Conectado</tspan>
+  </text>
+  <!-- Titular -->
+  <text x="100" y="300" font-family="'Space Grotesk', Inter, Arial, sans-serif" font-size="78" font-weight="700" fill="#ffffff">Domótica de verdad,</text>
+  <text x="100" y="390" font-family="'Space Grotesk', Inter, Arial, sans-serif" font-size="78" font-weight="700" fill="url(#txt)">sin humo.</text>
+  <!-- Subtítulo -->
+  <text x="100" y="460" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="500" fill="#94a3b8">Guías independientes · Reviews imparciales · 2026</text>
+  <!-- Píldora -->
+  <rect x="100" y="510" width="280" height="50" rx="25" fill="#22d3ee"/>
+  <text x="240" y="543" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="600" fill="#050714">hogarconectado.co →</text>
+</svg>

@@ -1,0 +1,39 @@
+/* Cookie Consent — Hogar Conectado (cyan #22d3ee) */
+.hc-cc{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:980px;margin-inline:auto;background:rgba(10,15,31,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(34,211,238,.22);border-radius:18px;box-shadow:0 24px 64px -20px rgba(0,0,0,.6);color:#e2e8f0;font-family:Inter,system-ui,sans-serif;opacity:0;transform:translateY(18px);transition:opacity .28s ease,transform .28s ease}
+.hc-cc.is-open{opacity:1;transform:translateY(0)}
+.hc-cc__inner{display:flex;flex-direction:column;gap:16px;padding:20px 22px}
+.hc-cc__body strong{display:block;color:#fff;font-size:15px;margin-bottom:4px}
+.hc-cc__body p{margin:0;font-size:13.5px;line-height:1.55;color:#94a3b8}
+.hc-cc__body a{color:#67e8f9;text-decoration:underline;text-underline-offset:2px}
+.hc-cc__actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
+.hc-cc__btn{appearance:none;border:0;cursor:pointer;font:600 13.5px/1 Inter,sans-serif;padding:11px 18px;border-radius:10px;transition:transform .15s ease,background .15s ease,border-color .15s ease}
+.hc-cc__btn:hover{transform:translateY(-1px)}
+.hc-cc__btn--primary{background:#22d3ee;color:#050714}
+.hc-cc__btn--primary:hover{background:#67e8f9}
+.hc-cc__btn--ghost{background:transparent;color:#e2e8f0;border:1px solid rgba(148,163,184,.3)}
+.hc-cc__btn--ghost:hover{border-color:rgba(34,211,238,.5);color:#fff}
+@media (min-width:720px){.hc-cc__inner{flex-direction:row;align-items:center;justify-content:space-between;gap:28px}.hc-cc__body{flex:1;min-width:0}.hc-cc__actions{flex-shrink:0}}
+
+/* Modal */
+.hc-cm{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .22s ease}
+.hc-cm.is-open{opacity:1;pointer-events:auto}
+.hc-cm__scrim{position:absolute;inset:0;background:rgba(5,7,20,.68);backdrop-filter:blur(4px)}
+.hc-cm__card{position:relative;width:100%;max-width:520px;max-height:90vh;overflow:auto;background:#0a0f1f;border:1px solid rgba(34,211,238,.2);border-radius:18px;color:#e2e8f0;font-family:Inter,sans-serif;box-shadow:0 30px 80px -20px rgba(0,0,0,.7);transform:scale(.96);transition:transform .22s ease}
+.hc-cm.is-open .hc-cm__card{transform:scale(1)}
+.hc-cm__head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid rgba(148,163,184,.12)}
+.hc-cm__head h2{margin:0;font:700 18px/1 'Space Grotesk',Inter,sans-serif;color:#fff}
+.hc-cm__x{appearance:none;border:0;background:transparent;color:#94a3b8;font-size:26px;line-height:1;cursor:pointer;padding:4px 8px;border-radius:8px}
+.hc-cm__x:hover{color:#fff;background:rgba(148,163,184,.12)}
+.hc-cm__body{padding:8px 22px}
+.hc-cm__row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 0;border-bottom:1px solid rgba(148,163,184,.08)}
+.hc-cm__row:last-child{border-bottom:0}
+.hc-cm__row strong{display:block;color:#fff;font-size:14px;margin-bottom:3px}
+.hc-cm__row p{margin:0;font-size:12.5px;color:#94a3b8;line-height:1.5}
+.hc-cm__tag{font-size:11px;color:#22d3ee;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.25);padding:6px 12px;border-radius:999px;white-space:nowrap}
+.hc-cm__row input[type=checkbox]{appearance:none;width:44px;height:24px;background:rgba(148,163,184,.25);border-radius:99px;position:relative;cursor:pointer;flex-shrink:0;transition:background .2s ease}
+.hc-cm__row input[type=checkbox]::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s ease}
+.hc-cm__row input[type=checkbox]:checked{background:#22d3ee}
+.hc-cm__row input[type=checkbox]:checked::after{transform:translateX(20px)}
+.hc-cm__foot{display:flex;justify-content:flex-end;gap:10px;padding:18px 22px;border-top:1px solid rgba(148,163,184,.12)}
+@media (max-width:480px){.hc-cc__actions .hc-cc__btn{flex:1 1 auto}.hc-cm__foot{flex-direction:column-reverse}.hc-cm__foot .hc-cc__btn{width:100%}}
+@media (prefers-reduced-motion:reduce){.hc-cc,.hc-cm,.hc-cm__card{transition:none !important}}
