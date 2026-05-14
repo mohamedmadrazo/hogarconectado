@@ -38,3 +38,12 @@ __pycache__/
 # Temp
 tmp/
 temp/
+
+# Documentos personales / no relacionados con el sitio
+*.docx
+*.doc
+*.odt
+*.xlsx
+*.xls
+*.pdf
+!STRATEGY.md
