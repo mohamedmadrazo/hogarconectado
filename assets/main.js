@@ -161,162 +161,20 @@
       .forEach(s => { const el = document.querySelector(s); if (el) el.style.opacity = 1; });
   }
 
-  /* ---------- Three.js connected network hero (enhanced) ---------- */
-  const canvas = document.getElementById('hero-canvas');
-  if (canvas && window.THREE && !reduced) {
-    try { initNetwork(canvas); }
-    catch (err) { console.warn('Hero canvas disabled:', err); }
-  }
-
-  function initNetwork(host) {
-    const width  = () => host.clientWidth  || window.innerWidth;
-    const height = () => host.clientHeight || window.innerHeight;
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, width()/height(), 0.1, 1000);
-    camera.position.set(0, 0, 8);
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setClearColor(0x000000, 0);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(width(), height());
-    host.appendChild(renderer.domElement);
-
-    const NODE_COUNT = isCoarse ? 42 : 72;
-    const nodes = [];
-    const nodeGeo = new THREE.IcosahedronGeometry(0.09, 0);
-
-    const group = new THREE.Group();
-    scene.add(group);
-
-    // Color palette: cyan to violet
-    const colorA = new THREE.Color(0x22d3ee);
-    const colorB = new THREE.Color(0xa855f7);
-
-    for (let i = 0; i < NODE_COUNT; i++) {
-      const mix = Math.random();
-      const c = colorA.clone().lerp(colorB, mix);
-      const mat = new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: 0.95 });
-      const node = new THREE.Mesh(nodeGeo, mat);
-      const theta = Math.random() * Math.PI * 2;
-      const phi   = Math.acos(2 * Math.random() - 1);
-      const r     = 3.2 + Math.random() * 0.8;
-      node.position.set(
-        r * Math.sin(phi) * Math.cos(theta),
-        r * Math.sin(phi) * Math.sin(theta),
-        r * Math.cos(phi) * 0.6
-      );
-      node.userData = {
-        base: node.position.clone(),
-        speed: 0.3 + Math.random() * 0.6,
-        phase: Math.random() * Math.PI * 2,
-        color: c
-      };
-      group.add(node);
-      nodes.push(node);
-
-      if (i % 4 === 0) {
-        const glow = new THREE.Mesh(
-          new THREE.SphereGeometry(0.3, 16, 16),
-          new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: 0.18 })
-        );
-        glow.position.copy(node.position);
-        glow.userData = node.userData;
-        glow.userData.isGlow = true;
-        group.add(glow);
-        nodes.push(glow);
-      }
+  /* ---------- Hero video loop fallback (asegura play en iOS Safari, prefers-reduced-motion) ---------- */
+  const heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) {
+    if (reduced) {
+      // Si el usuario tiene "reducir movimiento" activo, congelar el video en su primer frame.
+      heroVideo.removeAttribute('autoplay');
+      heroVideo.pause();
+    } else {
+      // En navegadores que bloquean autoplay (Safari iOS), forzar play tras gesto del usuario.
+      const tryPlay = () => heroVideo.play().catch(() => {});
+      tryPlay();
+      document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+      document.addEventListener('click', tryPlay, { once: true });
     }
-
-    /* Connecting lines with vertex colors for subtle gradient */
-    const linePositions = [];
-    const lineColors = [];
-    const maxDist = 1.9;
-    for (let i = 0; i < nodes.length; i++) {
-      if (nodes[i].userData.isGlow) continue;
-      for (let j = i + 1; j < nodes.length; j++) {
-        if (nodes[j].userData.isGlow) continue;
-        const d = nodes[i].position.distanceTo(nodes[j].position);
-        if (d < maxDist) {
-          linePositions.push(
-            nodes[i].position.x, nodes[i].position.y, nodes[i].position.z,
-            nodes[j].position.x, nodes[j].position.y, nodes[j].position.z
-          );
-          const a = (1 - d / maxDist) * 0.8;
-          const ca = nodes[i].userData.color;
-          const cb = nodes[j].userData.color;
-          lineColors.push(ca.r, ca.g, ca.b, cb.r, cb.g, cb.b);
-        }
-      }
-    }
-    const lineGeo = new THREE.BufferGeometry();
-    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-    lineGeo.setAttribute('color', new THREE.Float32BufferAttribute(lineColors, 3));
-    const lineMat = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.45 });
-    const lineSegs = new THREE.LineSegments(lineGeo, lineMat);
-    group.add(lineSegs);
-
-    /* Central core — wireframe icosphere + glow */
-    const core = new THREE.Mesh(
-      new THREE.IcosahedronGeometry(0.55, 1),
-      new THREE.MeshBasicMaterial({ color: 0xa855f7, wireframe: true, transparent: true, opacity: 0.55 })
-    );
-    group.add(core);
-
-    const coreGlow = new THREE.Mesh(
-      new THREE.SphereGeometry(0.8, 32, 32),
-      new THREE.MeshBasicMaterial({ color: 0x22d3ee, transparent: true, opacity: 0.12 })
-    );
-    group.add(coreGlow);
-
-    /* Interaction */
-    let mx = 0, my = 0, tx = 0, ty = 0;
-    window.addEventListener('mousemove', (e) => {
-      mx = (e.clientX / window.innerWidth - 0.5) * 2;
-      my = (e.clientY / window.innerHeight - 0.5) * 2;
-    }, { passive: true });
-
-    const resize = () => {
-      camera.aspect = width() / height();
-      camera.updateProjectionMatrix();
-      renderer.setSize(width(), height());
-    };
-    window.addEventListener('resize', resize);
-
-    /* Pause when offscreen or tab hidden */
-    let visible = true;
-    const visIo = new IntersectionObserver((entries) => {
-      entries.forEach(e => visible = e.isIntersecting);
-    }, { threshold: 0 });
-    visIo.observe(host);
-    document.addEventListener('visibilitychange', () => { visible = !document.hidden && visible; });
-
-    const clock = new THREE.Clock();
-    (function loop() {
-      requestAnimationFrame(loop);
-      if (!visible) return;
-      const t = clock.getElapsedTime();
-
-      tx += (mx * 0.35 - tx) * 0.05;
-      ty += (my * 0.2  - ty) * 0.05;
-      group.rotation.y = tx + t * 0.05;
-      group.rotation.x = -ty;
-
-      core.rotation.x = t * 0.25;
-      core.rotation.y = t * 0.4;
-      const corePulse = 1 + Math.sin(t * 1.5) * 0.06;
-      core.scale.setScalar(corePulse);
-      coreGlow.scale.setScalar(corePulse * 1.05);
-
-      nodes.forEach(n => {
-        const u = n.userData;
-        n.material.opacity = u.isGlow
-          ? 0.12 + 0.08 * Math.sin(t * u.speed + u.phase)
-          : 0.7 + 0.3 * Math.sin(t * u.speed + u.phase);
-      });
-
-      renderer.render(scene, camera);
-    })();
   }
 
   /* ---------- Smooth anchor scroll ---------- */

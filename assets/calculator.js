@@ -188,9 +188,19 @@
     recsEl.innerHTML = html;
   }
 
+  // ---- Slider fill tracking (CSS variable --val) ----
+  function updateSliderFill() {
+    var min  = parseFloat(m2El.min)  || 40;
+    var max  = parseFloat(m2El.max)  || 200;
+    var val  = parseFloat(m2El.value);
+    var pct  = ((val - min) / (max - min)) * 100;
+    m2El.style.setProperty('--val', pct + '%');
+  }
+
   // ---- Eventos ----
   function onM2Change() {
     m2Val.textContent = m2El.value;
+    updateSliderFill();
     compute();
   }
 
@@ -201,5 +211,6 @@
 
   // Estado inicial al cargar
   m2Val.textContent = m2El.value;
+  updateSliderFill();
   compute();
 })();
