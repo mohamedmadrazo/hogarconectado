@@ -1,0 +1,26 @@
+# wrangler.toml - Optional CLI config for local deploy
+# Only needed if you prefer `wrangler deploy` over the dashboard UI.
+# Dashboard deploy is simpler — see worker/README.md.
+
+name = "hogarconectado-newsletter"
+main = "subscribe.js"
+compatibility_date = "2026-01-01"
+workers_dev = true
+
+# Secrets (set via `wrangler secret put BREVO_API_KEY`, NOT here):
+#   BREVO_API_KEY
+#   BREVO_LIST_ID
+
+# Plain vars (safe to inline):
+[vars]
+ALLOWED_ORIGIN = "https://hogarconectado.co"
+
+# Optional KV namespace for 5-min rate limiting (uncomment + create):
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT_KV"
+# id = "<your-kv-namespace-id>"
+
+# Optional custom route (uncomment after attaching the domain in dashboard):
+# [[routes]]
+# pattern = "hogarconectado.co/api/subscribe"
+# zone_name = "hogarconectado.co"

@@ -81,77 +81,21 @@ Hay dos formas. Recomendado: **Cloudflare Worker como proxy** (la API key de Bre
 
 #### Opción B — Cloudflare Worker proxy (recomendado, mantiene tu diseño)
 
-Crea un Worker que reciba el email del formulario actual y llame a Brevo API por detrás.
+**El código y los pasos detallados están en [`worker/README.md`](worker/README.md).** Es un Worker de ~130 líneas, sin dependencias, con honeypot anti-spam, rate-limit opcional, redirects de error semánticos y manejo correcto de "ya suscrito".
 
-**a) Crear el Worker:**
+Resumen del flujo (ver worker/README.md para los pasos completos):
 
-1. `dash.cloudflare.com` → Workers & Pages → Create → **Workers** → Hello World
-2. Editar código del Worker (sustituye todo):
+1. **Crear Worker en dashboard** (`dash.cloudflare.com` → Workers & Pages → Create → Workers → Hello World) llamado `hogarconectado-newsletter`.
+2. **Pegar el código** de [`worker/subscribe.js`](worker/subscribe.js) en el editor.
+3. **Configurar tres secrets** en Settings → Variables and Secrets:
+   - `BREVO_API_KEY` (de Brevo → SMTP & API → API Keys)
+   - `BREVO_LIST_ID` (ID numérico de la lista que creaste en paso 2)
+   - `ALLOWED_ORIGIN` = `https://hogarconectado.co`
+4. **Apuntar el form** en `index.html` al URL del Worker (`https://hogarconectado-newsletter.<tu-cuenta>.workers.dev`).
+5. **Añadir campo honeypot** `<input name="website">` invisible al form (snippet en worker/README.md paso 5).
+6. **Opcional**: route custom en `hogarconectado.co/api/subscribe` para no exponer `workers.dev`.
 
-```javascript
-// Brevo subscribe proxy · hogarconectado.co
-const BREVO_API_KEY = ''; // <-- Pega aquí tu API key (Settings → SMTP & API → API Keys)
-const LIST_ID = 123;     // <-- Pega aquí el ID de tu lista
-
-export default {
-  async fetch(request) {
-    if (request.method !== 'POST') {
-      return new Response('Method not allowed', { status: 405 });
-    }
-    const formData = await request.formData();
-    const email = formData.get('email');
-    const source = formData.get('source') || 'home';
-    if (!email || !email.includes('@')) {
-      return new Response('Invalid email', { status: 400 });
-    }
-    const resp = await fetch('https://api.brevo.com/v3/contacts', {
-      method: 'POST',
-      headers: {
-        'api-key': BREVO_API_KEY,
-        'content-type': 'application/json',
-        'accept': 'application/json'
-      },
-      body: JSON.stringify({
-        email,
-        listIds: [LIST_ID],
-        attributes: { SOURCE: source, SIGNUP_DATE: new Date().toISOString() },
-        updateEnabled: true
-      })
-    });
-    if (resp.status >= 400) {
-      const err = await resp.text();
-      return new Response(`Brevo error: ${err}`, { status: 500 });
-    }
-    return Response.redirect('https://hogarconectado.co/?subscribed=1', 302);
-  }
-};
-```
-
-3. Sustituye `BREVO_API_KEY` y `LIST_ID` por los reales
-4. Guardar y desplegar
-5. Cloudflare te da una URL tipo `https://hogarconectado-newsletter.tu-cuenta.workers.dev`
-6. Opcionalmente: añadir route custom como `https://hogarconectado.co/api/subscribe`
-
-**b) Actualizar el form en `index.html`:**
-
-Cambiar el atributo `action` del `<form class="newsletter-form">` de:
-```html
-action="https://formsubmit.co/demadrazobruno@gmail.com"
-```
-a:
-```html
-action="https://hogarconectado-newsletter.tu-cuenta.workers.dev"
-```
-
-Y eliminar los `<input type="hidden" name="_subject">` etc. de FormSubmit (ya no son necesarios).
-
-**c) Probar:**
-
-- Visita `https://hogarconectado.co/#newsletter`
-- Suscríbete con un email tuyo
-- Espera 30 s
-- Confirma que llega el welcome email
-- Confirma que el email aparece en `Contactos → Newsletter Hogar Conectado` en Brevo
+Para probar antes de pegar la URL al form, hay un comando curl directo en worker/README.md paso 4.
 
 ## Mantenimiento mensual
 
