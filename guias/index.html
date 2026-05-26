@@ -100,11 +100,12 @@
   </script>
 
   <!-- AdSense ownership verification (CLAUDE.md §11) -->
-  <meta name="google-adsense-account" content="ca-{{ADSENSE_CLIENT}}">
+  <!-- AdSense ownership meta — DESACTIVADO hasta tener pub-ID real. Reactivar y sustituir {{ADSENSE_CLIENT}} tras aprobacion AdSense. -->
+  <!-- <meta name="google-adsense-account" content="ca-{{ADSENSE_CLIENT}}"> -->
 
   <!-- Google AdSense (CLAUDE.md §5.3: async + crossorigin). Sustituye {{ADSENSE_CLIENT}} tras aprobación. -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-{{ADSENSE_CLIENT}}"
-          crossorigin="anonymous"></script>
+  <!-- AdSense JS — DESACTIVADO hasta tener pub-ID real. Sin este script, los <ins class="adsbygoogle"> de cada slot quedan como reserva visual sin fetch. -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-{{ADSENSE_CLIENT}}" crossorigin="anonymous"></script> -->
 </head>
 <body>
 <header class="site-header">

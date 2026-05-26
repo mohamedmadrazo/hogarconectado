@@ -1,10 +1,10 @@
 /* ==========================================================================
-   hogarconectado.co — main.js
-   - Three.js smart-home connected network hero (enhanced)
-   - GSAP intro timeline + ScrollTrigger reveals
+   hogarconectado.co — main.js (v2.1)
+   - Hero video loop (Higgsfield Cinema Studio) en lugar de Three.js
+   - GSAP intro timeline + ScrollTrigger reveals (fallback IntersectionObserver)
    - Header scroll state + mobile menu (escape / outside-click)
    - Year stamp + TOC scrollspy
-   - Cursor spotlight for cards, count-up metrics, 3D card tilt
+   - Cursor spotlight for cards, count-up metrics formato es-ES, 3D card tilt
    ========================================================================== */
 
 (function () {
@@ -47,17 +47,19 @@
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
 
-  /* ---------- Count-up for hero metrics ---------- */
-  const countUp = (el, target, suffix = '', duration = 1400) => {
+  /* ---------- Count-up for hero metrics (formato es-ES con separador de miles) ---------- */
+  const formatNum = (n) => n.toLocaleString('es-ES');
+  const countUp = (el, target, prefix = '', suffix = '', duration = 1400) => {
     const start = performance.now();
     const tick = (now) => {
       const p = Math.min(1, (now - start) / duration);
       const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + suffix;
+      const current = Math.round(target * eased);
+      el.textContent = prefix + formatNum(current) + suffix;
       if (p < 1) requestAnimationFrame(tick);
-      else el.textContent = target + suffix;
+      else el.textContent = prefix + formatNum(target) + suffix;
     };
     requestAnimationFrame(tick);
   };
@@ -67,14 +69,17 @@
       const el = e.target;
       metricObs.unobserve(el);
       const raw = (el.textContent || '').trim();
-      const m = raw.match(/^([+]?)(\d+)(.*)$/);
+      // Captura prefijo (+, -), número con puntos/comas como separador de miles, sufijo (€, %, etc.)
+      const m = raw.match(/^([+\-]?)([\d.,]+)(.*)$/);
       if (m) {
         const prefix = m[1];
-        const num = parseInt(m[2], 10);
+        // Quita separadores de miles antes de parsear (es-ES usa `.` como miles, no decimal)
+        const num = parseInt(m[2].replace(/[.,]/g, ''), 10);
         const suffix = m[3];
-        el.textContent = prefix + '0' + suffix;
-        setTimeout(() => countUp(el, num, suffix, 1300), 60);
-        if (prefix) el.dataset.prefix = prefix;
+        if (!Number.isNaN(num)) {
+          el.textContent = prefix + '0' + suffix;
+          setTimeout(() => countUp(el, num, prefix, suffix, 1300), 60);
+        }
       }
     });
   }, { threshold: 0.6 });

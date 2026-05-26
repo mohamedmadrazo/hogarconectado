@@ -130,11 +130,12 @@
   <link rel="stylesheet" href="/assets/cookie-consent.css">
 
   <!-- AdSense ownership verification (CLAUDE.md §11) -->
-  <meta name="google-adsense-account" content="ca-{{ADSENSE_CLIENT}}">
+  <!-- AdSense ownership meta — DESACTIVADO hasta tener pub-ID real. Reactivar y sustituir {{ADSENSE_CLIENT}} tras aprobacion AdSense. -->
+  <!-- <meta name="google-adsense-account" content="ca-{{ADSENSE_CLIENT}}"> -->
 
   <!-- Google AdSense (CLAUDE.md §5.3: async + crossorigin). Sustituye {{ADSENSE_CLIENT}} tras aprobación. -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-{{ADSENSE_CLIENT}}"
-          crossorigin="anonymous"></script>
+  <!-- AdSense JS — DESACTIVADO hasta tener pub-ID real. Sin este script, los <ins class="adsbygoogle"> de cada slot quedan como reserva visual sin fetch. -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-{{ADSENSE_CLIENT}}" crossorigin="anonymous"></script> -->
 </head>
 <body>
 
@@ -220,7 +221,14 @@
       <h2 id="resumen">Resumen y recomendación rápida</h2>
       <p>Si vienes con prisa, esto es lo que necesitas saber: en 2026, <strong>Ajax StarterKit Plus</strong> sigue siendo la mejor alarma sin cuota para la mayoría de hogares españoles. Es fiable, su app es impecable, funciona con Alexa y Google Home y dura años sin problemas. Si quieres servicio profesional con respuesta de CRA y botón SOS integrado, <strong>Securitas Direct Verisure</strong> es la opción de referencia, aunque te atará a un contrato de 36 meses y pagarás entre 42 € y 58 € al mes.</p>
       <p>Si vives de alquiler, buscas algo barato para una segunda vivienda o simplemente quieres empezar con lo mínimo, <strong>Ring Alarm 2.ª generación</strong> es el punto dulce: se monta en 45 minutos, integra cámaras y timbre del mismo ecosistema y cuesta menos de 300 € el kit completo.</p>
-      <blockquote>Regla simple: si te vas a mudar en &lt; 2 años → Ring. Si tu vivienda es fija y quieres calidad → Ajax. Si necesitas CRA por riesgo real o bonificación de seguro → Securitas o Movistar Prosegur.</blockquote>
+      <ul>
+        <li><strong>Mejor alarma sin cuota:</strong> Ajax StarterKit Plus — <a href="https://www.amazon.es/s?k=ajax+starterkit+plus&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Ajax StarterKit Plus en Amazon →</a></li>
+        <li><strong>Mejor para empezar barato:</strong> Ring Alarm 5-piece 2.ª gen — <a href="https://www.amazon.es/s?k=ring+alarm+5+piece+2nd+generation&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Ring Alarm en Amazon →</a></li>
+        <li><strong>Mejor para Apple Home:</strong> Eufy Security 5-Piece con HomeBase 3 — <a href="https://www.amazon.es/s?k=eufy+security+5+piece+homebase+3&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Eufy Security en Amazon →</a></li>
+        <li><strong>Mejor calidad construcción:</strong> Bosch Smart Home 360 — <a href="https://www.amazon.es/s?k=bosch+smart+home+360+alarm&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Bosch Smart Home en Amazon →</a></li>
+        <li><strong>Más barata Matter:</strong> Aqara G5 Alarm Kit — <a href="https://www.amazon.es/s?k=aqara+g5+alarm+kit&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Aqara G5 en Amazon →</a></li>
+      </ul>
+      <blockquote>Regla simple: si te vas a mudar en &lt; 2 años → Ring. Si tu vivienda es fija y quieres calidad → Ajax. Si necesitas CRA por riesgo real o bonificación de seguro → Securitas o Movistar Prosegur (no se venden en Amazon — contratación directa con la compañía).</blockquote>
 
       <!-- AdSense slot: in-article-1 | format: fluid | pos: post-intro tras H2#1 | created: 2026-05 -->
       <aside class="ad-slot ad-slot-in-article" role="complementary" aria-label="Publicidad">
@@ -325,6 +333,7 @@
         <li>Sin integración Apple Home oficial (solo vía Home Assistant).</li>
       </ul>
       <p><strong>Veredicto:</strong> si te lo puedes permitir, cómprala y olvídate. Es la alarma que llevas 3 años buscando.</p>
+      <p><a class="btn btn-primary" href="https://www.amazon.es/s?k=ajax+starterkit+plus&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Ajax StarterKit Plus en Amazon</a></p>
 
       <!-- ============================================= -->
       <h2 id="ring">2. Ring Alarm 2.ª generación — la más fácil de empezar</h2>
@@ -344,6 +353,7 @@
         <li>Privacidad: tus datos van a servidores de Amazon.</li>
       </ul>
       <p><strong>Veredicto:</strong> perfecta para estrenarse en domótica sin gastar demasiado.</p>
+      <p><a class="btn btn-primary" href="https://www.amazon.es/s?k=ring+alarm+5+piece+2nd+generation&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Ring Alarm 5-piece en Amazon</a></p>
 
       <!-- ============================================= -->
       <h2 id="securitas">3. Securitas Direct Verisure — la referencia con cuota</h2>
@@ -379,6 +389,7 @@
         <li>Integración con Google Home algo tosca.</li>
         <li>La HomeBase puede ser un cuello de botella si le enchufas muchas cámaras.</li>
       </ul>
+      <p><a class="btn btn-primary" href="https://www.amazon.es/s?k=eufy+security+5+piece+homebase+3&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Eufy Security 5-Piece en Amazon</a></p>
 
       <!-- ============================================= -->
       <h2 id="seguros">¿Qué aseguradoras bonifican qué alarmas?</h2>
@@ -430,6 +441,11 @@
       <p>Tras un año revisando productos de esta categoría, una conclusión: <strong>la mayoría de hogares españoles no necesitan cuota mensual</strong>. Un kit Ajax bien configurado, una cámara interior decente y una rutina de avisar a vecinos o familiares cubren perfectamente el 95 % de los escenarios reales en vivienda habitada.</p>
       <p>La cuota mensual tiene sentido en tres casos muy concretos: segunda residencia deshabitada temporadas largas, local comercial sin personal, y personas mayores viviendo solas que necesitan el botón SOS. Fuera de eso, con el precio actual del hardware no compensa.</p>
       <p>Si te has decidido por DIY, lee también nuestra guía de cámaras interiores y exteriores para completar el sistema. Y si vas a contratar cuota, negocia: los contratos de Securitas y Movistar Prosegur tienen mucho margen si llamas a retención o pides baja.</p>
+      <p>
+        <a class="btn btn-primary" href="https://www.amazon.es/s?k=ajax+starterkit+plus&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Ajax StarterKit Plus en Amazon</a>
+        &nbsp;
+        <a class="btn" href="/guias/mejores-camaras-seguridad-2026.html">Ver guía cámaras de seguridad →</a>
+      </p>
 
       <div class="cta-band" style="margin-top:60px">
         <h3 class="h-lg">¿Dudas con tu caso concreto?</h3>
