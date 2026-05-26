@@ -195,49 +195,28 @@
     });
   });
 
-  /* ---------- Hero v3 (reposit) — toggle Noche/Atardecer con pull-down ---------- */
-  const heroReposit = document.querySelector('.hero-reposit');
-  if (heroReposit) {
-    const bgFront = heroReposit.querySelector('#heroBgFront');
-    const toggleBtns = heroReposit.querySelectorAll('.toggle-btn');
-    let animating = false;
-
-    const setHeroTheme = (target) => {
-      if (animating) return;
-      const current = heroReposit.dataset.theme || 'cool';
-      if (current === target) return;
-      animating = true;
-
-      // 1) Animación pull-down sobre la capa del video
-      if (bgFront) bgFront.classList.add('pull-down');
-
-      // 2) A los 300ms aplicamos el cambio de tema (cuando la capa está fuera de pantalla)
-      setTimeout(() => {
-        heroReposit.dataset.theme = target;
-        toggleBtns.forEach(b => {
-          const isActive = b.dataset.target === target;
-          b.classList.toggle('active', isActive);
-          b.setAttribute('aria-checked', String(isActive));
+  /* ---------- Filter chips en /guias/ (categoría) ---------- */
+  const filterChips = document.querySelectorAll('.filter-chip');
+  if (filterChips.length) {
+    const items = document.querySelectorAll('.guide-item');
+    const empty = document.getElementById('emptyState');
+    filterChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const filter = chip.dataset.filter;
+        filterChips.forEach(c => {
+          const active = c === chip;
+          c.classList.toggle('is-active', active);
+          c.setAttribute('aria-selected', String(active));
         });
-
-        // 3) Devolvemos la capa con la transición de rebote ya definida en CSS
-        setTimeout(() => {
-          if (bgFront) bgFront.classList.remove('pull-down');
-          animating = false;
-        }, 40);
-      }, 300);
-    };
-
-    toggleBtns.forEach(btn => {
-      btn.addEventListener('click', () => setHeroTheme(btn.dataset.target));
-    });
-
-    // Atajo de teclado: T para alternar (con prefers-reduced-motion respetado por CSS)
-    document.addEventListener('keydown', (e) => {
-      if (e.key.toLowerCase() === 't' && !e.metaKey && !e.ctrlKey && !e.altKey
-          && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) {
-        setHeroTheme(heroReposit.dataset.theme === 'cool' ? 'warm' : 'cool');
-      }
+        let visible = 0;
+        items.forEach(item => {
+          const match = filter === 'all' || item.dataset.cat === filter;
+          item.classList.toggle('is-hidden', !match);
+          if (match) visible++;
+        });
+        if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+      });
     });
   }
+
 })();

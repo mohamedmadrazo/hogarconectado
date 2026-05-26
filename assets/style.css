@@ -137,7 +137,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; lin
   padding: 140px 0 80px;
   overflow: hidden;
 }
-/* Hero v3 (.hero-reposit) usa su propio sistema de capas (.hero-bg-wrapper + .bg-front/.bg-back). */
 .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: 32px; max-width: 860px; }
 .eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
@@ -528,8 +527,24 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; lin
    newsletter, FAQ accordion, sobre nosotros, guide thumb variants.
    ========================================================================== */
 
-/* Hero video (sólo .hero-video dentro de .hero-reposit .bg-front es lo que se renderiza ahora;
-   las reglas específicas viven en el bloque .hero-reposit más abajo en este archivo). */
+/* ---------- Hero video loop (sutil, sobre el fondo navy) ---------- */
+.hero-video-wrap {
+  position: absolute; inset: 0; z-index: 0; overflow: hidden;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, #000 50%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, #000 50%, transparent 100%);
+}
+.hero-video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.45;
+  filter: saturate(1.05) brightness(0.85);
+}
+.hero-video-overlay {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(900px 600px at 20% 30%, rgba(5,7,20,0.4), transparent 60%),
+    linear-gradient(180deg, rgba(5,7,20,0.15) 0%, rgba(5,7,20,0.55) 100%);
+}
 
 /* ---------- Tiers (Empieza por tu presupuesto) ---------- */
 .tier-grid {
@@ -1156,358 +1171,177 @@ body::after {
 }
 
 /* ============================================================================
-   HERO v3 — estética cinematográfica (inspirada en reposit)
-   Toggle Día/Noche con pull-down. Tipografía Outfit. Paleta crema-warm.
-   Convive con .hero v2: cuando hay .hero-reposit, override completo.
+   Utilities + components needed by index.html / guias/index.html (v3 unified)
+   Paleta cyan/violet, Inter + Space Grotesk. No fuentes extra.
    ============================================================================ */
 
-.hero-reposit {
-  /* Tokens locales — no contaminan el resto del sitio.
-     Mantengo paleta crema sobre fondo oscuro para coherencia con el resto del sitio.
-     El toggle cambia el "mood" del video (cool/warm) sin invertir tema completo. */
-  --hero-bg:          #050714;
-  --hero-text:        #E5DEC9;
-  --hero-accent:      #f5f8ea;
-  --pull-easing:      cubic-bezier(0.32, 0, 0.67, 0);
-  --return-easing:    cubic-bezier(0.175, 0.885, 0.32, 1.4);
+/* Visually-hidden label (form a11y) */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
 
+/* Tier card pill + featured highlight */
+.tier-pill {
+  display: inline-block; padding: 4px 12px; border-radius: 999px;
+  background: rgba(34,211,238,0.10); border: 1px solid rgba(34,211,238,0.30);
+  color: var(--accent); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.4px;
+  text-transform: uppercase; margin-bottom: 14px;
+}
+.tier-card--featured {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-glow) inset, 0 20px 60px -20px var(--accent-glow);
+  background: linear-gradient(180deg, rgba(34,211,238,0.08) 0%, rgba(168,85,247,0.04) 100%);
+}
+.tier-card--featured .tier-pill {
+  background: var(--grad-primary); color: #04131a; border-color: transparent;
+}
+
+/* Bento pill (small badge inside a bento card, e.g. capstone) */
+.bento-pill {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.35);
+  color: var(--accent-2); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.4px;
+  text-transform: uppercase; margin-bottom: 10px;
+}
+
+/* Compare grid (ecosistemas) */
+.compare-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px; margin-top: 40px;
+}
+.compare-head { margin-bottom: 18px; }
+.compare-head h3 { margin-bottom: 4px; }
+.compare-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; color: var(--text-muted); }
+.compare-list li { padding-left: 0; }
+.compare-list li strong { color: var(--text); font-weight: 600; }
+.compare-col--featured {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-glow) inset, 0 20px 60px -20px var(--accent-glow);
+  background: linear-gradient(180deg, rgba(34,211,238,0.08) 0%, rgba(168,85,247,0.04) 100%);
+}
+.compare-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  background: var(--grad-primary); color: #04131a;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.4px;
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.section-foot { margin-top: 32px; }
+
+/* Calculator extras */
+.calc-inputs { display: flex; flex-direction: column; gap: 22px; }
+.calc-field input[type="range"] {
+  width: 100%; -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 99px;
+  background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--val,50%), rgba(255,255,255,0.08) var(--val,50%));
+  outline: none;
+}
+.calc-field input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 22px; height: 22px;
+  border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(34,211,238,0.18), 0 4px 12px -2px var(--accent-glow);
+  cursor: pointer; border: none;
+}
+.calc-field input[type="range"]::-moz-range-thumb {
+  width: 22px; height: 22px; border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(34,211,238,0.18); cursor: pointer; border: none;
+}
+.calc-field select {
+  width: 100%; padding: 12px 14px; border-radius: var(--r-sm);
+  background: var(--surface); border: 1px solid var(--border-strong);
+  color: var(--text); font-family: inherit; font-size: 0.95rem;
+  cursor: pointer; outline: none; transition: border-color 0.2s;
+}
+.calc-field select:focus { border-color: var(--accent); }
+.calc-field label { display: block; margin-bottom: 8px; font-size: 0.88rem; color: var(--text-muted); font-weight: 500; }
+.calc-value { margin-top: 6px; font-size: 0.85rem; color: var(--text); font-weight: 600; }
+.calc-result-amount { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 800; color: transparent; background: var(--grad-text); -webkit-background-clip: text; background-clip: text; line-height: 1; margin: 12px 0; }
+.calc-result-meta { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 14px; }
+.calc-result-meta strong { color: var(--text); }
+.calc-result-note { font-size: 0.82rem; color: var(--text-dim); margin: 14px 0 20px; }
+
+/* Recomendaciones generadas por calculator.js */
+.calc-recs { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.calc-rec {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px; border-radius: var(--r-md);
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); transition: background 0.2s, border-color 0.2s, transform 0.15s;
+}
+.calc-rec:hover { background: var(--surface-hover); border-color: var(--accent); transform: translateX(4px); }
+.calc-rec-icon {
+  flex: 0 0 36px; width: 36px; height: 36px; border-radius: 10px;
+  display: grid; place-items: center;
+  background: rgba(34,211,238,0.10); color: var(--accent);
+}
+.calc-rec-body { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.calc-rec-title { font-weight: 600; font-size: 0.95rem; }
+.calc-rec-desc { font-size: 0.82rem; color: var(--text-muted); }
+.calc-rec-arrow { color: var(--accent); opacity: 0.7; transition: transform 0.2s, opacity 0.2s; }
+.calc-rec:hover .calc-rec-arrow { opacity: 1; transform: translateX(2px); }
+
+/* Newsletter legal text */
+.newsletter-legal { font-size: 0.82rem; margin-top: 16px; max-width: 540px; }
+.newsletter-form { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.newsletter-form input[type="email"] {
+  flex: 1 1 240px; min-width: 200px;
+  padding: 14px 18px; border-radius: var(--r-sm);
+  background: var(--surface); border: 1px solid var(--border-strong);
+  color: var(--text); font-family: inherit; font-size: 0.95rem; outline: none;
+  transition: border-color 0.2s;
+}
+.newsletter-form input[type="email"]:focus { border-color: var(--accent); }
+
+/* About card CTA row */
+.about-cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+
+/* ============================================================================
+   /guias/index.html — hub-hero + filter-bar + guides-grid
+   ============================================================================ */
+
+.hub-hero {
   position: relative;
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 110px 0 60px;
-  overflow: hidden;
-  background-color: var(--hero-bg);
-  color: var(--hero-text);
-  font-family: 'Outfit', system-ui, sans-serif;
-  isolation: isolate;
-}
-
-/* Cancela los radial-gradients antiguos del .hero v2 que añadían glow lateral */
-.hero-reposit::before,
-.hero-reposit::after { display: none !important; content: none; }
-
-/* Blur overlays (top/bottom) — legibilidad sobre el video */
-.hero-reposit .blur-overlay {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 10vh;
-  z-index: 3;
-  pointer-events: none;
-  backdrop-filter: blur(25px) saturate(1.4);
-  -webkit-backdrop-filter: blur(25px) saturate(1.4);
-}
-.hero-reposit .blur-overlay-top {
-  top: 0;
-  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-}
-.hero-reposit .blur-overlay-bottom {
-  bottom: 0;
-  mask-image: linear-gradient(to top, black 70%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, black 70%, transparent 100%);
-}
-
-/* Wrapper de las capas de fondo */
-.hero-reposit .hero-bg-wrapper {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  overflow: hidden;
-}
-
-/* Doble capa: back (blur grande para halo de color), front (video nítido) */
-.hero-reposit .hero-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-.hero-reposit .bg-back {
-  z-index: 1;
-  background: radial-gradient(ellipse at 50% 40%, rgba(34, 211, 238, 0.20), transparent 65%);
-  filter: blur(40px) saturate(1.2);
-  transform: scale(1.2);
-  transition: background 0.7s ease;
-}
-.hero-reposit[data-theme="warm"] .bg-back {
-  background: radial-gradient(ellipse at 50% 40%, rgba(251, 191, 36, 0.28), transparent 65%);
-}
-.hero-reposit .bg-front {
-  z-index: 2;
-  transform: scale(1.05);
-  transition: transform 0.5s var(--return-easing), opacity 0.5s ease, filter 0.6s ease;
-}
-.hero-reposit .bg-front .hero-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 40%;
-  opacity: 1;
-  filter: saturate(1.05) brightness(0.92);
-  transition: filter 0.7s ease;
-}
-/* Filtro warm (modo "Atardecer") sin cambiar la paleta del sitio */
-.hero-reposit[data-theme="warm"] .bg-front .hero-video {
-  filter: brightness(1.05) contrast(0.95) saturate(1.18) sepia(0.22) hue-rotate(-12deg);
-}
-
-/* Vignette/gradiente sobre la capa de video para legibilidad */
-.hero-reposit .hero-bg-vignette {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.45) 100%),
-    linear-gradient(to bottom,
-      rgba(0, 0, 0, 0.35) 0%,
-      transparent 30%,
-      transparent 65%,
-      rgba(0, 0, 0, 0.85) 100%);
-  transition: background 0.6s ease;
-}
-.hero-reposit[data-theme="warm"] .hero-bg-vignette {
-  background:
-    radial-gradient(circle at center, transparent 0%, rgba(40, 20, 5, 0.42) 100%),
-    linear-gradient(to bottom,
-      rgba(40, 20, 5, 0.32) 0%,
-      transparent 30%,
-      transparent 65%,
-      rgba(5, 7, 20, 0.90) 100%);
-}
-
-/* Animación pull-down (al cambiar Día↔Noche) */
-.hero-reposit .bg-front.pull-down {
-  transform: translateY(20vh) scale(1.12) !important;
-  opacity: 0.78 !important;
-  transition: transform 0.3s var(--pull-easing), opacity 0.3s ease !important;
-}
-
-/* Contenido del hero — alineado al centro como reposit */
-.hero-reposit .hero-inner {
-  position: relative;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 130px 0 50px;
   text-align: center;
-  gap: 28px;
-  max-width: 880px;
-  padding: 0 20px;
+  background:
+    radial-gradient(800px 400px at 50% 0%, rgba(34,211,238,0.08), transparent 60%),
+    radial-gradient(600px 360px at 50% 100%, rgba(168,85,247,0.05), transparent 60%);
+}
+.hub-hero h1 { margin: 16px 0; }
+.hub-hero .lead { max-width: 640px; margin-inline: auto; }
+
+.filter-bar {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+  margin: 36px auto 0; max-width: 860px;
+}
+.filter-chip {
+  padding: 9px 18px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text-muted); font-family: inherit; font-size: 0.88rem; font-weight: 500;
+  cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+}
+.filter-chip:hover { background: var(--surface-hover); color: var(--text); border-color: var(--border-strong); }
+.filter-chip.is-active {
+  background: var(--grad-primary); color: #04131a; border-color: transparent;
+  box-shadow: 0 6px 20px -6px var(--accent-glow);
 }
 
-.hero-reposit .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 18px;
-  background: rgba(229, 222, 201, 0.10);
-  border: 1px solid rgba(229, 222, 201, 0.28);
-  border-radius: 99px;
-  font-family: 'Outfit', system-ui, sans-serif;
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.4px;
-  color: var(--hero-text);
-  opacity: 0.92;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: color 0.6s ease, background 0.6s ease, border-color 0.6s ease;
-}
-.hero-reposit .eyebrow-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #f5f8ea;
-  box-shadow: 0 0 12px rgba(245, 248, 234, 0.7);
-}
-.hero-reposit[data-theme="warm"] .eyebrow-dot { background: #fbbf24; box-shadow: 0 0 14px rgba(251, 191, 36, 0.7); }
-
-.hero-reposit .hero-title {
-  font-family: 'Outfit', system-ui, sans-serif;
-  font-size: clamp(2.6rem, 6vw, 4.2rem);
-  font-weight: 500;
-  line-height: 1.02;
-  letter-spacing: -1px;
-  margin: 0;
-  color: var(--hero-text);
-  opacity: 0.97;
-}
-.hero-reposit .hero-title .title-accent {
-  display: inline-block;
-  font-weight: 300;
-  font-style: italic;
-  color: rgba(229, 222, 201, 0.85);
-}
-
-.hero-reposit .hero-sub {
-  font-family: 'Outfit', system-ui, sans-serif;
-  max-width: 640px;
-  margin: 0 auto;
-  font-size: 1.05rem;
-  font-weight: 300;
-  line-height: 1.62;
-  color: var(--hero-text);
-  opacity: 0.88;
-}
-
-.hero-reposit .hero-cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-}
-.hero-reposit .hero-cta-row .btn {
-  font-family: 'Outfit', system-ui, sans-serif;
-  font-weight: 600;
-}
-/* Botón ghost: legible sobre video con backdrop-filter */
-.hero-reposit .btn-ghost {
-  background: rgba(229, 222, 201, 0.08);
-  border: 1px solid rgba(229, 222, 201, 0.28);
-  color: var(--hero-text);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-/* Toggle Cool/Warm (Noche/Atardecer) — mood del video sin invertir paleta */
-.hero-reposit .theme-toggle {
-  position: relative;
-  display: inline-flex;
-  gap: 4px;
-  padding: 3px;
-  background: rgba(210, 198, 171, 0.12);
-  border: 1px solid rgba(229, 222, 201, 0.20);
-  border-radius: 12px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-.hero-reposit .toggle-indicator {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: calc(50% - 3px);
-  height: calc(100% - 6px);
-  background: var(--hero-accent);
-  border-radius: 9px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
-  transition: transform 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.5s ease;
-  z-index: 0;
-  transform: translateX(calc(100% + 0px));
-}
-.hero-reposit[data-theme="warm"] .toggle-indicator {
-  transform: translateX(0);
-  background: #fbbf24;
-}
-.hero-reposit .toggle-btn {
-  position: relative;
-  z-index: 1;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  padding: 8px 32px;
-  border-radius: 9px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  color: var(--hero-text);
-  font-family: 'Outfit', system-ui, sans-serif;
-  transition: color 0.3s ease;
-}
-.hero-reposit .toggle-btn .label {
-  font-size: 1.05rem;
-  font-weight: 500;
-  letter-spacing: -0.2px;
-}
-.hero-reposit .toggle-btn .subtext {
-  font-size: 0.72rem;
-  opacity: 0.62;
-  font-weight: 400;
-}
-.hero-reposit .toggle-btn.active {
-  color: #04131a !important;
-}
-.hero-reposit .toggle-btn.active .subtext { opacity: 0.78; }
-
-/* Métricas: barra horizontal elegante con divisores */
-.hero-reposit .hero-metrics {
-  display: inline-flex;
-  align-items: center;
+.guides-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 22px;
-  padding: 14px 28px;
-  background: rgba(229, 222, 201, 0.06);
-  border: 1px solid rgba(229, 222, 201, 0.16);
-  border-radius: 14px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
-.hero-reposit .hero-metrics [role="listitem"] {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  min-width: 88px;
+.guide-item { transition: opacity 0.25s var(--ease-out), transform 0.25s; }
+.guide-item.is-hidden { display: none; }
+.guide-tag {
+  display: inline-block; padding: 4px 10px; border-radius: 999px;
+  background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.22);
+  color: var(--accent); font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.3px; text-transform: uppercase; margin-bottom: 12px;
 }
-.hero-reposit .metric-num {
-  font-family: 'Outfit', system-ui, sans-serif;
-  font-size: 1.6rem;
-  font-weight: 600;
-  letter-spacing: -0.5px;
-  color: var(--hero-text);
+.guide-meta-small {
+  display: flex; gap: 10px; font-size: 0.8rem; color: var(--text-dim);
+  margin-top: 14px; align-items: center;
 }
-.hero-reposit .metric-label {
-  font-family: 'Outfit', system-ui, sans-serif;
-  font-size: 0.72rem;
-  font-weight: 400;
-  letter-spacing: 0.3px;
-  color: var(--hero-text);
-  opacity: 0.65;
-  text-transform: none;
-}
-.hero-reposit .metric-divider {
-  width: 1px;
-  height: 28px;
-  background: rgba(229, 222, 201, 0.22);
-}
+.guide-meta-small .dot { color: var(--accent); }
 
-/* Animación de entrada (mantiene la cadencia del v2 pero más limpia) */
-@keyframes heroFadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.hero-reposit .hero-inner > * {
-  animation: heroFadeIn 0.9s ease forwards;
-  opacity: 0;
-}
-.hero-reposit .eyebrow         { animation-delay: 0.05s; }
-.hero-reposit .hero-title      { animation-delay: 0.15s; }
-.hero-reposit .hero-sub        { animation-delay: 0.28s; }
-.hero-reposit .hero-cta-row    { animation-delay: 0.40s; }
-.hero-reposit .theme-toggle    { animation-delay: 0.52s; }
-.hero-reposit .hero-metrics    { animation-delay: 0.64s; }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .hero-reposit { min-height: 100svh; padding: 100px 0 56px; }
-  .hero-reposit .hero-inner { gap: 22px; }
-  .hero-reposit .hero-title { font-size: clamp(2rem, 9vw, 2.8rem); letter-spacing: -0.5px; }
-  .hero-reposit .hero-sub { font-size: 0.98rem; max-width: 92%; }
-  .hero-reposit .toggle-btn { padding: 8px 22px; }
-  .hero-reposit .hero-metrics { gap: 14px; padding: 12px 18px; flex-wrap: nowrap; }
-  .hero-reposit .hero-metrics [role="listitem"] { min-width: 72px; }
-  .hero-reposit .metric-num { font-size: 1.3rem; }
-  .hero-reposit .metric-label { font-size: 0.65rem; }
-  .hero-reposit .bg-front.pull-down { transform: translateY(18vh) scale(1.18) !important; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-reposit .hero-inner > * { animation: none; opacity: 1; }
-  .hero-reposit .bg-front { transition: none; }
-  .hero-reposit .toggle-indicator { transition: none; }
-}
