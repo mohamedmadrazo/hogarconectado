@@ -195,7 +195,7 @@
     });
   });
 
-  /* ---------- Hero v3 (reposit) — toggle Día/Noche con pull-down ---------- */
+  /* ---------- Hero v3 (reposit) — toggle Noche/Atardecer con pull-down ---------- */
   const heroReposit = document.querySelector('.hero-reposit');
   if (heroReposit) {
     const bgFront = heroReposit.querySelector('#heroBgFront');
@@ -204,20 +204,20 @@
 
     const setHeroTheme = (target) => {
       if (animating) return;
-      const current = heroReposit.dataset.theme || 'night';
+      const current = heroReposit.dataset.theme || 'cool';
       if (current === target) return;
       animating = true;
 
       // 1) Animación pull-down sobre la capa del video
       if (bgFront) bgFront.classList.add('pull-down');
 
-      // 2) A los 300ms aplicamos el cambio de tema (cuando la imagen está fuera de pantalla)
+      // 2) A los 300ms aplicamos el cambio de tema (cuando la capa está fuera de pantalla)
       setTimeout(() => {
         heroReposit.dataset.theme = target;
         toggleBtns.forEach(b => {
           const isActive = b.dataset.target === target;
           b.classList.toggle('active', isActive);
-          b.setAttribute('aria-selected', String(isActive));
+          b.setAttribute('aria-checked', String(isActive));
         });
 
         // 3) Devolvemos la capa con la transición de rebote ya definida en CSS
@@ -232,11 +232,11 @@
       btn.addEventListener('click', () => setHeroTheme(btn.dataset.target));
     });
 
-    // Atajo de teclado: T para alternar (accesibilidad opcional)
+    // Atajo de teclado: T para alternar (con prefers-reduced-motion respetado por CSS)
     document.addEventListener('keydown', (e) => {
       if (e.key.toLowerCase() === 't' && !e.metaKey && !e.ctrlKey && !e.altKey
           && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) {
-        setHeroTheme(heroReposit.dataset.theme === 'night' ? 'day' : 'night');
+        setHeroTheme(heroReposit.dataset.theme === 'cool' ? 'warm' : 'cool');
       }
     });
   }

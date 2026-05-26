@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#050714">
   <title>Hogar Conectado — Reviews independientes de domótica en español</title>
-  <meta name="description" content="12 pilares editoriales sobre domótica española sin patrocinios ocultos. Comparativas honestas de alarmas, cámaras, termostatos, cerraduras, robots aspiradora, hubs Matter, sensores de fuga y más. Calcula cuánto te ahorra automatizar tu casa.">
+  <meta name="description" content="12 pilares de domótica en español sin patrocinios. Alarmas, cámaras, termostatos, robots, hubs Matter. Calcula cuánto te ahorra automatizar.">
   <meta name="keywords" content="domótica, hogar conectado, smart home, alarmas hogar, cámaras seguridad, enchufes inteligentes, Alexa, Google Home, persianas inteligentes, termostato inteligente, cerraduras inteligentes, robots aspiradora">
   <meta name="author" content="Hogar Conectado">
   <meta name="robots" content="index, follow, max-image-preview:large">
@@ -18,7 +18,7 @@
   <meta property="og:title" content="Hogar Conectado — Reviews independientes de domótica en español">
   <meta property="og:description" content="12 pilares editoriales sin patrocinios ocultos. Comparativas honestas con datos verificables. Calcula cuánto te ahorra automatizar tu casa.">
   <meta property="og:url" content="https://hogarconectado.co/">
-  <meta property="og:image" content="https://hogarconectado.co/assets/og-image.png">
+  <meta property="og:image" content="https://hogarconectado.co/assets/og-image-1200.jpg">
   <meta property="og:image:width" content="1376">
   <meta property="og:image:height" content="768">
   <meta property="og:image:alt" content="Salón minimalista con bombilla inteligente colgante, lámpara de pie con LED cian y altavoz inteligente sobre estantería de madera. Wordmark 'Hogar Conectado' visible.">
@@ -27,7 +27,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Hogar Conectado — Domótica honesta, en castellano">
   <meta name="twitter:description" content="12 pilares · 39.900 palabras de contenido original · cero patrocinios ocultos. Reviews probadas en 3 viviendas reales.">
-  <meta name="twitter:image" content="https://hogarconectado.co/assets/og-image.png">
+  <meta name="twitter:image" content="https://hogarconectado.co/assets/og-image-1200.jpg">
 
   <!-- Preload/preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,7 +63,7 @@
     "publisher": {
       "@type": "Organization",
       "name": "Hogar Conectado",
-      "logo": { "@type": "ImageObject", "url": "https://hogarconectado.co/assets/og-image.png" }
+      "logo": { "@type": "ImageObject", "url": "https://hogarconectado.co/assets/og-image-1200.jpg" }
     }
   }
   </script>
@@ -73,7 +73,7 @@
     "@type": "Organization",
     "name": "Hogar Conectado",
     "url": "https://hogarconectado.co/",
-    "logo": "https://hogarconectado.co/assets/og-image.png",
+    "logo": "https://hogarconectado.co/assets/og-image-1200.jpg",
     "foundingDate": "2026",
     "areaServed": "ES",
     "knowsAbout": ["domótica", "smart home", "Matter", "HomeKit", "Alexa", "Google Home", "alarmas hogar", "termostatos inteligentes"],
@@ -122,6 +122,7 @@
 
   <!-- Google AdSense (CLAUDE.md §5.3: async + crossorigin). Sustituye {{ADSENSE_CLIENT}} tras aprobación. -->
   <!-- AdSense JS — DESACTIVADO hasta tener pub-ID real. Sin este script, los <ins class="adsbygoogle"> de cada slot quedan como reserva visual sin fetch. -->
+  <!-- AdSense JS — DESACTIVADO hasta tener pub-ID real. Sin este script, los <ins class="adsbygoogle"> de cada slot quedan como reserva visual sin fetch. -->
   <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-{{ADSENSE_CLIENT}}" crossorigin="anonymous"></script> -->
 
   <link rel="manifest" href="/site.webmanifest">
@@ -147,8 +148,8 @@
   </div>
 </header>
 
-<!-- ========== 2. HERO v3 (estética cinematográfica reposit, toggle Día/Noche) ========== -->
-<section class="hero hero-reposit" aria-label="Portada" data-theme="night">
+<!-- ========== 2. HERO v3 (estética cinematográfica reposit, toggle Noche/Atardecer) ========== -->
+<section class="hero hero-reposit" aria-label="Portada" data-theme="cool">
   <!-- Blur overlays arriba y abajo (legibilidad sobre el video) -->
   <div class="blur-overlay blur-overlay-top" aria-hidden="true"></div>
   <div class="blur-overlay blur-overlay-bottom" aria-hidden="true"></div>
@@ -188,16 +189,16 @@
       <a class="btn btn-ghost" href="#presupuesto">Ver por presupuesto</a>
     </div>
 
-    <!-- Toggle Día / Noche (estética reposit) -->
-    <div class="theme-toggle" role="tablist" aria-label="Cambiar atmósfera">
+    <!-- Toggle Noche / Atardecer (cambia el mood del video sin invertir paleta) -->
+    <div class="theme-toggle" role="radiogroup" aria-label="Cambiar atmósfera del hero (tecla T)">
       <div class="toggle-indicator" id="heroToggleIndicator"></div>
-      <button class="toggle-btn" data-target="day" role="tab" aria-selected="false">
-        <span class="label">Día</span>
-        <span class="subtext">Tu casa automatizada</span>
+      <button class="toggle-btn" data-target="warm" role="radio" aria-checked="false" type="button">
+        <span class="label">Atardecer</span>
+        <span class="subtext">Tu casa, 24/7</span>
       </button>
-      <button class="toggle-btn active" data-target="night" role="tab" aria-selected="true">
+      <button class="toggle-btn active" data-target="cool" role="radio" aria-checked="true" type="button">
         <span class="label">Noche</span>
-        <span class="subtext">Tu casa automatizada</span>
+        <span class="subtext">Tu casa, 24/7</span>
       </button>
     </div>
 

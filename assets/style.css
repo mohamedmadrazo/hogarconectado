@@ -137,7 +137,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; lin
   padding: 140px 0 80px;
   overflow: hidden;
 }
-/* v2.1: Three.js #hero-canvas eliminado — el hero ahora usa .hero-video-wrap */
+/* Hero v3 (.hero-reposit) usa su propio sistema de capas (.hero-bg-wrapper + .bg-front/.bg-back). */
 .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: 32px; max-width: 860px; }
 .eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
@@ -528,28 +528,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; lin
    newsletter, FAQ accordion, sobre nosotros, guide thumb variants.
    ========================================================================== */
 
-/* ---------- Hero video loop (sustituye Three.js) ---------- */
-.hero-video-wrap {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  z-index: 0; overflow: hidden;
-  mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, #000 50%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, #000 50%, transparent 100%);
-}
-.hero-video {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  opacity: 0.55;
-  filter: saturate(0.95) brightness(0.85);
-}
-.hero-video-overlay {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(900px 600px at 20% 30%, rgba(5,7,20,0.4), transparent 60%),
-    linear-gradient(180deg, rgba(5,7,20,0.15) 0%, rgba(5,7,20,0.55) 100%);
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-video { animation: none; }
-}
+/* Hero video (sólo .hero-video dentro de .hero-reposit .bg-front es lo que se renderiza ahora;
+   las reglas específicas viven en el bloque .hero-reposit más abajo en este archivo). */
 
 /* ---------- Tiers (Empieza por tu presupuesto) ---------- */
 .tier-grid {
@@ -1182,13 +1162,12 @@ body::after {
    ============================================================================ */
 
 .hero-reposit {
-  /* Tokens locales — no contaminan el resto del sitio */
-  --hero-bg-night:    #0a0805;
-  --hero-bg-day:      #f6efe2;
-  --hero-text-night:  #E5DEC9;
-  --hero-text-day:    #3E3424;
+  /* Tokens locales — no contaminan el resto del sitio.
+     Mantengo paleta crema sobre fondo oscuro para coherencia con el resto del sitio.
+     El toggle cambia el "mood" del video (cool/warm) sin invertir tema completo. */
+  --hero-bg:          #050714;
+  --hero-text:        #E5DEC9;
   --hero-accent:      #f5f8ea;
-  --hero-trans:       0.9s;
   --pull-easing:      cubic-bezier(0.32, 0, 0.67, 0);
   --return-easing:    cubic-bezier(0.175, 0.885, 0.32, 1.4);
 
@@ -1200,15 +1179,10 @@ body::after {
   justify-content: center;
   padding: 110px 0 60px;
   overflow: hidden;
-  background-color: var(--hero-bg-night);
-  color: var(--hero-text-night);
+  background-color: var(--hero-bg);
+  color: var(--hero-text);
   font-family: 'Outfit', system-ui, sans-serif;
-  transition: background-color 0.6s ease, color 0.6s ease;
   isolation: isolate;
-}
-.hero-reposit[data-theme="day"] {
-  background-color: var(--hero-bg-day);
-  color: var(--hero-text-day);
 }
 
 /* Cancela los radial-gradients antiguos del .hero v2 que añadían glow lateral */
@@ -1254,12 +1228,13 @@ body::after {
 }
 .hero-reposit .bg-back {
   z-index: 1;
-  background: radial-gradient(ellipse at 50% 40%, rgba(245, 248, 234, 0.18), transparent 65%);
+  background: radial-gradient(ellipse at 50% 40%, rgba(34, 211, 238, 0.20), transparent 65%);
   filter: blur(40px) saturate(1.2);
   transform: scale(1.2);
+  transition: background 0.7s ease;
 }
-.hero-reposit[data-theme="day"] .bg-back {
-  background: radial-gradient(ellipse at 50% 40%, rgba(245, 200, 120, 0.35), transparent 65%);
+.hero-reposit[data-theme="warm"] .bg-back {
+  background: radial-gradient(ellipse at 50% 40%, rgba(251, 191, 36, 0.28), transparent 65%);
 }
 .hero-reposit .bg-front {
   z-index: 2;
@@ -1277,9 +1252,9 @@ body::after {
   filter: saturate(1.05) brightness(0.92);
   transition: filter 0.7s ease;
 }
-/* Filtro warm para modo Día (el video original es nocturno) */
-.hero-reposit[data-theme="day"] .bg-front .hero-video {
-  filter: brightness(1.45) contrast(0.92) saturate(1.05) sepia(0.18) hue-rotate(-8deg);
+/* Filtro warm (modo "Atardecer") sin cambiar la paleta del sitio */
+.hero-reposit[data-theme="warm"] .bg-front .hero-video {
+  filter: brightness(1.05) contrast(0.95) saturate(1.18) sepia(0.22) hue-rotate(-12deg);
 }
 
 /* Vignette/gradiente sobre la capa de video para legibilidad */
@@ -1297,14 +1272,14 @@ body::after {
       rgba(0, 0, 0, 0.85) 100%);
   transition: background 0.6s ease;
 }
-.hero-reposit[data-theme="day"] .hero-bg-vignette {
+.hero-reposit[data-theme="warm"] .hero-bg-vignette {
   background:
-    radial-gradient(circle at center, transparent 0%, rgba(255, 255, 255, 0.18) 100%),
+    radial-gradient(circle at center, transparent 0%, rgba(40, 20, 5, 0.42) 100%),
     linear-gradient(to bottom,
-      rgba(255, 255, 255, 0.32) 0%,
+      rgba(40, 20, 5, 0.32) 0%,
       transparent 30%,
       transparent 65%,
-      rgba(255, 255, 255, 0.78) 100%);
+      rgba(5, 7, 20, 0.90) 100%);
 }
 
 /* Animación pull-down (al cambiar Día↔Noche) */
@@ -1339,16 +1314,11 @@ body::after {
   font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.4px;
-  color: var(--hero-text-night);
+  color: var(--hero-text);
   opacity: 0.92;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   transition: color 0.6s ease, background 0.6s ease, border-color 0.6s ease;
-}
-.hero-reposit[data-theme="day"] .eyebrow {
-  background: rgba(62, 52, 36, 0.08);
-  border-color: rgba(62, 52, 36, 0.22);
-  color: var(--hero-text-day);
 }
 .hero-reposit .eyebrow-dot {
   width: 6px; height: 6px;
@@ -1356,7 +1326,7 @@ body::after {
   background: #f5f8ea;
   box-shadow: 0 0 12px rgba(245, 248, 234, 0.7);
 }
-.hero-reposit[data-theme="day"] .eyebrow-dot { background: #3E3424; box-shadow: none; }
+.hero-reposit[data-theme="warm"] .eyebrow-dot { background: #fbbf24; box-shadow: 0 0 14px rgba(251, 191, 36, 0.7); }
 
 .hero-reposit .hero-title {
   font-family: 'Outfit', system-ui, sans-serif;
@@ -1365,20 +1335,14 @@ body::after {
   line-height: 1.02;
   letter-spacing: -1px;
   margin: 0;
-  color: var(--hero-text-night);
+  color: var(--hero-text);
   opacity: 0.97;
-  transition: color 0.6s ease;
 }
-.hero-reposit[data-theme="day"] .hero-title { color: var(--hero-text-day); }
 .hero-reposit .hero-title .title-accent {
   display: inline-block;
   font-weight: 300;
   font-style: italic;
   color: rgba(229, 222, 201, 0.85);
-  transition: color 0.6s ease;
-}
-.hero-reposit[data-theme="day"] .hero-title .title-accent {
-  color: rgba(62, 52, 36, 0.78);
 }
 
 .hero-reposit .hero-sub {
@@ -1388,11 +1352,9 @@ body::after {
   font-size: 1.05rem;
   font-weight: 300;
   line-height: 1.62;
-  color: var(--hero-text-night);
+  color: var(--hero-text);
   opacity: 0.88;
-  transition: color 0.6s ease, opacity 0.6s ease;
 }
-.hero-reposit[data-theme="day"] .hero-sub { color: var(--hero-text-day); opacity: 0.85; }
 
 .hero-reposit .hero-cta-row {
   display: flex;
@@ -1404,42 +1366,26 @@ body::after {
   font-family: 'Outfit', system-ui, sans-serif;
   font-weight: 600;
 }
-/* Botón primario en tema día → fondo oscuro, texto crema */
-.hero-reposit[data-theme="day"] .btn-primary {
-  background: #2a221a;
-  color: var(--hero-bg-day);
-}
-.hero-reposit[data-theme="day"] .btn-primary:hover { background: #1d1812; }
-/* Botón ghost en cualquier tema → más legible sobre video */
+/* Botón ghost: legible sobre video con backdrop-filter */
 .hero-reposit .btn-ghost {
   background: rgba(229, 222, 201, 0.08);
   border: 1px solid rgba(229, 222, 201, 0.28);
-  color: var(--hero-text-night);
+  color: var(--hero-text);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
-.hero-reposit[data-theme="day"] .btn-ghost {
-  background: rgba(62, 52, 36, 0.08);
-  border-color: rgba(62, 52, 36, 0.25);
-  color: var(--hero-text-day);
-}
 
-/* Toggle Día/Noche (estética reposit) */
+/* Toggle Cool/Warm (Noche/Atardecer) — mood del video sin invertir paleta */
 .hero-reposit .theme-toggle {
   position: relative;
   display: inline-flex;
   gap: 4px;
   padding: 3px;
-  background: rgba(210, 198, 171, 0.15);
-  border: 1px solid rgba(229, 222, 201, 0.18);
+  background: rgba(210, 198, 171, 0.12);
+  border: 1px solid rgba(229, 222, 201, 0.20);
   border-radius: 12px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  transition: background 0.6s ease, border-color 0.6s ease;
-}
-.hero-reposit[data-theme="day"] .theme-toggle {
-  background: rgba(62, 52, 36, 0.10);
-  border-color: rgba(62, 52, 36, 0.18);
 }
 .hero-reposit .toggle-indicator {
   position: absolute;
@@ -1450,12 +1396,13 @@ body::after {
   background: var(--hero-accent);
   border-radius: 9px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
-  transition: transform 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.5s ease;
   z-index: 0;
   transform: translateX(calc(100% + 0px));
 }
-.hero-reposit[data-theme="day"] .toggle-indicator {
+.hero-reposit[data-theme="warm"] .toggle-indicator {
   transform: translateX(0);
+  background: #fbbf24;
 }
 .hero-reposit .toggle-btn {
   position: relative;
@@ -1469,11 +1416,10 @@ body::after {
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  color: var(--hero-text-night);
+  color: var(--hero-text);
   font-family: 'Outfit', system-ui, sans-serif;
   transition: color 0.3s ease;
 }
-.hero-reposit[data-theme="day"] .toggle-btn { color: var(--hero-text-day); }
 .hero-reposit .toggle-btn .label {
   font-size: 1.05rem;
   font-weight: 500;
@@ -1485,7 +1431,7 @@ body::after {
   font-weight: 400;
 }
 .hero-reposit .toggle-btn.active {
-  color: #3E3424 !important;
+  color: #04131a !important;
 }
 .hero-reposit .toggle-btn.active .subtext { opacity: 0.78; }
 
@@ -1500,11 +1446,6 @@ body::after {
   border-radius: 14px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  transition: background 0.6s ease, border-color 0.6s ease;
-}
-.hero-reposit[data-theme="day"] .hero-metrics {
-  background: rgba(62, 52, 36, 0.06);
-  border-color: rgba(62, 52, 36, 0.16);
 }
 .hero-reposit .hero-metrics [role="listitem"] {
   display: flex;
@@ -1518,27 +1459,22 @@ body::after {
   font-size: 1.6rem;
   font-weight: 600;
   letter-spacing: -0.5px;
-  color: var(--hero-text-night);
-  transition: color 0.6s ease;
+  color: var(--hero-text);
 }
-.hero-reposit[data-theme="day"] .metric-num { color: var(--hero-text-day); }
 .hero-reposit .metric-label {
   font-family: 'Outfit', system-ui, sans-serif;
   font-size: 0.72rem;
   font-weight: 400;
   letter-spacing: 0.3px;
-  color: var(--hero-text-night);
+  color: var(--hero-text);
   opacity: 0.65;
   text-transform: none;
 }
-.hero-reposit[data-theme="day"] .metric-label { color: var(--hero-text-day); opacity: 0.62; }
 .hero-reposit .metric-divider {
   width: 1px;
   height: 28px;
   background: rgba(229, 222, 201, 0.22);
-  transition: background 0.6s ease;
 }
-.hero-reposit[data-theme="day"] .metric-divider { background: rgba(62, 52, 36, 0.22); }
 
 /* Animación de entrada (mantiene la cadencia del v2 pero más limpia) */
 @keyframes heroFadeIn {
