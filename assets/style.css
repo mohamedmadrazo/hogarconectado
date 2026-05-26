@@ -1174,3 +1174,404 @@ body::after {
   body::before, .hero::before, .cta-band::before { animation: none; }
   .hero-title .text-grad { animation: none; }
 }
+
+/* ============================================================================
+   HERO v3 — estética cinematográfica (inspirada en reposit)
+   Toggle Día/Noche con pull-down. Tipografía Outfit. Paleta crema-warm.
+   Convive con .hero v2: cuando hay .hero-reposit, override completo.
+   ============================================================================ */
+
+.hero-reposit {
+  /* Tokens locales — no contaminan el resto del sitio */
+  --hero-bg-night:    #0a0805;
+  --hero-bg-day:      #f6efe2;
+  --hero-text-night:  #E5DEC9;
+  --hero-text-day:    #3E3424;
+  --hero-accent:      #f5f8ea;
+  --hero-trans:       0.9s;
+  --pull-easing:      cubic-bezier(0.32, 0, 0.67, 0);
+  --return-easing:    cubic-bezier(0.175, 0.885, 0.32, 1.4);
+
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 110px 0 60px;
+  overflow: hidden;
+  background-color: var(--hero-bg-night);
+  color: var(--hero-text-night);
+  font-family: 'Outfit', system-ui, sans-serif;
+  transition: background-color 0.6s ease, color 0.6s ease;
+  isolation: isolate;
+}
+.hero-reposit[data-theme="day"] {
+  background-color: var(--hero-bg-day);
+  color: var(--hero-text-day);
+}
+
+/* Cancela los radial-gradients antiguos del .hero v2 que añadían glow lateral */
+.hero-reposit::before,
+.hero-reposit::after { display: none !important; content: none; }
+
+/* Blur overlays (top/bottom) — legibilidad sobre el video */
+.hero-reposit .blur-overlay {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 10vh;
+  z-index: 3;
+  pointer-events: none;
+  backdrop-filter: blur(25px) saturate(1.4);
+  -webkit-backdrop-filter: blur(25px) saturate(1.4);
+}
+.hero-reposit .blur-overlay-top {
+  top: 0;
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+.hero-reposit .blur-overlay-bottom {
+  bottom: 0;
+  mask-image: linear-gradient(to top, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 70%, transparent 100%);
+}
+
+/* Wrapper de las capas de fondo */
+.hero-reposit .hero-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Doble capa: back (blur grande para halo de color), front (video nítido) */
+.hero-reposit .hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero-reposit .bg-back {
+  z-index: 1;
+  background: radial-gradient(ellipse at 50% 40%, rgba(245, 248, 234, 0.18), transparent 65%);
+  filter: blur(40px) saturate(1.2);
+  transform: scale(1.2);
+}
+.hero-reposit[data-theme="day"] .bg-back {
+  background: radial-gradient(ellipse at 50% 40%, rgba(245, 200, 120, 0.35), transparent 65%);
+}
+.hero-reposit .bg-front {
+  z-index: 2;
+  transform: scale(1.05);
+  transition: transform 0.5s var(--return-easing), opacity 0.5s ease, filter 0.6s ease;
+}
+.hero-reposit .bg-front .hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  opacity: 1;
+  filter: saturate(1.05) brightness(0.92);
+  transition: filter 0.7s ease;
+}
+/* Filtro warm para modo Día (el video original es nocturno) */
+.hero-reposit[data-theme="day"] .bg-front .hero-video {
+  filter: brightness(1.45) contrast(0.92) saturate(1.05) sepia(0.18) hue-rotate(-8deg);
+}
+
+/* Vignette/gradiente sobre la capa de video para legibilidad */
+.hero-reposit .hero-bg-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.45) 100%),
+    linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.35) 0%,
+      transparent 30%,
+      transparent 65%,
+      rgba(0, 0, 0, 0.85) 100%);
+  transition: background 0.6s ease;
+}
+.hero-reposit[data-theme="day"] .hero-bg-vignette {
+  background:
+    radial-gradient(circle at center, transparent 0%, rgba(255, 255, 255, 0.18) 100%),
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.32) 0%,
+      transparent 30%,
+      transparent 65%,
+      rgba(255, 255, 255, 0.78) 100%);
+}
+
+/* Animación pull-down (al cambiar Día↔Noche) */
+.hero-reposit .bg-front.pull-down {
+  transform: translateY(20vh) scale(1.12) !important;
+  opacity: 0.78 !important;
+  transition: transform 0.3s var(--pull-easing), opacity 0.3s ease !important;
+}
+
+/* Contenido del hero — alineado al centro como reposit */
+.hero-reposit .hero-inner {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+  max-width: 880px;
+  padding: 0 20px;
+}
+
+.hero-reposit .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  background: rgba(229, 222, 201, 0.10);
+  border: 1px solid rgba(229, 222, 201, 0.28);
+  border-radius: 99px;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  color: var(--hero-text-night);
+  opacity: 0.92;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: color 0.6s ease, background 0.6s ease, border-color 0.6s ease;
+}
+.hero-reposit[data-theme="day"] .eyebrow {
+  background: rgba(62, 52, 36, 0.08);
+  border-color: rgba(62, 52, 36, 0.22);
+  color: var(--hero-text-day);
+}
+.hero-reposit .eyebrow-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #f5f8ea;
+  box-shadow: 0 0 12px rgba(245, 248, 234, 0.7);
+}
+.hero-reposit[data-theme="day"] .eyebrow-dot { background: #3E3424; box-shadow: none; }
+
+.hero-reposit .hero-title {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -1px;
+  margin: 0;
+  color: var(--hero-text-night);
+  opacity: 0.97;
+  transition: color 0.6s ease;
+}
+.hero-reposit[data-theme="day"] .hero-title { color: var(--hero-text-day); }
+.hero-reposit .hero-title .title-accent {
+  display: inline-block;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(229, 222, 201, 0.85);
+  transition: color 0.6s ease;
+}
+.hero-reposit[data-theme="day"] .hero-title .title-accent {
+  color: rgba(62, 52, 36, 0.78);
+}
+
+.hero-reposit .hero-sub {
+  font-family: 'Outfit', system-ui, sans-serif;
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.62;
+  color: var(--hero-text-night);
+  opacity: 0.88;
+  transition: color 0.6s ease, opacity 0.6s ease;
+}
+.hero-reposit[data-theme="day"] .hero-sub { color: var(--hero-text-day); opacity: 0.85; }
+
+.hero-reposit .hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.hero-reposit .hero-cta-row .btn {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-weight: 600;
+}
+/* Botón primario en tema día → fondo oscuro, texto crema */
+.hero-reposit[data-theme="day"] .btn-primary {
+  background: #2a221a;
+  color: var(--hero-bg-day);
+}
+.hero-reposit[data-theme="day"] .btn-primary:hover { background: #1d1812; }
+/* Botón ghost en cualquier tema → más legible sobre video */
+.hero-reposit .btn-ghost {
+  background: rgba(229, 222, 201, 0.08);
+  border: 1px solid rgba(229, 222, 201, 0.28);
+  color: var(--hero-text-night);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.hero-reposit[data-theme="day"] .btn-ghost {
+  background: rgba(62, 52, 36, 0.08);
+  border-color: rgba(62, 52, 36, 0.25);
+  color: var(--hero-text-day);
+}
+
+/* Toggle Día/Noche (estética reposit) */
+.hero-reposit .theme-toggle {
+  position: relative;
+  display: inline-flex;
+  gap: 4px;
+  padding: 3px;
+  background: rgba(210, 198, 171, 0.15);
+  border: 1px solid rgba(229, 222, 201, 0.18);
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: background 0.6s ease, border-color 0.6s ease;
+}
+.hero-reposit[data-theme="day"] .theme-toggle {
+  background: rgba(62, 52, 36, 0.10);
+  border-color: rgba(62, 52, 36, 0.18);
+}
+.hero-reposit .toggle-indicator {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  height: calc(100% - 6px);
+  background: var(--hero-accent);
+  border-radius: 9px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  transition: transform 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 0;
+  transform: translateX(calc(100% + 0px));
+}
+.hero-reposit[data-theme="day"] .toggle-indicator {
+  transform: translateX(0);
+}
+.hero-reposit .toggle-btn {
+  position: relative;
+  z-index: 1;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 8px 32px;
+  border-radius: 9px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: var(--hero-text-night);
+  font-family: 'Outfit', system-ui, sans-serif;
+  transition: color 0.3s ease;
+}
+.hero-reposit[data-theme="day"] .toggle-btn { color: var(--hero-text-day); }
+.hero-reposit .toggle-btn .label {
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+.hero-reposit .toggle-btn .subtext {
+  font-size: 0.72rem;
+  opacity: 0.62;
+  font-weight: 400;
+}
+.hero-reposit .toggle-btn.active {
+  color: #3E3424 !important;
+}
+.hero-reposit .toggle-btn.active .subtext { opacity: 0.78; }
+
+/* Métricas: barra horizontal elegante con divisores */
+.hero-reposit .hero-metrics {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding: 14px 28px;
+  background: rgba(229, 222, 201, 0.06);
+  border: 1px solid rgba(229, 222, 201, 0.16);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.6s ease, border-color 0.6s ease;
+}
+.hero-reposit[data-theme="day"] .hero-metrics {
+  background: rgba(62, 52, 36, 0.06);
+  border-color: rgba(62, 52, 36, 0.16);
+}
+.hero-reposit .hero-metrics [role="listitem"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 88px;
+}
+.hero-reposit .metric-num {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: var(--hero-text-night);
+  transition: color 0.6s ease;
+}
+.hero-reposit[data-theme="day"] .metric-num { color: var(--hero-text-day); }
+.hero-reposit .metric-label {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  color: var(--hero-text-night);
+  opacity: 0.65;
+  text-transform: none;
+}
+.hero-reposit[data-theme="day"] .metric-label { color: var(--hero-text-day); opacity: 0.62; }
+.hero-reposit .metric-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(229, 222, 201, 0.22);
+  transition: background 0.6s ease;
+}
+.hero-reposit[data-theme="day"] .metric-divider { background: rgba(62, 52, 36, 0.22); }
+
+/* Animación de entrada (mantiene la cadencia del v2 pero más limpia) */
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-reposit .hero-inner > * {
+  animation: heroFadeIn 0.9s ease forwards;
+  opacity: 0;
+}
+.hero-reposit .eyebrow         { animation-delay: 0.05s; }
+.hero-reposit .hero-title      { animation-delay: 0.15s; }
+.hero-reposit .hero-sub        { animation-delay: 0.28s; }
+.hero-reposit .hero-cta-row    { animation-delay: 0.40s; }
+.hero-reposit .theme-toggle    { animation-delay: 0.52s; }
+.hero-reposit .hero-metrics    { animation-delay: 0.64s; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-reposit { min-height: 100svh; padding: 100px 0 56px; }
+  .hero-reposit .hero-inner { gap: 22px; }
+  .hero-reposit .hero-title { font-size: clamp(2rem, 9vw, 2.8rem); letter-spacing: -0.5px; }
+  .hero-reposit .hero-sub { font-size: 0.98rem; max-width: 92%; }
+  .hero-reposit .toggle-btn { padding: 8px 22px; }
+  .hero-reposit .hero-metrics { gap: 14px; padding: 12px 18px; flex-wrap: nowrap; }
+  .hero-reposit .hero-metrics [role="listitem"] { min-width: 72px; }
+  .hero-reposit .metric-num { font-size: 1.3rem; }
+  .hero-reposit .metric-label { font-size: 0.65rem; }
+  .hero-reposit .bg-front.pull-down { transform: translateY(18vh) scale(1.18) !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-reposit .hero-inner > * { animation: none; opacity: 1; }
+  .hero-reposit .bg-front { transition: none; }
+  .hero-reposit .toggle-indicator { transition: none; }
+}

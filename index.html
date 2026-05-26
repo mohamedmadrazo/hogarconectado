@@ -37,7 +37,7 @@
   <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
   <link rel="preconnect" href="https://www.googletagservices.com" crossorigin>
   <link rel="dns-prefetch" href="https://tpc.googlesyndication.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
@@ -147,26 +147,36 @@
   </div>
 </header>
 
-<!-- ========== 2. HERO (video loop + métricas verificables) ========== -->
-<section class="hero" aria-label="Portada">
-  <div class="hero-video-wrap" aria-hidden="true">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/assets/og-image-1200.jpg">
-      <source src="/assets/hero-loop.mp4" type="video/mp4">
-    </video>
-    <div class="hero-video-overlay"></div>
+<!-- ========== 2. HERO v3 (estética cinematográfica reposit, toggle Día/Noche) ========== -->
+<section class="hero hero-reposit" aria-label="Portada" data-theme="night">
+  <!-- Blur overlays arriba y abajo (legibilidad sobre el video) -->
+  <div class="blur-overlay blur-overlay-top" aria-hidden="true"></div>
+  <div class="blur-overlay blur-overlay-bottom" aria-hidden="true"></div>
+
+  <!-- Fondo: video Higgsfield con doble capa (back blur + front nítido) -->
+  <div class="hero-bg-wrapper" aria-hidden="true">
+    <div class="hero-bg bg-back" id="heroBgBack"></div>
+    <div class="hero-bg bg-front" id="heroBgFront">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/assets/og-image-1200.jpg">
+        <source src="/assets/hero-reposit.mp4" type="video/mp4">
+        <source src="/assets/hero-loop.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-bg-vignette" aria-hidden="true"></div>
   </div>
+
   <div class="container hero-inner">
     <span class="eyebrow">
       <span class="eyebrow-dot"></span>
       12 pilares publicados · sin patrocinios ocultos
     </span>
 
-    <h1 class="hero-title h-display">
+    <h1 class="hero-title">
       Domótica honesta,<br>
-      <span class="text-grad">en castellano</span>.
+      <span class="title-accent">en castellano</span>.
     </h1>
 
-    <p class="hero-sub lead">
+    <p class="hero-sub">
       Reviews probadas en 3 viviendas reales. Sin influencers, sin comparativas pagadas, sin fichas técnicas copiadas del fabricante. Lo que nos gustaría haber leído antes de tirar el primer dinero.
     </p>
 
@@ -178,18 +188,33 @@
       <a class="btn btn-ghost" href="#presupuesto">Ver por presupuesto</a>
     </div>
 
+    <!-- Toggle Día / Noche (estética reposit) -->
+    <div class="theme-toggle" role="tablist" aria-label="Cambiar atmósfera">
+      <div class="toggle-indicator" id="heroToggleIndicator"></div>
+      <button class="toggle-btn" data-target="day" role="tab" aria-selected="false">
+        <span class="label">Día</span>
+        <span class="subtext">Tu casa automatizada</span>
+      </button>
+      <button class="toggle-btn active" data-target="night" role="tab" aria-selected="true">
+        <span class="label">Noche</span>
+        <span class="subtext">Tu casa automatizada</span>
+      </button>
+    </div>
+
     <div class="hero-metrics" role="list">
       <div role="listitem">
         <div class="metric-num">12</div>
-        <div class="metric-label">Pilares editoriales publicados</div>
+        <div class="metric-label">Pilares editoriales</div>
       </div>
+      <div class="metric-divider" aria-hidden="true"></div>
       <div role="listitem">
         <div class="metric-num">72</div>
-        <div class="metric-label">Productos probados en casa</div>
+        <div class="metric-label">Productos probados</div>
       </div>
+      <div class="metric-divider" aria-hidden="true"></div>
       <div role="listitem">
         <div class="metric-num">39.900</div>
-        <div class="metric-label">Palabras de contenido original</div>
+        <div class="metric-label">Palabras originales</div>
       </div>
     </div>
   </div>

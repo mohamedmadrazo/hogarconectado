@@ -194,4 +194,50 @@
       window.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' });
     });
   });
+
+  /* ---------- Hero v3 (reposit) — toggle Día/Noche con pull-down ---------- */
+  const heroReposit = document.querySelector('.hero-reposit');
+  if (heroReposit) {
+    const bgFront = heroReposit.querySelector('#heroBgFront');
+    const toggleBtns = heroReposit.querySelectorAll('.toggle-btn');
+    let animating = false;
+
+    const setHeroTheme = (target) => {
+      if (animating) return;
+      const current = heroReposit.dataset.theme || 'night';
+      if (current === target) return;
+      animating = true;
+
+      // 1) Animación pull-down sobre la capa del video
+      if (bgFront) bgFront.classList.add('pull-down');
+
+      // 2) A los 300ms aplicamos el cambio de tema (cuando la imagen está fuera de pantalla)
+      setTimeout(() => {
+        heroReposit.dataset.theme = target;
+        toggleBtns.forEach(b => {
+          const isActive = b.dataset.target === target;
+          b.classList.toggle('active', isActive);
+          b.setAttribute('aria-selected', String(isActive));
+        });
+
+        // 3) Devolvemos la capa con la transición de rebote ya definida en CSS
+        setTimeout(() => {
+          if (bgFront) bgFront.classList.remove('pull-down');
+          animating = false;
+        }, 40);
+      }, 300);
+    };
+
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => setHeroTheme(btn.dataset.target));
+    });
+
+    // Atajo de teclado: T para alternar (accesibilidad opcional)
+    document.addEventListener('keydown', (e) => {
+      if (e.key.toLowerCase() === 't' && !e.metaKey && !e.ctrlKey && !e.altKey
+          && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) {
+        setHeroTheme(heroReposit.dataset.theme === 'night' ? 'day' : 'night');
+      }
+    });
+  }
 })();
