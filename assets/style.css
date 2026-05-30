@@ -291,33 +291,44 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; lin
      .ad-slot-leaderboard       970×90 / responsive (min 120px)
      .ad-slot-anchor            sticky bottom mobile (min 50px, hidden ≥1024px)
    Legacy .adsense-slot[data-size] se mantiene como alias para no romper otras páginas.
+
+   PRE-APROBACIÓN ADSENSE: los slots quedan ocultos hasta que el script de
+   AdSense rellene los <ins> con iframes reales. La regla :has(iframe) los
+   devuelve a flex automáticamente cuando llegue contenido. Cuando AdSense
+   apruebe, no hay que tocar nada aquí — los iframes aparecerán solos.
 */
 .ad-slot,
 .adsense-slot {
   width: 100%;
   min-height: 90px;
   margin: 48px auto;
-  display: flex; align-items: center; justify-content: center;
+  /* Oculto por defecto — sólo visible cuando AdSense rellena con iframe */
+  display: none;
+  align-items: center; justify-content: center;
   background: var(--surface);
-  border: 1px dashed var(--border);
+  border: 1px solid var(--border);
   border-radius: var(--r-md);
   color: var(--text-dim); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
   overflow: hidden;
   content-visibility: auto;
   contain-intrinsic-size: 1px 280px;
 }
+/* AdSense ha rellenado el <ins> con un iframe real → mostrar */
+.ad-slot:has(iframe),
+.adsense-slot:has(iframe) { display: flex; }
+
 .adsense-slot[data-size="wide"],
 .ad-slot-leaderboard { min-height: 120px; max-width: 970px; }
 .adsense-slot[data-size="inline"],
 .ad-slot-in-article { min-height: 280px; aspect-ratio: auto; }
-.ad-slot-sidebar { min-height: 600px; max-width: 300px; position: sticky; top: 96px; margin: 32px 0 0; }
+.ad-slot-sidebar:has(iframe) { min-height: 600px; max-width: 300px; position: sticky; top: 96px; margin: 32px 0 0; }
 .ad-slot-multiplex { min-height: 400px; }
 
 /* Sidebar slot: oculto en mobile (sin sidebar). Anchor: oculto en desktop. */
 @media (max-width: 1023px) {
   .ad-slot-sidebar { display: none; }
 }
-.ad-slot-anchor {
+.ad-slot-anchor:has(iframe) {
   position: fixed; left: 0; right: 0; bottom: 0;
   z-index: 50; min-height: 50px; margin: 0;
   background: var(--bg-1); border: 0; border-top: 1px solid var(--border-strong);
