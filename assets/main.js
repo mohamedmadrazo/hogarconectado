@@ -153,12 +153,13 @@
     headings.forEach(h => spy.observe(h));
   }
 
-  /* ---------- GSAP intro timeline (solo si GSAP está cargado) ----------
+  /* ---------- GSAP intro timeline (solo si GSAP está cargado Y estamos en el home) ----------
      GSAP no se carga por defecto en hogarconectado para mantener LCP bajo.
-     Este bloque queda para si en el futuro se decide cargar GSAP en el head.
-     Mientras tanto, el hero ya es visible por defecto desde CSS (opacity:1).
+     Si en el futuro se decide cargarlo, solo se anima si los 5 targets existen
+     en la página (es decir: estamos en el home con .hero). Esto evita warnings
+     "GSAP target X not found" cuando main.js se ejecuta en una pillar.
   */
-  if (!reduced && window.gsap) {
+  if (!reduced && window.gsap && document.querySelector('.hero .hero-title')) {
     try {
       if (window.ScrollTrigger) gsap.registerPlugin(window.ScrollTrigger);
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
