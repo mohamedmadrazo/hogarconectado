@@ -656,6 +656,99 @@
   </div>
 </section>
 
+<!-- ========== CALCULADORA ROI ELECTRODOMÉSTICOS (post-calc general, pre-Top 3 termostatos) ========== -->
+<section id="calc-electrodom" class="section calc-electrodom-section" aria-labelledby="calc-electrodom-heading">
+  <div class="container">
+    <div class="section-head reveal" style="max-width:700px;">
+      <span class="section-tag">Calculadora · Electrodomésticos</span>
+      <h2 id="calc-electrodom-heading" class="h-xl">¿Cuánto cuestan al año tus <span class="text-grad">electrodomésticos</span>?</h2>
+      <p class="lead">Tres electrodomésticos consumen el 60 % de la factura eléctrica de un piso medio español: lavadora, lavavajillas y aire acondicionado. Mueve sus ciclos al tramo valle del PVPC y descubre qué ahorrarías al año.</p>
+    </div>
+
+    <div class="calc-wrap calc-electrodom-wrap reveal">
+      <div class="calc-fields">
+        <div class="calc-field">
+          <label for="cel-washer">Lavadora · ciclos por semana</label>
+          <div class="calc-slider-wrap">
+            <input type="range" id="cel-washer" min="0" max="14" value="5" step="1" aria-describedby="cel-washer-val">
+            <span class="calc-slider-value" id="cel-washer-val">5</span>
+          </div>
+          <p class="calc-field-hint">Consumo medio 1,2 kWh/ciclo (programa 40 °C, etiqueta IDAE A).</p>
+        </div>
+
+        <div class="calc-field">
+          <label for="cel-dishwasher">Lavavajillas · ciclos por semana</label>
+          <div class="calc-slider-wrap">
+            <input type="range" id="cel-dishwasher" min="0" max="14" value="4" step="1" aria-describedby="cel-dishwasher-val">
+            <span class="calc-slider-value" id="cel-dishwasher-val">4</span>
+          </div>
+          <p class="calc-field-hint">Consumo medio 1,3 kWh/ciclo (programa eco 50 °C).</p>
+        </div>
+
+        <div class="calc-field">
+          <label for="cel-ac">Aire acondicionado · horas/día en verano</label>
+          <div class="calc-slider-wrap">
+            <input type="range" id="cel-ac" min="0" max="12" value="4" step="1" aria-describedby="cel-ac-val">
+            <span class="calc-slider-value" id="cel-ac-val">4</span>
+          </div>
+          <p class="calc-field-hint">Promedio split 9.000 BTU clase A, 0,85 kW de consumo medio. Asumimos 90 días/año.</p>
+        </div>
+
+        <div class="calc-field">
+          <label for="cel-fridge">Frigorífico · clase energética</label>
+          <select id="cel-fridge">
+            <option value="110">A · 110 kWh/año</option>
+            <option value="150" selected>B · 150 kWh/año</option>
+            <option value="220">C · 220 kWh/año</option>
+            <option value="320">D · 320 kWh/año (>10 años)</option>
+            <option value="450">E · 450 kWh/año</option>
+            <option value="580">F · 580 kWh/año (clásico antiguo)</option>
+          </select>
+          <p class="calc-field-hint">Si tu frigo está en clase D o peor, suele ser más rentable cambiarlo que repararlo.</p>
+        </div>
+      </div>
+
+      <div class="calc-result calc-result-electrodom" id="cel-result">
+        <div class="cel-result-head">
+          <span class="calc-result-label">Coste anual estimado</span>
+          <div class="calc-result-amount"><span id="cel-cost-actual">0</span> €</div>
+          <p class="calc-result-meta">Tarifa promedio actual (mezcla punta + llano + valle, PVPC 2026).</p>
+        </div>
+
+        <div class="cel-savings">
+          <div class="cel-saving-card cel-saving-card--main">
+            <span class="cel-saving-label">Si programas al tramo valle</span>
+            <div class="cel-saving-amount">−<span id="cel-saving-valle">0</span> €/año</div>
+            <p class="cel-saving-meta">Lavadora + lavavajillas a partir de las 00:00. Tarifa valle ≈ 0,07 €/kWh.</p>
+          </div>
+          <div class="cel-saving-card">
+            <span class="cel-saving-label">Si A/C usa persiana bajada</span>
+            <div class="cel-saving-amount">−<span id="cel-saving-ac">0</span> €/año</div>
+            <p class="cel-saving-meta">Persiana cerrada a partir de 14:00 reduce consumo del split un 27 % (medido Madrid).</p>
+          </div>
+          <div class="cel-saving-card">
+            <span class="cel-saving-label">Si cambias el frigo</span>
+            <div class="cel-saving-amount" id="cel-fridge-wrap">−<span id="cel-saving-fridge">0</span> €/año</div>
+            <p class="cel-saving-meta" id="cel-fridge-note">Pasar a clase A actual.</p>
+          </div>
+        </div>
+
+        <div class="cel-total">
+          <span class="cel-total-label">Ahorro total potencial</span>
+          <span class="cel-total-amount"><span id="cel-saving-total">0</span> €/año</span>
+        </div>
+
+        <p class="calc-disclaimer">Cálculo basado en tarifa PVPC 2026 promedio (Red Eléctrica), etiqueta energética IDAE y mediciones con vatímetro Brennenstuhl PM 231 E. Los ahorros son estimaciones — la cifra real depende de tu contrato y de cuántos ciclos cambies efectivamente al valle.</p>
+
+        <div class="cel-cta-row">
+          <a class="btn btn-ghost" href="/guias/mejores-enchufes-inteligentes-2026.html">Ver enchufes con medidor →</a>
+          <a class="btn btn-ghost" href="/guias/mejores-persianas-inteligentes-2026.html">Persianas para A/C →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ========== TOP 3 TERMOSTATOS (datos verificados en /guias/mejores-termostatos-inteligentes-2026.html) ========== -->
 <section class="section quick-pick-section" aria-labelledby="top-termostatos-heading">
   <div class="container">
@@ -887,6 +980,7 @@
 
 <script src="/assets/main.js" defer></script>
 <script src="/assets/calculator.js" defer></script>
+<script src="/assets/calculator-electrodom.js" defer></script>
 <script src="/assets/cookie-consent.js" defer></script>
 </body>
 </html>
