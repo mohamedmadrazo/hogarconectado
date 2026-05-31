@@ -182,7 +182,7 @@
     }
   }
 
-  /* ---------- Smooth anchor scroll ---------- */
+  /* ---------- Smooth anchor scroll + focus management for skip-link ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     const id = a.getAttribute('href');
     if (id.length < 2) return;
@@ -192,8 +192,102 @@
       e.preventDefault();
       const top = target.getBoundingClientRect().top + window.scrollY - 90;
       window.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' });
+      if (target.hasAttribute('tabindex') || target.tagName === 'MAIN') {
+        target.focus({ preventScroll: true });
+      }
     });
   });
+
+  /* ---------- Newsletter AJAX (formsubmit.co) ---------- */
+  const nlForm = document.getElementById('newsletter-form');
+  const nlStatus = nlForm?.querySelector('.newsletter-status');
+  const nlBtn = nlForm?.querySelector('button[type="submit"]');
+  if (nlForm && nlStatus && nlBtn) {
+    nlForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      nlStatus.dataset.state = '';
+      nlStatus.textContent = '';
+      if (!nlForm.checkValidity()) {
+        nlStatus.dataset.state = 'error';
+        nlStatus.textContent = 'Introduce un email válido.';
+        return;
+      }
+      nlBtn.setAttribute('aria-busy', 'true');
+      const original = nlBtn.textContent;
+      nlBtn.textContent = 'Enviando…';
+      try {
+        const res = await fetch(nlForm.action, {
+          method: 'POST',
+          body: new FormData(nlForm),
+          headers: { Accept: 'application/json' },
+        });
+        if (!res.ok) throw new Error('Network');
+        nlStatus.dataset.state = 'success';
+        nlStatus.textContent = 'Suscrito. Te llega un email de confirmación en breve.';
+        nlForm.reset();
+      } catch {
+        nlStatus.dataset.state = 'error';
+        nlStatus.textContent = 'No se pudo enviar. Escribe a demadrazobruno@gmail.com.';
+      } finally {
+        nlBtn.removeAttribute('aria-busy');
+        nlBtn.textContent = original;
+      }
+    });
+    if (new URLSearchParams(location.search).get('subscribed') === '1') {
+      nlStatus.dataset.state = 'success';
+      nlStatus.textContent = 'Suscrito. Te llega un email de confirmación en breve.';
+      history.replaceState({}, '', location.pathname);
+    }
+  }
+
+  /* ---------- Sticky mobile CTA (mostrar tras hero, ocultar al ver calc o footer) ---------- */
+  const stickyCta = document.querySelector('[data-sticky-cta]');
+  if (stickyCta) {
+    const calcSection = document.getElementById('calculadora');
+    const footer = document.querySelector('.site-footer');
+    let pastHero = false;
+    let inHideZone = false;
+
+    const updateVisibility = () => {
+      const shouldShow = pastHero && !inHideZone;
+      if (shouldShow) {
+        stickyCta.hidden = false;
+        // siguiente tick para que la transición pille el cambio de hidden
+        requestAnimationFrame(() => stickyCta.classList.add('is-visible'));
+      } else {
+        stickyCta.classList.remove('is-visible');
+      }
+    };
+
+    // Mostrar cuando salimos del hero
+    const hero = document.querySelector('.hero');
+    if (hero) {
+      const heroObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          pastHero = !e.isIntersecting;
+          updateVisibility();
+        });
+      }, { threshold: 0, rootMargin: '-60% 0px 0px 0px' });
+      heroObs.observe(hero);
+    } else {
+      pastHero = true;
+    }
+
+    // Ocultar cuando el visitante ya está en la calculadora o en el footer (no compita con CTA propio del bloque)
+    const hideTargets = [calcSection, footer].filter(Boolean);
+    if (hideTargets.length) {
+      const hideObs = new IntersectionObserver((entries) => {
+        // si alguno entra, ocultar
+        inHideZone = entries.some(e => e.isIntersecting) ||
+                     hideTargets.some(t => {
+                       const r = t.getBoundingClientRect();
+                       return r.top < window.innerHeight * 0.6 && r.bottom > 0;
+                     });
+        updateVisibility();
+      }, { threshold: 0, rootMargin: '0px 0px -30% 0px' });
+      hideTargets.forEach(t => hideObs.observe(t));
+    }
+  }
 
   /* ---------- Filter chips en /guias/ (categoría) ---------- */
   const filterChips = document.querySelectorAll('.filter-chip');

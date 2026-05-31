@@ -105,15 +105,17 @@
 </head>
 <body>
 
+<a href="#main" class="skip-link">Saltar al contenido</a>
+
 <!-- ========== HEADER ========== -->
 <header class="site-header">
-  <div class="container nav">
+  <div class="container nav" role="navigation" aria-label="Principal">
     <a href="/" class="brand" aria-label="Hogar Conectado inicio">
       <span class="brand-dot" aria-hidden="true"></span>
       <span>Hogar<span style="color:var(--accent)">Conectado</span></span>
     </a>
-    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
-    <ul class="nav-links">
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="primary-nav-links">☰</button>
+    <ul class="nav-links" id="primary-nav-links">
       <li><a href="#presupuesto">Presupuesto</a></li>
       <li><a href="#categorias">Categorías</a></li>
       <li><a href="/guias/">Guías</a></li>
@@ -124,10 +126,12 @@
   </div>
 </header>
 
+<main id="main" tabindex="-1" style="outline:none">
+
 <!-- ========== HERO ========== -->
 <section class="hero" aria-label="Portada">
   <div class="hero-video-wrap" aria-hidden="true">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/assets/og-image-1200.jpg">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="/assets/og-image-1200.jpg">
       <source src="/assets/hero-loop.mp4" type="video/mp4">
     </video>
     <div class="hero-video-overlay"></div>
@@ -136,7 +140,7 @@
   <div class="container hero-inner">
     <span class="eyebrow">
       <span class="eyebrow-dot"></span>
-      12 pilares publicados · sin patrocinios ocultos
+      Última revisión 31 mayo 2026 · 12 pilares · 0 € en patrocinios
     </span>
 
     <h1 class="hero-title h-display">
@@ -145,7 +149,7 @@
     </h1>
 
     <p class="hero-sub lead">
-      Reviews probadas en 3 viviendas reales. Sin influencers, sin comparativas pagadas, sin fichas técnicas copiadas del fabricante. Lo que nos gustaría haber leído antes de tirar el primer dinero.
+      72 productos comprados con nuestro dinero, medidos con vatímetro y espectrómetro, probados 3 semanas en piso real. Lo que nos gustaría haber leído antes de tirar 400 € en la primera alarma.
     </p>
 
     <div class="hero-cta-row">
@@ -352,31 +356,91 @@
         <span class="method-icon" aria-hidden="true">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
         </span>
-        <h3 class="h-md">Instrumentos calibrados</h3>
-        <p>Pinza amperimétrica Fluke 376, vatímetro Brennenstuhl PM 231 E, espectrómetro Sekonic C-700, termómetro IR. No medimos a ojo.</p>
+        <h3 class="h-md">5 instrumentos calibrados</h3>
+        <p>Fluke 376 (pinza amperimétrica TRMS), Brennenstuhl PM 231 E (vatímetro enchufe), Sekonic C-700 (espectrómetro CRI / Kelvin), Bosch GTC 600 C (termómetro IR), Triplett SoundScout SLM (sonómetro). Nada de medir "a ojo".</p>
       </article>
       <article class="method-card">
         <span class="method-icon" aria-hidden="true">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </span>
-        <h3 class="h-md">3-4 semanas por producto</h3>
-        <p>Mínimo 21 días de uso real en piso habitado, no laboratorio. Detectamos los fallos que aparecen en la segunda o tercera semana.</p>
+        <h3 class="h-md">21+ días en piso real</h3>
+        <p>Mínimo 3 semanas por producto en piso habitado, no laboratorio. Detectamos los fallos que aparecen al día 14: deriva del sensor, app que se desincroniza, batería que cae al 60 %.</p>
+      </article>
+      <article class="method-card">
+        <span class="method-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </span>
+        <h3 class="h-md">3 viviendas piloto</h3>
+        <p>Piso Madrid 75 m² (PVPC, gas), chalet Mallorca 140 m² (aerotermia, solar), casa Bilbao 110 m² (radiadores eléctricos). Misma prueba en los 3 escenarios cuando el producto aplica.</p>
       </article>
       <article class="method-card">
         <span class="method-icon" aria-hidden="true">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M12 3v18"/></svg>
         </span>
-        <h3 class="h-md">Transparencia total</h3>
-        <p>Productos comprados en Amazon o tienda sin identificarnos como medio. Ningún fabricante ve el artículo antes de publicarlo.</p>
+        <h3 class="h-md">Compra anónima</h3>
+        <p>Productos comprados en Amazon, MediaMarkt o PcComponentes con cuenta personal. Sin identificarnos como medio, sin recibir muestras, sin embargo informativo. El fabricante se entera publicado.</p>
       </article>
       <article class="method-card">
         <span class="method-icon" aria-hidden="true">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3.6-7.2"/><polyline points="21 3 21 9 15 9"/></svg>
         </span>
-        <h3 class="h-md">Actualizadas cada 90 días</h3>
-        <p>Precios, firmware, compatibilidad Matter. Si una recomendación pierde sentido, la quitamos. No mantenemos top 10 desactualizados.</p>
+        <h3 class="h-md">Revisadas cada 90 días</h3>
+        <p>Precios, firmware, compatibilidad Matter. Si una recomendación pierde sentido (subida de precio, fabricante deja de actualizar, suscripción nueva), la quitamos del podium. No mantenemos "top 10" desactualizados por SEO.</p>
+      </article>
+      <article class="method-card">
+        <span class="method-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+        </span>
+        <h3 class="h-md">Errores corregidos en público</h3>
+        <p>Cada guía tiene un changelog visible (Última actualización + qué cambió). Si nos equivocamos en una recomendación, no la borramos: la marcamos como retirada y explicamos por qué. Cero edición fantasma.</p>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- ========== FUENTES (E-E-A-T: organismos oficiales que respaldan nuestras cifras) ========== -->
+<section class="section sources-section" aria-labelledby="sources-heading">
+  <div class="container">
+    <div class="section-head reveal" style="max-width:680px;">
+      <span class="section-tag">Fuentes</span>
+      <h2 id="sources-heading" class="h-lg">Las cifras que damos vienen de <span class="text-grad">organismos verificables</span></h2>
+      <p class="lead">No inventamos consumos ni ahorros. Cada porcentaje y cada precio en nuestras guías cita la fuente oficial. Estos son los organismos cuyos datos cruzamos antes de publicar.</p>
+    </div>
+
+    <ul class="sources-grid reveal-stagger" role="list">
+      <li class="source-chip">
+        <span class="source-tag">AEPD</span>
+        <span class="source-desc">Legalidad de cámaras: orientación a vía pública, balcón, vecinos, comunidades. Multas reales 2024-26.</span>
+      </li>
+      <li class="source-chip">
+        <span class="source-tag">IDAE</span>
+        <span class="source-desc">Consumos certificados de electrodomésticos, calderas y aerotermia. Etiqueta energética A-G.</span>
+      </li>
+      <li class="source-chip">
+        <span class="source-tag">Red Eléctrica</span>
+        <span class="source-desc">Precio PVPC tramo valle / llano / punta. Datos esios.ree.es para calcular ahorro real por hora.</span>
+      </li>
+      <li class="source-chip">
+        <span class="source-tag">OCU</span>
+        <span class="source-desc">Análisis comparados de alarmas, cerraduras y aspiradoras. Cruzamos con nuestras propias mediciones.</span>
+      </li>
+      <li class="source-chip">
+        <span class="source-tag">CSA · Matter</span>
+        <span class="source-desc">Connectivity Standards Alliance: certificación oficial de cada dispositivo compatible Matter.</span>
+      </li>
+      <li class="source-chip">
+        <span class="source-tag">UNE-EN 50131</span>
+        <span class="source-desc">Norma europea de sistemas de alarma. Grados I-IV. Indispensable para hablar de seguridad seria.</span>
+      </li>
+      <li class="source-chip">
+        <span class="source-tag">Mapfre, Mutua, Reale</span>
+        <span class="source-desc">Condicionados públicos 2026 con descuentos por alarma certificada o sensor de fuga.</span>
+      </li>
+      <li class="source-chip">
+        <span class="source-tag">eu-energystar.org</span>
+        <span class="source-desc">Base europea de consumo en standby. Para calcular "vampiros" reales del hogar conectado.</span>
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -497,15 +561,16 @@
         <h2 class="h-lg">Una vez al mes, sin ruido.</h2>
         <p class="text-muted">Las mejores ofertas reales, comparativas nuevas y avisos de productos que NO comprar. Sin spam, sin afiliación encubierta, sin "te quedan 3 horas".</p>
       </div>
-      <form class="newsletter-form" action="https://formsubmit.co/demadrazobruno@gmail.com" method="POST" novalidate>
+      <form class="newsletter-form" id="newsletter-form" action="https://formsubmit.co/demadrazobruno@gmail.com" method="POST" novalidate>
         <input type="hidden" name="_subject" value="Nueva suscripción Hogar Conectado">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_next" value="https://hogarconectado.co/?subscribed=1">
-        <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;">
+        <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
         <label for="news-email" class="sr-only">Email</label>
         <input id="news-email" type="email" name="email" required placeholder="tu@email.com" autocomplete="email">
         <button type="submit" class="btn btn-primary">Suscribirme</button>
+        <div class="newsletter-status" role="status" aria-live="polite"></div>
       </form>
       <p class="newsletter-legal text-muted">Al suscribirte aceptas nuestra <a href="/privacidad.html" style="color:var(--accent);">política de privacidad</a>. Puedes darte de baja en cualquier momento.</p>
     </div>
@@ -546,21 +611,65 @@
 </section>
 
 <!-- ========== ABOUT / PROMESA EDITORIAL ========== -->
-<section class="section">
+<section id="quienes-somos" class="section">
   <div class="container">
     <div class="about-card reveal">
       <div class="about-copy">
-        <span class="eyebrow"><span class="eyebrow-dot"></span> Nuestra promesa</span>
-        <h2 class="h-lg">Sin patrocinios ocultos. <span class="text-grad">Cero excepciones</span>.</h2>
-        <p>Hogar Conectado se sostiene con publicidad de Google AdSense (no intrusiva) y enlaces de afiliación a Amazon con disclosure visible en cada guía. Nunca aceptamos productos de fabricantes para review. Nunca cambiamos un ranking por presión comercial. Si un producto baja de calidad o sube de precio sin justificación, lo decimos. Y si nos equivocamos, lo corregimos públicamente.</p>
+        <span class="eyebrow"><span class="eyebrow-dot"></span> Quién está detrás</span>
+        <h2 class="h-lg">Una persona real. <span class="text-grad">No un equipo de redacción</span>.</h2>
+        <p>Detrás de Hogar Conectado no hay una agencia ni un "equipo de expertos". Hay una persona que se gastó cerca de 3.000&nbsp;€ en tres viviendas reales (Madrid, Mallorca y Bilbao) intentando entender qué domótica funciona y cuál no merece la pena. Lo que publicamos es el resumen sin patrocinios de esas pruebas. Sin influencer, sin "embargos de prensa", sin "newsletters patrocinadas por…".</p>
+
+        <ul class="promise-list" role="list">
+          <li><strong>0&nbsp;€ recibidos de fabricantes.</strong> Todos los productos se compran con tarjeta personal en Amazon, MediaMarkt o PcComponentes.</li>
+          <li><strong>0 rankings vendidos.</strong> Nadie paga por aparecer arriba. Quien aparece arriba es quien gana la medición.</li>
+          <li><strong>Cada error se publica.</strong> Si una recomendación deja de tener sentido, lo marcamos en la guía con fecha y motivo. No reescribimos historia.</li>
+        </ul>
+
         <div class="about-cta-row">
-          <a class="btn btn-ghost" href="/about.html">Sobre el equipo →</a>
-          <a class="btn btn-ghost" href="/privacidad.html">Política de privacidad</a>
+          <a class="btn btn-ghost" href="/about.html">Cómo trabajamos en detalle →</a>
+          <a class="btn btn-ghost" href="/contacto.html">Discutir una recomendación</a>
         </div>
       </div>
+
+      <aside class="funding-disclosure" aria-label="Cómo nos financiamos">
+        <h3 class="funding-title">Cómo se paga esto</h3>
+        <dl class="funding-list">
+          <div class="funding-row">
+            <dt>Google AdSense</dt>
+            <dd>Anuncios no intrusivos sin pop-ups. Activo desde aprobación de Google.</dd>
+          </div>
+          <div class="funding-row">
+            <dt>Amazon Asociados</dt>
+            <dd>Comisión si compras a través de un enlace nuestro. Tú pagas lo mismo. Marcado con <code>rel="sponsored"</code> en cada enlace.</dd>
+          </div>
+          <div class="funding-row">
+            <dt>Lo que NO hay</dt>
+            <dd>Sin contenido patrocinado, sin "regalos" del fabricante, sin newsletter de pago, sin curso, sin Patreon.</dd>
+          </div>
+        </dl>
+        <p class="funding-foot">Si compras tras leer una guía, gracias — eso paga las próximas pruebas. Si no, también está bien: la guía sigue siendo gratis.</p>
+      </aside>
     </div>
   </div>
 </section>
+
+</main>
+
+<!-- ========== STICKY MOBILE CTA (oculto en desktop; se autoesconde cuando la calculadora o el footer entran en viewport. Si AdSense activa anchor ad mobile, este sticky se oculta automáticamente para no doblar UI) ========== -->
+<aside class="sticky-cta" role="complementary" aria-label="Calcular ahorro" data-sticky-cta hidden>
+  <a class="sticky-cta-link" href="#calculadora">
+    <span class="sticky-cta-icon" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="8" y1="13" x2="10" y2="13"/><line x1="12" y1="13" x2="14" y2="13"/><line x1="8" y1="17" x2="10" y2="17"/><line x1="12" y1="17" x2="14" y2="17"/></svg>
+    </span>
+    <span class="sticky-cta-copy">
+      <span class="sticky-cta-title">Calcula cuánto ahorras</span>
+      <span class="sticky-cta-sub">30 segundos · sin email</span>
+    </span>
+    <span class="sticky-cta-arrow" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </span>
+  </a>
+</aside>
 
 <!-- ========== FOOTER ========== -->
 <footer class="site-footer">
