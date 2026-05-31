@@ -146,19 +146,17 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; lin
   border-radius: 99px;
   font-size: 0.82rem; color: #a5f3fc; font-weight: 500;
   width: fit-content;
-  opacity: 0;
 }
 .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
 
-.hero-title { opacity: 0; }
-.hero-sub   { opacity: 0; }
-.hero-cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; opacity: 0; }
+.hero-title { }
+.hero-sub   { }
+.hero-cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
 .hero-metrics {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
   margin-top: 40px; padding-top: 32px;
   border-top: 1px solid var(--border);
-  opacity: 0;
 }
 .metric-num { font-family: var(--font-display); font-size: 2rem; font-weight: 700; background: var(--grad-primary); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .metric-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
@@ -581,11 +579,27 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; lin
 .legal-body ul { margin: 12px 0 20px 22px; color: #cbd5e1; }
 .legal-body li { margin-bottom: 8px; }
 
-/* ========== Utils ========== */
-.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+/* ========== Reveal animations (progressive enhancement)
+   POR DEFECTO TODO ES VISIBLE. Si el JS no carga, el IntersectionObserver
+   falla, o el navegador del usuario tiene cualquier problema, el contenido
+   sigue siendo legible. Solo añadimos opacity:0 cuando JS confirma con
+   .pre-anim que el elemento empezó FUERA del viewport y debe animarse al
+   entrar. La clase .in se aplica al cruzar el viewport.
+
+   Fix 2026-05-31: anteriormente .reveal arrancaba con opacity:0 incondicional
+   y dependía del IO para volverse visible. Cuando el IO no se dispara
+   (algunos navegadores, scroll programático, etc.), la página quedaba en
+   blanco. Ahora opacity:0 solo se aplica vía .pre-anim añadida por JS.
+*/
+.reveal { opacity: 1; transform: none; transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+.reveal-stagger > * { opacity: 1; transform: none; transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+
+/* Solo invisible si JS confirmó que el elemento estaba fuera del viewport al cargar */
+.reveal.pre-anim { opacity: 0; transform: translateY(30px); }
+.reveal-stagger.pre-anim > * { opacity: 0; transform: translateY(24px); }
+
+/* Al llegar al viewport, .in sobrescribe .pre-anim */
 .reveal.in { opacity: 1; transform: translateY(0); }
-/* Stagger contenedor — hijos arrancan invisibles para que GSAP/IO no produzca FOUC */
-.reveal-stagger > * { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
 .reveal-stagger.in > * { opacity: 1; transform: translateY(0); }
 .reveal-stagger.in > *:nth-child(1) { transition-delay: 0.00s; }
 .reveal-stagger.in > *:nth-child(2) { transition-delay: 0.06s; }
@@ -594,6 +608,12 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; lin
 .reveal-stagger.in > *:nth-child(5) { transition-delay: 0.24s; }
 .reveal-stagger.in > *:nth-child(6) { transition-delay: 0.30s; }
 .reveal-stagger.in > *:nth-child(n+7) { transition-delay: 0.36s; }
+
+/* Honra prefers-reduced-motion: salta la animación entera */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-stagger > * { transition: none; }
+  .reveal.pre-anim, .reveal-stagger.pre-anim > * { opacity: 1; transform: none; }
+}
 
 .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border-strong), transparent); margin: 60px 0; }
 

@@ -43,11 +43,38 @@
   /* ---------- Year stamp ---------- */
   document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
 
-  /* ---------- Reveal on scroll (fallback if no GSAP) ---------- */
+  /* ---------- Reveal on scroll (progressive enhancement) ----------
+     Estrategia anti-pantalla-blanca:
+       1. CSS por defecto: todo VISIBLE (opacity:1, sin animación)
+       2. Si JS funciona y elemento está FUERA del viewport al cargar → .pre-anim (opacity:0)
+          y observamos con IO para añadir .in al cruzar el viewport
+       3. Si elemento ya está dentro del viewport al cargar → no se toca, se ve directo
+       4. Fallback duro: si tras 2s todavía hay .pre-anim sin .in, los revelamos (red de seguridad)
+     Esto resuelve el bug 2026-05-31 en que IO no se disparaba para algunos
+     navegadores/contextos y la home se quedaba 90 % en blanco.
+  */
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+  }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
+
+  const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  const vpH = window.innerHeight;
+  revealEls.forEach(el => {
+    const r = el.getBoundingClientRect();
+    // Solo animar elementos que estén BIEN por debajo del fold (1,3× viewport).
+    // El resto se ve por defecto sin animación — prioriza visibilidad sobre efecto.
+    if (r.top >= vpH * 1.3) {
+      el.classList.add('pre-anim');
+      io.observe(el);
+    }
+  });
+
+  // Red de seguridad agresiva: si tras 600 ms siguen .pre-anim sin .in (IO no disparó),
+  // revelarlos. Previene pantalla en blanco si el navegador no entrega callbacks IO
+  // dentro de ese tiempo, o si JS general tiene errores aguas abajo.
+  setTimeout(() => {
+    document.querySelectorAll('.pre-anim:not(.in)').forEach(el => el.classList.add('in'));
+  }, 600);
 
   /* ---------- Count-up for hero metrics (formato es-ES con separador de miles) ---------- */
   const formatNum = (n) => n.toLocaleString('es-ES');
@@ -126,44 +153,23 @@
     headings.forEach(h => spy.observe(h));
   }
 
-  /* ---------- GSAP intro timeline ---------- */
+  /* ---------- GSAP intro timeline (solo si GSAP está cargado) ----------
+     GSAP no se carga por defecto en hogarconectado para mantener LCP bajo.
+     Este bloque queda para si en el futuro se decide cargar GSAP en el head.
+     Mientras tanto, el hero ya es visible por defecto desde CSS (opacity:1).
+  */
   if (!reduced && window.gsap) {
     try {
       if (window.ScrollTrigger) gsap.registerPlugin(window.ScrollTrigger);
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      tl.to('.eyebrow',      { opacity: 1, duration: 0.5 }, 0.2)
-        .from('.eyebrow',    { y: 16, duration: 0.5 }, 0.2)
-        .to('.hero-title',   { opacity: 1, duration: 0.8 }, 0.45)
-        .from('.hero-title', { y: 42, duration: 0.8 }, 0.45)
-        .to('.hero-sub',     { opacity: 1, duration: 0.7 }, 0.75)
-        .from('.hero-sub',   { y: 20, duration: 0.7 }, 0.75)
-        .to('.hero-cta-row', { opacity: 1, duration: 0.55 }, 1.0)
-        .from('.hero-cta-row',{ y: 14, duration: 0.55 }, 1.0)
-        .to('.hero-metrics', { opacity: 1, duration: 0.6 }, 1.15)
-        .from('.hero-metrics',{ y: 20, duration: 0.6 }, 1.15);
-
-      if (window.ScrollTrigger) {
-        gsap.utils.toArray('.reveal-stagger > *').forEach((el, i) => {
-          gsap.from(el, {
-            scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' },
-            opacity: 0, y: 40, duration: 0.7, delay: i * 0.05, ease: 'power2.out'
-          });
-        });
-
-        // Subtle parallax on metrics as user scrolls
-        gsap.to('.hero-metrics', {
-          scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.5 },
-          y: -30
-        });
-      }
+      tl.from('.eyebrow',    { y: 16, opacity: 0, duration: 0.5 }, 0.2)
+        .from('.hero-title', { y: 42, opacity: 0, duration: 0.8 }, 0.45)
+        .from('.hero-sub',   { y: 20, opacity: 0, duration: 0.7 }, 0.75)
+        .from('.hero-cta-row',{ y: 14, opacity: 0, duration: 0.55 }, 1.0)
+        .from('.hero-metrics',{ y: 20, opacity: 0, duration: 0.6 }, 1.15);
     } catch (err) {
-      // Fallback if GSAP or ScrollTrigger misbehaves
-      ['.eyebrow', '.hero-title', '.hero-sub', '.hero-cta-row', '.hero-metrics']
-        .forEach(s => { const el = document.querySelector(s); if (el) el.style.opacity = 1; });
+      // Si GSAP rompe, no pasa nada: el CSS ya tiene opacity:1 por defecto
     }
-  } else {
-    ['.eyebrow', '.hero-title', '.hero-sub', '.hero-cta-row', '.hero-metrics']
-      .forEach(s => { const el = document.querySelector(s); if (el) el.style.opacity = 1; });
   }
 
   /* ---------- Hero video loop fallback (asegura play en iOS Safari, prefers-reduced-motion) ---------- */
