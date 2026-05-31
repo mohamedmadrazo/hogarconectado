@@ -240,6 +240,27 @@
     }
   }
 
+  /* ---------- Magnetic CTA (sólo punteros finos; sutil pull hacia el cursor) ---------- */
+  if (!reduced && !isCoarse) {
+    const magneticBtns = document.querySelectorAll('.btn-primary, .nav-cta');
+    magneticBtns.forEach(btn => {
+      let raf = 0;
+      btn.addEventListener('mousemove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) / r.width;  // -0.5..0.5
+        const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          btn.style.transform = `translate(${dx * 6}px, ${dy * 4 - 2}px)`;
+        });
+      });
+      btn.addEventListener('mouseleave', () => {
+        cancelAnimationFrame(raf);
+        btn.style.transform = '';
+      });
+    });
+  }
+
   /* ---------- Sticky mobile CTA (mostrar tras hero, ocultar al ver calc o footer) ---------- */
   const stickyCta = document.querySelector('[data-sticky-cta]');
   if (stickyCta) {

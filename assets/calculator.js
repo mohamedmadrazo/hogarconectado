@@ -90,6 +90,42 @@
     voice:   '<path d="M12 1v6m0 6v6M1 12h6m6 0h6"/><circle cx="12" cy="12" r="3"/>'
   };
 
+  // ---- Animación de números (count-up easeOutCubic) + pulse en el contenedor ----
+  function animateNumber(el, to, duration, formatter) {
+    if (!el) return;
+    var fromRaw = (el.textContent || '0').replace(/[.,\s]/g, '');
+    var from = parseFloat(fromRaw) || 0;
+    if (Math.abs(to - from) < 0.5) {
+      el.textContent = formatter ? formatter(to) : Math.round(to).toLocaleString('es-ES');
+      return;
+    }
+    duration = duration || 700;
+    var start = performance.now();
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      el.textContent = formatter ? formatter(to) : Math.round(to).toLocaleString('es-ES');
+      return;
+    }
+    function tick(now) {
+      var p = Math.min(1, (now - start) / duration);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var current = from + (to - from) * eased;
+      el.textContent = formatter ? formatter(current) : Math.round(current).toLocaleString('es-ES');
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function pulseResult(el) {
+    if (!el) return;
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+    el.classList.remove('is-pulsing');
+    // force reflow para reiniciar animación
+    void el.offsetWidth;
+    el.classList.add('is-pulsing');
+  }
+
   // ---- Lógica de cálculo ----
   // Datos calibrados con mediciones reales 2025-26:
   // - Termostato gas natural: 15 % * (factura invierno) ≈ 81 €/año
@@ -135,10 +171,21 @@
     var percent = Math.round(saving / billBase * 100);
     if (percent > 30) percent = 30; // techo realista
 
-    // Actualizar números
-    saveEl.textContent    = saving.toLocaleString('es-ES');
-    paybackEl.textContent = payback === '—' ? '—' : String(payback).replace('.', ',');
-    percentEl.textContent = percent;
+    // Actualizar números — animados con easeOutCubic + pulse en el contenedor
+    animateNumber(saveEl, saving);
+    if (payback === '—') {
+      paybackEl.textContent = '—';
+    } else {
+      // payback es decimal (años) → formatear con coma española
+      animateNumber(paybackEl, parseFloat(payback), 700, function (v) {
+        return v.toFixed(1).replace('.', ',');
+      });
+    }
+    animateNumber(percentEl, percent, 700, function (v) {
+      return String(Math.round(v));
+    });
+    // Pulse sutil al contenedor de resultados para llamar atención al cambio
+    pulseResult(document.querySelector('.calc-result'));
 
     // Recomendaciones según presupuesto + factores
     var recs = recommendFor(budget, heat, pet);
