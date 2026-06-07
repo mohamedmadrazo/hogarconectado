@@ -15,7 +15,7 @@
 
   --text: #e6edf7;
   --text-muted: #94a3b8;
-  --text-dim: #64748b;
+  --text-dim: #738096; /* slate-450: ≥4.5:1 sobre el fondo oscuro, aún más tenue que --text-muted */
 
   --accent: #22d3ee;              /* cyan */
   --accent-2: #a855f7;            /* violet */
@@ -542,6 +542,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; lin
 }
 .article-body a { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(34,211,238,0.3); text-underline-offset: 3px; }
 .article-body a:hover { text-decoration-color: var(--accent); }
+/* Botones dentro del artículo (CTAs de afiliado Amazon): la regla de enlace de arriba
+   los repintaba de cian + subrayado, ilegibles sobre el relleno cian. Mantener su estilo. */
+.article-body a.btn { text-decoration: none; }
+.article-body a.btn-primary { color: #04131a; }
+.article-body a.btn-ghost { color: var(--text); }
 .article-body code { background: var(--surface); padding: 2px 8px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.9em; color: var(--accent); }
 .article-body table {
   width: 100%; border-collapse: collapse; margin: 32px 0;
