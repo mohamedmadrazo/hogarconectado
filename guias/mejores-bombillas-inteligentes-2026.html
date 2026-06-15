@@ -23,8 +23,8 @@
   <meta property="og:description" content="6 sistemas probados durante 8 semanas en la misma vivienda. CRI medido con espectrómetro, latencia real, durabilidad y coste total al amueblar un piso entero.">
   <meta property="og:url" content="https://hogarconectado.co/guias/mejores-bombillas-inteligentes-2026.html">
   <meta property="og:image" content="https://hogarconectado.co/assets/og-image-1200.jpg">
-  <meta property="og:image:width" content="1376">
-  <meta property="og:image:height" content="768">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="670">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://hogarconectado.co/assets/og-image-1200.jpg">
   <meta property="article:published_time" content="2026-05-14T13:00:00+02:00">
@@ -72,7 +72,7 @@
       { "@type": "Question", "name": "¿Las bombillas inteligentes consumen energía cuando están apagadas?",
         "acceptedAnswer": { "@type": "Answer", "text": "Sí, mantienen consumo en standby para escuchar comandos. Mediciones reales: Philips Hue White consume 0,3-0,5 W apagada, Ikea Trådfri 0,2-0,4 W, Aqara T2 0,4-0,6 W, Govee 0,5-0,8 W, marcas baratas hasta 1 W. Para 20 bombillas en standby 24/7, esto suma 50-150 kWh al año (15-50 €). Las bombillas Zigbee gestionadas por hub consumen menos en standby que las Wi-Fi directas. Si te molesta el consumo fantasma, considera interruptores inteligentes en lugar de bombillas para luces que apagas con interruptor de pared." } },
       { "@type": "Question", "name": "¿Qué CRI es bueno y por qué importa?",
-        "acceptedAnswer": { "@type": "Answer", "text": "El CRI (Color Rendering Index) mide qué tan fielmente la luz reproduce los colores reales. Una bombilla normal de hogar debe tener CRI ≥ 80. Para zonas donde miras colores (armario, cocina, baño con maquillaje), busca CRI ≥ 90. Para iluminación general decorativa, CRI 80-85 es aceptable. Mediciones con espectrómetro Sekonic C-7000: Hue White Ambiance CRI 86, Aqara T2 CRI 92 (la mejor del test), Govee CRI 89, Ikea Trådfri CRI 87, marcas baratas asiáticas oscilan entre 70 y 82 — visualmente la diferencia es clara en piel y comida." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "El CRI (Color Rendering Index) mide qué tan fielmente la luz reproduce los colores reales. Una bombilla normal de hogar debe tener CRI ≥ 80. Para zonas donde miras colores (armario, cocina, baño con maquillaje), busca CRI ≥ 90. Para iluminación general decorativa, CRI 80-85 es aceptable. Mediciones con espectrómetro Sekonic C-700: Hue White Ambiance CRI 86, Aqara T2 CRI 92 (la mejor del test), Govee CRI 89, Ikea Trådfri CRI 87, marcas baratas asiáticas oscilan entre 70 y 82 — visualmente la diferencia es clara en piel y comida." } },
       { "@type": "Question", "name": "¿Cuántas bombillas inteligentes necesito en un piso?",
         "acceptedAnswer": { "@type": "Answer", "text": "Para un piso típico español de 75-90 m²: 10-14 puntos de luz. No todos necesitan ser inteligentes. Recomendación realista: 4 inteligentes en salón (2 lámpara de pie, 2 lámparas de mesa o tira LED), 2 en dormitorio (mesillas), 1 en cocina (lámpara colgante), 1 en pasillo. Total: 8 inteligentes. Las luces de techo principales que se controlan con interruptor de pared NO necesitan ser inteligentes — un interruptor inteligente (Aqara, Shelly, Sonoff) controla el plafón existente." } },
       { "@type": "Question", "name": "¿Funcionan con Alexa, Google Home y HomeKit?",
@@ -90,8 +90,8 @@
 <header class="site-header">
   <div class="container nav">
     <a href="/" class="brand"><span class="brand-dot"></span><span>Hogar<span style="color:var(--accent)">Conectado</span></span></a>
-    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
-    <ul class="nav-links">
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="primary-nav-links">☰</button>
+    <ul class="nav-links" id="primary-nav-links">
       <li><a href="/#presupuesto">Presupuesto</a></li>
       <li><a href="/#categorias">Categorías</a></li>
       <li><a href="/guias/">Guías</a></li>
@@ -132,7 +132,7 @@
 
     <aside class="article-side">
       <nav class="toc" aria-label="Tabla de contenidos">
-        <h4>En esta guía</h4>
+        <p class="toc-title">En esta guía</p>
         <ul>
           <li><a href="#resumen">Resumen rápido</a></li>
           <li><a href="#bridge">Puente sí o no</a></li>
@@ -150,12 +150,14 @@
         </ul>
       </nav>
 
+      <!-- AdSense slot DESACTIVADO hasta pub-ID real. Reactivar descomentando.
       <aside class="ad-slot ad-slot-sidebar" role="complementary" aria-label="Publicidad">
         <ins class="adsbygoogle" style="display:block; width:300px; height:600px"
              data-ad-client="ca-{{ADSENSE_CLIENT}}" data-ad-slot="{{AD_SLOT_SIDEBAR}}"
              data-ad-format="auto" data-full-width-responsive="false"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </aside>
+      -->
     </aside>
 
     <article class="article-body">
@@ -163,12 +165,14 @@
       <p class="lede-body">Comprar bombillas inteligentes parece sencillo y no lo es. La diferencia entre una Philips Hue White Ambiance de 25 € y una bombilla genérica Wi-Fi de Aliexpress de 7 € parece arbitraria hasta que vives con las dos durante un mes. La barata no funciona la mitad del tiempo, tiene latencia de 2 segundos para encender, parpadea cuando regulas, y su tono "blanco cálido" es en realidad amarillo verdoso porque tiene CRI 72. La cara siempre funciona, enciende en 100 ms, regula sin parpadeos perceptibles y reproduce piel y madera como debe.</p>
       <p>Hemos probado 6 sistemas de iluminación inteligente durante 8 semanas en la misma vivienda — Philips Hue, Aqara T2, Ikea Trådfri con el hub DIRIGERA, Innr, Govee y Yeelight. Hemos medido lo que las marcas no quieren que midas: <strong>CRI con espectrómetro, latencia con cronómetro, consumo en standby con vatímetro y vida útil bajo 5.000 ciclos de encendido/apagado por bombilla</strong>. Resultados al final, pero ya te decimos que no, Hue no es la única respuesta — solo es la respuesta cuando el presupuesto da.</p>
 
+      <!-- AdSense slot DESACTIVADO hasta pub-ID real. Reactivar descomentando.
       <aside class="ad-slot ad-slot-in-article" role="complementary" aria-label="Publicidad">
         <ins class="adsbygoogle" style="display:block; text-align:center"
              data-ad-layout="in-article" data-ad-format="fluid"
              data-ad-client="ca-{{ADSENSE_CLIENT}}" data-ad-slot="{{AD_SLOT_IN_ARTICLE_1}}"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </aside>
+      -->
 
       <section id="resumen">
         <h2>Resumen rápido</h2>
@@ -216,7 +220,7 @@
       <section id="metodologia">
         <h2>Cómo hemos probado durante 8 semanas</h2>
         <ul>
-          <li><strong>Espectrómetro Sekonic C-7000</strong> para medir CRI, temperatura de color real y consistencia entre bombillas iguales.</li>
+          <li><strong>Espectrómetro Sekonic C-700</strong> para medir CRI, temperatura de color real y consistencia entre bombillas iguales.</li>
           <li><strong>Vatímetro</strong> para consumo en standby y en uso, comparado con la etiqueta del fabricante.</li>
           <li><strong>Cronómetro</strong> en 100 comandos por sistema desde voz → bombilla responde.</li>
           <li><strong>Test de durabilidad</strong>: 5.000 ciclos de encendido/apagado con relé automático.</li>
@@ -225,12 +229,14 @@
         </ul>
       </section>
 
+      <!-- AdSense slot DESACTIVADO hasta pub-ID real. Reactivar descomentando.
       <aside class="ad-slot ad-slot-in-article" role="complementary" aria-label="Publicidad">
         <ins class="adsbygoogle" style="display:block"
              data-ad-client="ca-{{ADSENSE_CLIENT}}" data-ad-slot="{{AD_SLOT_IN_ARTICLE_2}}"
              data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </aside>
+      -->
 
       <section id="ranking">
         <h2>Ranking 2026: los 6 mejores sistemas</h2>
@@ -304,11 +310,13 @@
         <p><a class="btn btn-primary" href="https://www.amazon.es/s?k=yeelight+bulb&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Yeelight en Amazon</a></p>
       </section>
 
+      <!-- AdSense slot DESACTIVADO hasta pub-ID real. Reactivar descomentando.
       <aside class="ad-slot ad-slot-multiplex" role="complementary" aria-label="Contenido recomendado">
         <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed"
              data-ad-client="ca-{{ADSENSE_CLIENT}}" data-ad-slot="{{AD_SLOT_MULTIPLEX}}"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </aside>
+      -->
 
       <section id="faq">
         <h2>Preguntas frecuentes</h2>
@@ -339,7 +347,7 @@
 
       <aside class="author-bio">
         <h4>Sobre la prueba</h4>
-        <p>Los 6 sistemas se han comprado en Amazon.es e Ikea físicamente sin identificación como medio. Probados durante 8 semanas en la misma vivienda con espectrómetro Sekonic C-7000 y vatímetro Brennenstuhl. Ningún fabricante ha visto este artículo antes de su publicación.</p>
+        <p>Los 6 sistemas se han comprado en Amazon.es e Ikea físicamente sin identificación como medio. Probados durante 8 semanas en la misma vivienda con espectrómetro Sekonic C-700 y vatímetro Brennenstuhl. Ningún fabricante ha visto este artículo antes de su publicación.</p>
       </aside>
 
       <aside class="article-sources">

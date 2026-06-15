@@ -12,5 +12,9 @@ Disallow: /assets/
 # Dejar pasar al rastreo los recursos críticos que sí afectan al render
 Allow: /assets/style.css
 Allow: /assets/main.js
+Allow: /assets/cookie-consent.css
+Allow: /assets/cookie-consent.js
+Allow: /assets/calculator.js
+Allow: /assets/calculator-electrodom.js
 
 Sitemap: https://hogarconectado.co/sitemap.xml

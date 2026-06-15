@@ -571,7 +571,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; lin
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md);
   font-size: 0.9rem;
 }
-.toc h4 { font-family: var(--font-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 14px; }
+.toc h4, .toc .toc-title { font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin: 0 0 14px; }
 .toc ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
 .toc a { color: var(--text-muted); transition: color 0.2s; border-left: 2px solid transparent; padding-left: 10px; display: block; }
 .toc a:hover, .toc a.active { color: var(--accent); border-left-color: var(--accent); }
