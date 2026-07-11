@@ -2073,4 +2073,72 @@ body:has(.hc-cc.is-open) .sticky-cta { display: none; }
   .sticky-cta:not(.is-visible) { transform: none; }
 }
 
+/* ==================== E-E-A-T: byline + author-card (método watt-guide) ==================== */
+.byline {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  margin: 18px 0 4px; padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem; color: var(--text-dim);
+}
+.byline__avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-strong); flex-shrink: 0; }
+.byline__text { line-height: 1.4; }
+.byline__name { color: var(--text); font-weight: 600; text-decoration: none; }
+.byline__name:hover { color: var(--accent); }
+.byline__meta { color: var(--text-dim); }
+.byline__meta a { color: var(--text-dim); text-decoration: underline; text-underline-offset: 2px; }
+.byline__meta a:hover { color: var(--accent); }
+.byline__sep { margin: 0 7px; opacity: 0.5; }
+
+.author-card {
+  display: grid; grid-template-columns: 88px 1fr; gap: 22px; align-items: start;
+  margin: 56px 0 8px; padding: 26px 28px;
+  background: linear-gradient(135deg, rgba(168,85,247,0.06), rgba(34,211,238,0.04));
+  border: 1px solid var(--border); border-radius: var(--r-lg);
+}
+.author-card__img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-strong); }
+.author-card__eyebrow { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+.author-card__name { color: var(--text); font-size: 1.15rem; font-weight: 700; margin: 4px 0 8px; }
+.author-card__bio { color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; margin: 0; }
+.author-card__links { margin-top: 12px; font-size: 0.88rem; }
+.author-card__links a { color: var(--accent); text-decoration: none; }
+.author-card__links a:hover { text-decoration: underline; }
+.author-card__links .author-card__sep { color: var(--text-dim); margin: 0 8px; }
+@media (max-width: 560px) { .author-card { grid-template-columns: 1fr; gap: 16px; } .author-card__img { width: 72px; height: 72px; } }
+
+/* ==================== Información única: scenario + verdict (método watt-guide) ==================== */
+.scenario {
+  margin: 30px 0; padding: 24px 26px;
+  background: linear-gradient(135deg, rgba(34,211,238,0.07), rgba(168,85,247,0.045));
+  border: 1px solid var(--border); border-radius: var(--r-lg);
+}
+.scenario__tag { font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-2); font-weight:700; }
+.scenario h3 { margin: 6px 0 12px; color: var(--text); font-size: 1.15rem; }
+.scenario table { width:100%; border-collapse:collapse; font-size:0.92rem; margin:12px 0; }
+.scenario td { padding:7px 10px; border-bottom:1px solid var(--border); color:var(--text-muted); }
+.scenario tr:last-child td { border-bottom:0; }
+.scenario td:last-child { text-align:right; color:var(--text); font-variant-numeric: tabular-nums; }
+.scenario__result { margin-top:14px; padding:12px 16px; background:var(--bg-1); border-left:4px solid var(--accent-2); border-radius:var(--r-md); color:var(--text); line-height:1.6; }
+.scenario__cta { margin-top:12px; font-size:0.9rem; }
+.scenario__cta a { color:var(--accent); }
+
+.verdict { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:26px 0; }
+.verdict__col { padding:18px 20px; border:1px solid var(--border); border-radius:var(--r-md); background:var(--bg-1); }
+.verdict__col h4 { margin:0 0 10px; font-size:0.95rem; }
+.verdict__col ul { margin:0; padding-left:18px; color:var(--text-muted); line-height:1.7; font-size:0.92rem; }
+.verdict__col--yes h4 { color:var(--accent-2); }
+.verdict__col--no h4 { color:var(--danger); }
+@media (max-width:560px){ .verdict { grid-template-columns:1fr; } }
+
+/* ==================== Aviso IA / disclosure + nota de footer ==================== */
+.disclosure {
+  margin: 28px 0; padding: 18px 22px;
+  background: var(--bg-1); border: 1px solid var(--border);
+  border-left: 4px solid var(--accent-2); border-radius: var(--r-md);
+  color: var(--text-muted); font-size: 0.92rem; line-height: 1.65;
+}
+.disclosure strong { color: var(--text); }
+.footer-ai-note { text-align:center; margin:20px 0 0; font-size:0.8rem; color:var(--text-dim); }
+.footer-ai-note a { color:var(--text-dim); text-decoration:underline; text-underline-offset:2px; }
+.footer-ai-note a:hover { color:var(--accent); }
+
 

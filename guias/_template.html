@@ -25,9 +25,9 @@
   <title>{{TITULO}} | Hogar Conectado</title>
   <meta name="description" content="{{META_DESCRIPCION_150_160_CARACTERES}}">
   <meta name="keywords" content="{{KEYWORDS_COMA_SEPARADAS}}">
-  <meta name="author" content="Equipo editorial">
+  <meta name="author" content="Bruno de Madrazo">
   <meta name="robots" content="noindex, nofollow">
-  <link rel="canonical" href="https://hogarconectado.co/guias/{{SLUG}}.html">
+  <link rel="canonical" href="https://hogarconectado.co/guias/{{SLUG}}">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
 
@@ -41,7 +41,7 @@
   <meta property="og:site_name" content="Hogar Conectado">
   <meta property="og:title" content="{{TITULO}}">
   <meta property="og:description" content="{{META_DESCRIPCION}}">
-  <meta property="og:url" content="https://hogarconectado.co/guias/{{SLUG}}.html">
+  <meta property="og:url" content="https://hogarconectado.co/guias/{{SLUG}}">
   <meta property="og:image" content="https://hogarconectado.co/assets/og-image-1200.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="670">
@@ -49,7 +49,7 @@
   <meta name="twitter:image" content="https://hogarconectado.co/assets/og-image-1200.jpg">
   <meta property="article:published_time" content="{{FECHA_PUBLICACION_ISO}}">
   <meta property="article:modified_time" content="{{FECHA_MODIFICACION_ISO}}">
-  <meta property="article:author" content="Equipo editorial">
+  <meta property="article:author" content="Bruno de Madrazo">
   <meta property="article:section" content="{{CATEGORIA}}">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,9 +74,9 @@
     "datePublished": "{{FECHA_PUBLICACION_ISO}}",
     "dateModified": "{{FECHA_MODIFICACION_ISO}}",
     "author": {
-      "@type": "Organization",
-      "name": "Hogar Conectado",
-      "url": "https://hogarconectado.co/about.html"
+      "@type": "Person",
+      "name": "Bruno de Madrazo",
+      "url": "https://hogarconectado.co/autor"
     },
     "publisher": {
       "@type": "Organization",
@@ -85,7 +85,7 @@
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://hogarconectado.co/guias/{{SLUG}}.html"
+      "@id": "https://hogarconectado.co/guias/{{SLUG}}"
     },
     "inLanguage": "es-ES"
   }
@@ -97,7 +97,7 @@
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://hogarconectado.co/" },
       { "@type": "ListItem", "position": 2, "name": "Guías", "item": "https://hogarconectado.co/guias/" },
-      { "@type": "ListItem", "position": 3, "name": "{{TITULO_BREADCRUMB}}", "item": "https://hogarconectado.co/guias/{{SLUG}}.html" }
+      { "@type": "ListItem", "position": 3, "name": "{{TITULO_BREADCRUMB}}", "item": "https://hogarconectado.co/guias/{{SLUG}}" }
     ]
   }
   </script>
@@ -130,7 +130,7 @@
       <li><a href="/#categorias">Categorías</a></li>
       <li><a href="/guias/">Guías</a></li>
       <li><a href="/#calculadora">Calculadora</a></li>
-      <li><a href="/about.html">Nosotros</a></li>
+      <li><a href="/about">Nosotros</a></li>
     </ul>
     <a class="nav-cta" href="/#calculadora">Calcular ahorro →</a>
   </div>
@@ -143,11 +143,12 @@
     <span class="chip" style="margin-bottom:18px">{{CATEGORIA}} · {{TIPO_PIEZA}}</span>
     <h1 class="h-display" style="margin-bottom:18px">{{TITULO_H1}}</h1>
     <p class="lead" style="max-width:760px">{{RESUMEN_HOOK_1_2_FRASES}}</p>
-    <div class="guide-meta" style="margin-top:24px; color:var(--text-dim); font-size:0.9rem">
-      <span>Por <a href="/about.html">Equipo editorial</a></span>
-      <span>· Publicado {{FECHA_LEGIBLE}}</span>
-      <span>· Actualizado {{FECHA_ACTUALIZACION_LEGIBLE}}</span>
-      <span>· {{TIEMPO_LECTURA}} min de lectura</span>
+    <div class="byline">
+      <img class="byline__avatar" src="/assets/author-bruno.webp" alt="Bruno de Madrazo" width="40" height="40" loading="lazy" decoding="async">
+      <div class="byline__text">
+        <a class="byline__name" href="/autor">Bruno de Madrazo</a>
+        <div class="byline__meta">Actualizado {{FECHA_ACTUALIZACION_LEGIBLE}}<span class="byline__sep">·</span><a href="/metodologia">Cómo lo calculamos</a></div>
+      </div>
     </div>
   </div>
 </section>
@@ -336,10 +337,11 @@
         <a href="/" class="brand"><span class="brand-dot"></span><span>Hogar<span style="color:var(--accent)">Conectado</span></span></a>
         <p>Guías y reviews independientes de domótica en español.</p>
       </div>
-      <div class="footer-col"><h4>Contenido</h4><ul><li><a href="/guias/">Guías</a></li><li><a href="/#categorias">Categorías</a></li><li><a href="/about.html">Nosotros</a></li></ul></div>
-      <div class="footer-col"><h4>Legal</h4><ul><li><a href="/privacidad.html">Privacidad</a></li><li><a href="/cookies.html">Cookies</a></li><li><a href="/about.html#aviso">Aviso legal</a></li></ul></div>
-      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="/contacto.html">Formulario</a></li></ul></div>
+      <div class="footer-col"><h4>Contenido</h4><ul><li><a href="/guias/">Guías</a></li><li><a href="/#categorias">Categorías</a></li><li><a href="/about">Nosotros</a></li><li><a href="/autor">Autor</a></li><li><a href="/metodologia">Metodología</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="/privacidad">Privacidad</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/about#aviso">Aviso legal</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="/contacto">Formulario</a></li></ul></div>
     </div>
+    <p class="footer-ai-note">Contenido asistido por IA y revisado por un editor humano. <a href="/metodologia">Metodología</a>.</p>
     <div class="footer-bottom"><div>© <span data-year></span> Hogar Conectado</div><div>Hecho con cuidado en España</div></div>
   </div>
 </footer>
