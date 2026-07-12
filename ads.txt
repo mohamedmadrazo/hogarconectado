@@ -1,7 +1,5 @@
 # ads.txt — hogarconectado.co
-# Reemplaza pub-1131493800966237 por tu Publisher ID real
-# (lo encuentras en AdSense → Cuenta → Información de la cuenta → ID de editor)
-#
+# Publisher ID real ya configurado (pub-1131493800966237, verificado 2026-07).
 # Google exige que este archivo sea servido en HTTPS desde la raíz:
 # https://hogarconectado.co/ads.txt
 
