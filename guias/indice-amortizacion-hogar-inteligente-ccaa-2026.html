@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://hogarconectado.co/assets/og-image-1200.jpg">
   <meta property="article:published_time" content="2026-07-11T08:00:00+02:00">
-  <meta property="article:modified_time" content="2026-07-11T08:00:00+02:00">
+  <meta property="article:modified_time" content="2026-07-16T08:00:00+02:00">
   <meta property="article:author" content="Bruno de Madrazo">
   <meta property="article:section" content="Energía">
 
@@ -71,11 +71,25 @@
     "headline": "Índice de amortización del termostato inteligente por comunidad autónoma (2026)",
     "description": "Dataset propio: cuántos años tarda en pagarse un termostato inteligente en cada CCAA, según el clima.",
     "datePublished": "2026-07-11T08:00:00+02:00",
-    "dateModified": "2026-07-11T08:00:00+02:00",
+    "dateModified": "2026-07-16T08:00:00+02:00",
     "author": { "@type": "Person", "name": "Bruno de Madrazo", "url": "https://hogarconectado.co/autor" },
     "publisher": { "@type": "Organization", "name": "Hogar Conectado", "logo": { "@type": "ImageObject", "url": "https://hogarconectado.co/assets/og-image-1200.jpg" } },
     "mainEntityOfPage": { "@type": "WebPage", "@id": "https://hogarconectado.co/guias/indice-amortizacion-hogar-inteligente-ccaa-2026" },
     "inLanguage": "es-ES"
+  }
+  </script>
+  <!-- JSON-LD FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"¿Por qué el ahorro se valora a precio de gas y no de luz?","acceptedAnswer":{"@type":"Answer","text":"Porque la mayoría de la calefacción doméstica con termostato en España es de caldera de gas, y 0,09 €/kWh es una referencia pública y conservadora. Si tu calefacción es eléctrica (radiadores o acumuladores a PVPC, ~0,16 €/kWh efectivos), cada kWh ahorrado vale casi el doble y la amortización se acorta en torno a un 40 %: en zona D pasarías de 1,6 a menos de 1 año."}},
+      {"@type":"Question","name":"¿Sirve este índice si tengo aerotermia o bomba de calor?","acceptedAnswer":{"@type":"Answer","text":"Con matices. La aerotermia consume menos kWh eléctricos gracias a su rendimiento (COP ~3), así que el ahorro absoluto en euros del termostato es menor que con caldera. Además, muchos equipos ya optimizan la curva de calefacción de fábrica. Si tu aerotermia es reciente y está bien configurada, espera una amortización más larga que la de la tabla; el termostato aporta sobre todo confort y control por zonas."}},
+      {"@type":"Question","name":"¿Por qué varias comunidades comparten la misma cifra?","acceptedAnswer":{"@type":"Answer","text":"Porque el consumo de calefacción de IDAE (SPAHOUSEC) se publica por zona climática, no por comunidad. Asignamos a cada comunidad la zona de invierno del CTE de su capital, y todas las capitales de zona D (Madrid, Burgos... ) comparten el mismo consumo de referencia y por tanto la misma amortización. Dentro de cada comunidad hay municipios más fríos o más suaves que su capital."}},
+      {"@type":"Question","name":"¿Puedo reutilizar el dataset en mi web o estudio?","acceptedAnswer":{"@type":"Answer","text":"Sí. El CSV se publica bajo licencia Creative Commons BY 4.0: puedes copiarlo, transformarlo y republicarlo, incluso con fines comerciales, siempre que cites la fuente (Hogar Conectado) y enlaces a esta página o a la licencia."}},
+      {"@type":"Question","name":"¿Cada cuánto se actualiza el índice?","acceptedAnswer":{"@type":"Answer","text":"Lo revisamos al menos una vez al año, o antes si cambian las fuentes: precios públicos de la energía, actualizaciones del CTE o nuevas ediciones del estudio de consumos de IDAE. La fecha de la última revisión aparece en la cabecera del artículo y en el propio CSV."}}
+    ]
   }
   </script>
   <!-- JSON-LD BreadcrumbList -->
@@ -129,7 +143,7 @@
       <img class="byline__avatar" src="/assets/author-bruno.webp" alt="Bruno de Madrazo" width="40" height="40" loading="lazy" decoding="async">
       <div class="byline__text">
         <a class="byline__name" href="/autor">Bruno de Madrazo</a>
-        <div class="byline__meta">Actualizado 11 julio 2026<span class="byline__sep">·</span><a href="/metodologia">Cómo lo calculamos</a></div>
+        <div class="byline__meta">Actualizado 16 julio 2026<span class="byline__sep">·</span><a href="/metodologia">Cómo lo calculamos</a></div>
       </div>
     </div>
   </div>
@@ -142,19 +156,6 @@
       <h2 id="titular">El clima decide, no el precio de la luz</h2>
       <p>En España el PVPC es una tarifa regulada <strong>nacional</strong>: pagas lo mismo por kWh en Cádiz que en Burgos. Por eso la pregunta «¿me compensa un termostato inteligente?» no se responde con la tarifa, sino con <strong>cuánta calefacción gastas</strong>, y eso lo fija el clima de tu zona. Un termostato ahorra un porcentaje de la calefacción; si tu factura de calefacción es grande (frío), ese porcentaje son muchos euros y el aparato se paga solito; si apenas enciendes la calefacción (Canarias, costa suave), tarda años.</p>
       <p>Tomamos el consumo de calefacción por zona climática de <strong>IDAE</strong> (estudio SPAHOUSEC), la <strong>zona de invierno del CTE</strong> de la capital de cada comunidad, un ahorro conservador del <strong>12 %</strong> (el rango real que citan IDAE, ECODES y BPIE es 8–23 %) y un termostato de <strong>150 €</strong>. La energía de calefacción se valora a precio de gas natural (~0,09 €/kWh). Es amortización <em>simple</em>: sin inflación de tarifas ni descuentos financieros. Todos los supuestos están en la <a href="/metodologia">metodología</a>.</p>
-
-      <!-- AdSense slot: in-article-1 | format: fluid | pos: post-intro | created: 2026-07 -->
-      <!-- AdSense slot DESACTIVADO hasta pub-ID real. Reactivar quitando los marcadores de comentario y rellenando los tokens.
-      <aside class="ad-slot ad-slot-in-article" role="complementary" aria-label="Publicidad">
-        <ins class="adsbygoogle"
-             style="display:block; text-align:center"
-             data-ad-layout="in-article"
-             data-ad-format="fluid"
-             data-ad-client="ca-pub-1131493800966237"
-             data-ad-slot="{{AD_SLOT_IN_ARTICLE_1}}"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </aside>
-      -->
 
       <h2 id="tabla">Amortización por comunidad autónoma (2026)</h2>
       <p>Pincha en las cabeceras para ordenar. La zona de invierno CTE (A muy suave → D muy fría) resume el clima: cuanto más fría, antes se paga el termostato.</p>
@@ -227,17 +228,64 @@
       </div>
       <p>Este índice es una <strong>estimación por zona</strong>, no tu factura exacta: dentro de cada comunidad hay pueblos de montaña más fríos que su capital y municipios costeros más suaves. Sirve para situar el orden de magnitud y ver la lógica (frío = se paga antes). Para tu caso concreto, usa la <a href="/#calculadora">calculadora</a> con tu consumo real.</p>
 
-      <!-- AdSense slot: multiplex | format: autorelaxed | pos: pre-cierre | created: 2026-07 -->
-      <!-- AdSense slot DESACTIVADO hasta pub-ID real. Reactivar quitando los marcadores de comentario y rellenando los tokens.
-      <aside class="ad-slot ad-slot-multiplex" role="complementary" aria-label="Publicidad">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-format="autorelaxed"
-             data-ad-client="ca-pub-1131493800966237"
-             data-ad-slot="{{AD_SLOT_MULTIPLEX}}"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </aside>
-      -->
+      <h2 id="metodologia-detalle">Cómo está construido el índice, paso a paso</h2>
+      <p>El índice combina cuatro piezas, todas públicas y citadas para que cualquiera pueda repetir el cálculo:</p>
+      <p><strong>1. Consumo de calefacción por zona climática.</strong> Partimos del estudio <strong>SPAHOUSEC de IDAE</strong>, que mide cuánta energía dedica a calefacción el parque real de viviendas español según su clima. De ahí salen los cuatro consumos de referencia de la tabla: 8.600 kWh/año en zona muy fría, 7.400 en fría, 6.200 en templada y 2.000 en muy suave.</p>
+      <p><strong>2. Zona de invierno del CTE.</strong> El Código Técnico de la Edificación (documento DB-HE) clasifica cada municipio en una zona de invierno (A, B, C, D, E). Asignamos a cada comunidad la zona de su <strong>capital</strong>: es una simplificación honesta — Ávila es más fría que Sevilla capital dentro de sus respectivas comunidades — pero permite comparar territorios con un criterio único y verificable.</p>
+      <p><strong>3. Ahorro del 12 %.</strong> Los estudios que hemos revisado (IDAE, ECODES, BPIE y los datos de fabricantes auditados) sitúan el ahorro de un termostato inteligente entre el <strong>8 % y el 23 %</strong> del consumo de calefacción, según lo desordenados que fueran tus horarios antes. Usamos el 12 %, en la mitad baja del rango, para que el índice peque de prudente y no de vendedor.</p>
+      <p><strong>4. Precio de la energía.</strong> Cada kWh ahorrado se valora a <strong>0,09 €/kWh</strong>, la referencia pública del gas natural doméstico, porque la calefacción de caldera es la más habitual con termostato. La fórmula final es amortización = 150 € (termostato tipo) ÷ (consumo × 12 % × 0,09 €). Simple, sin inflación de tarifas ni tipos de descuento: años de calefacción reales hasta recuperar la compra.</p>
+
+      <h2 id="analisis">Lo que dicen los números: tres Españas térmicas</h2>
+      <p>Ordenada la tabla, el país se agrupa en tres bloques muy nítidos. El primero es la <strong>España continental</strong> (zona D: Madrid, las dos Castillas, Aragón, La Rioja, Navarra, País Vasco, Asturias): 8.600 kWh de calefacción al año, unos 93 € de ahorro anual y el termostato pagado en <strong>1,6 años</strong>. El segundo, la <strong>franja intermedia</strong> (zona C: Galicia, Cantabria, Cataluña, Extremadura, Castilla-La Mancha): 1,9 años. El tercero, el <strong>arco mediterráneo y las Baleares</strong> (zona B): 2,2 años, todavía un plazo excelente para un aparato que dura fácilmente una década.</p>
+      <p>El caso aparte son las <strong>Canarias</strong>: con ~2.000 kWh de calefacción al año, el ahorro del 12 % son 21,6 € anuales y la amortización se va a <strong>6,9 años</strong> — 4,3 veces más que en la meseta. La lección del índice cabe en una frase: <em>como el precio de la luz es el mismo en toda España, la amortización de un termostato es un mapa del frío, no un mapa de tarifas</em>. Quien te venda un termostato «que se paga solo en meses» en Las Palmas te está contando la mitad de la historia.</p>
+
+      <div class="scenario">
+        <span class="scenario__tag">Hogar tipo 1 · piso en Valencia con calefacción eléctrica</span>
+        <h3>Zona templada + PVPC: la excepción que acorta plazos</h3>
+        <p>Piso de 85 m² en Valencia (zona B, 6.200 kWh/año de calefacción de referencia) con radiadores eléctricos a PVPC (~0,16 €/kWh efectivos):</p>
+        <table>
+          <tr><td>Ahorro en energía (6.200 kWh × 12 %)</td><td>744 kWh/año</td></tr>
+          <tr><td>Ahorro en euros (744 kWh × 0,16 €/kWh, PVPC)</td><td>119 €/año</td></tr>
+          <tr><td><strong>Amortización (150 € ÷ 119 €/año)</strong></td><td><strong>≈ 1,3 años</strong></td></tr>
+        </table>
+        <div class="scenario__result"><strong>El resultado:</strong> aunque Valencia esté en zona templada, la calefacción <em>eléctrica</em> encarece tanto cada kWh que el termostato se paga <strong>antes que en Madrid con gas</strong>. La tabla del índice usa precio de gas; si tu calefacción es eléctrica, tu plazo real es ~40 % más corto.</div>
+      </div>
+
+      <div class="scenario">
+        <span class="scenario__tag">Hogar tipo 2 · chalet en Burgos con caldera de gas</span>
+        <h3>Consumo alto: cuando el termostato caro también sale a cuenta</h3>
+        <p>Chalet unifamiliar en Burgos (zona D). Un unifamiliar aislado consume bastante más que la media del parque (que mezcla pisos): asumimos <strong>12.000 kWh/año</strong> de calefacción de gas:</p>
+        <table>
+          <tr><td>Ahorro en energía (12.000 kWh × 12 %)</td><td>1.440 kWh/año</td></tr>
+          <tr><td>Ahorro en euros (1.440 kWh × 0,09 €/kWh, gas)</td><td>≈ 130 €/año</td></tr>
+          <tr><td>Amortización termostato de 150 €</td><td><strong>≈ 1,2 años</strong></td></tr>
+          <tr><td>Amortización modelo OpenTherm de 250 €</td><td><strong>≈ 1,9 años</strong></td></tr>
+        </table>
+        <div class="scenario__result"><strong>El resultado:</strong> con consumos altos, hasta el termostato premium con modulación OpenTherm se recupera en menos de dos inviernos — y la modulación añade puntos extra de ahorro que aquí ni contamos. Elige modelo en la <a href="/guias/mejores-termostatos-inteligentes-2026">comparativa de termostatos</a>.</div>
+      </div>
+
+      <h2 id="limites">Los límites del índice (léelos antes de citarlo)</h2>
+      <ul>
+        <li><strong>La zona la fija la capital.</strong> Dentro de una misma comunidad, un municipio de montaña puede estar una zona entera por encima de su capital (y uno costero, por debajo).</li>
+        <li><strong>Los consumos son medias del parque.</strong> SPAHOUSEC mezcla pisos y unifamiliares, viviendas aisladas y sin aislar. Tu vivienda concreta puede gastar la mitad o el doble de la referencia.</li>
+        <li><strong>El 12 % es una sola cifra de un rango real de 8–23 %.</strong> Si ya programabas la calefacción con criterio, estarás abajo del rango; si la dejabas fija día y noche, arriba.</li>
+        <li><strong>Precio de la energía congelado.</strong> Usamos 0,09 €/kWh de gas para todo el índice; si la energía sube, la amortización real se acorta (y viceversa).</li>
+        <li><strong>Amortización simple.</strong> Sin inflación, sin coste de instalación (la mayoría de termostatos son de bricolaje sencillo) y con un único precio de aparato (150 €, gama media).</li>
+      </ul>
+
+      <section id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <h3>¿Por qué el ahorro se valora a precio de gas y no de luz?</h3>
+        <p>Porque la mayoría de la calefacción doméstica con termostato en España es de caldera de gas, y 0,09 €/kWh es una referencia pública y conservadora. Si tu calefacción es eléctrica (radiadores o acumuladores a PVPC, ~0,16 €/kWh efectivos), cada kWh ahorrado vale casi el doble y la amortización se acorta en torno a un 40 %: en zona D pasarías de 1,6 a menos de 1 año.</p>
+        <h3>¿Sirve este índice si tengo aerotermia o bomba de calor?</h3>
+        <p>Con matices. La aerotermia consume menos kWh eléctricos gracias a su rendimiento (COP ~3), así que el ahorro absoluto en euros del termostato es menor que con caldera. Además, muchos equipos ya optimizan la curva de calefacción de fábrica. Si tu aerotermia es reciente y está bien configurada, espera una amortización más larga que la de la tabla; el termostato aporta sobre todo confort y control por zonas.</p>
+        <h3>¿Por qué varias comunidades comparten la misma cifra?</h3>
+        <p>Porque el consumo de calefacción de IDAE (SPAHOUSEC) se publica por zona climática, no por comunidad. Asignamos a cada comunidad la zona de invierno del CTE de su capital, y todas las capitales de zona D (Madrid, Burgos...) comparten el mismo consumo de referencia y por tanto la misma amortización. Dentro de cada comunidad hay municipios más fríos o más suaves que su capital.</p>
+        <h3>¿Puedo reutilizar el dataset en mi web o estudio?</h3>
+        <p>Sí. El CSV se publica bajo licencia Creative Commons BY 4.0: puedes copiarlo, transformarlo y republicarlo, incluso con fines comerciales, siempre que cites la fuente (Hogar Conectado) y enlaces a esta página o a la licencia.</p>
+        <h3>¿Cada cuánto se actualiza el índice?</h3>
+        <p>Lo revisamos al menos una vez al año, o antes si cambian las fuentes: precios públicos de la energía, actualizaciones del CTE o nuevas ediciones del estudio de consumos de IDAE. La fecha de la última revisión aparece en la cabecera del artículo y en el propio CSV.</p>
+      </section>
 
       <aside class="author-card" aria-label="Sobre el autor">
         <img class="author-card__img" src="/assets/author-bruno.webp" alt="Bruno de Madrazo" width="88" height="88" loading="lazy" decoding="async">
@@ -264,7 +312,7 @@
       <div class="footer-col"><h4>Legal</h4><ul><li><a href="/privacidad">Privacidad</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/about#aviso">Aviso legal</a></li></ul></div>
       <div class="footer-col"><h4>Contacto</h4><ul><li><a href="/contacto">Formulario</a></li></ul></div>
     </div>
-    <p class="footer-ai-note">Contenido asistido por IA y revisado por un editor humano. <a href="/metodologia">Metodología</a>.</p>
+    <p class="footer-ai-note">Guías editadas y verificadas por Bruno de Madrazo. <a href="/metodologia">Cómo trabajamos</a>.</p>
     <div class="footer-bottom"><div>© <span data-year>2026</span> Hogar Conectado</div><div>Hecho con cuidado en España</div></div>
   </div>
 </footer>

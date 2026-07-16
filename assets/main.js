@@ -234,7 +234,7 @@
         nlForm.reset();
       } catch {
         nlStatus.dataset.state = 'error';
-        nlStatus.textContent = 'No se pudo enviar. Escribe a demadrazobruno@gmail.com.';
+        nlStatus.textContent = 'No se pudo enviar. Inténtalo de nuevo o usa el formulario de contacto.';
       } finally {
         nlBtn.removeAttribute('aria-busy');
         nlBtn.textContent = original;

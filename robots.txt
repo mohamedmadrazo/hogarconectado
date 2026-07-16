@@ -1,20 +1,7 @@
 # robots.txt — hogarconectado.co
 # Permite indexación de todo el contenido público.
-# Actualiza la URL del sitemap si mueves el archivo.
 
 User-agent: *
 Allow: /
-
-# No indexar archivos internos / plantillas
-Disallow: /guias/_template.html
-Disallow: /assets/
-
-# Dejar pasar al rastreo los recursos críticos que sí afectan al render
-Allow: /assets/style.css
-Allow: /assets/main.js
-Allow: /assets/cookie-consent.css
-Allow: /assets/cookie-consent.js
-Allow: /assets/calculator.js
-Allow: /assets/calculator-electrodom.js
 
 Sitemap: https://hogarconectado.co/sitemap.xml

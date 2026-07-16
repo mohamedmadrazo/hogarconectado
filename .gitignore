@@ -46,10 +46,20 @@ temp/
 *.xlsx
 *.xls
 *.pdf
-!STRATEGY.md
+
 
 # Landing standalone Google Ads (experimento 2026-05, NO forma parte del sitio AdSense)
 # Se conservan en local como referencia/entregable, pero no se despliegan:
 # publicarlos en Cloudflare Pages crearia contenido casi duplicado de cara a la revision AdSense.
 _legacy/
 hogarconectado_landing_AUDIT.md
+
+# Documentacion interna y tooling (no desplegar en Cloudflare Pages)
+.internal/
+ADSENSE-APPLICATION.md
+CLAUDE.md
+NEWSLETTER-SETUP.md
+PROMPT-mejora-landing.md
+STRATEGY.md
+BIENVENIDA-email.html
+worker/
