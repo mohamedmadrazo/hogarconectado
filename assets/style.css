@@ -354,7 +354,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; lin
 .guide-desc { color: var(--text-muted); font-size: 0.92rem; flex: 1; }
 .guide-meta { display: flex; gap: 14px; margin-top: 18px; font-size: 0.8rem; color: var(--text-dim); }
 
-/* ========== AdSense slots (CLAUDE.md §7.2 — reserva CLS-safe) ==========
+/* ========== AdSense slots (reserva CLS-safe) ==========
    Clases canónicas:
      .ad-slot                   base layout
      .ad-slot-in-article        in-article fluid/display (min 280px)
@@ -410,7 +410,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; lin
   .ad-slot-anchor { display: none; }
 }
 
-/* Disclosure de afiliación (CLAUDE.md §8.2) */
+/* Disclosure de afiliación */
 .affiliate-disclosure {
   margin: 24px auto;
   padding: 14px 18px;

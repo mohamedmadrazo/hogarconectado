@@ -14,7 +14,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
 
-  <!-- AdSense: verificación de sitio (pub-ID activo) -->
+  <!-- Google AdSense -->
   <meta name="google-adsense-account" content="ca-pub-1131493800966237">
 
   <meta property="og:type" content="article">
@@ -70,22 +70,22 @@
   <script type="application/ld+json">
   { "@context": "https://schema.org", "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "¿Qué tipos de persiana española existen y cuál se puede automatizar?",
+      { "@type": "Question", "name": "¿Qué tipos de persiana española hay y cuál se automatiza?",
         "acceptedAnswer": { "@type": "Answer", "text": "Tres tipos principales. Primera: persiana de cinta enrolladora (la más común en pisos españoles desde los 70). Se motoriza sustituyendo el sistema enrollador interno o con motor externo tipo Aqara Roller Shade Driver. Segunda: persiana monoblock con cajón superior, frecuente en construcción posterior a 2000. Acepta motor tubular tipo Somfy Oximo io con desmontaje del cajón. Tercera: persiana eléctrica original (ya motorizada con botonera). Se integra con relé inteligente Shelly 2PM sin tocar el motor. Las menos comunes (mallorquinas, venecianas) requieren soluciones específicas no cubiertas aquí." } },
-      { "@type": "Question", "name": "¿Cuánto cuesta automatizar todas las persianas de un piso?",
+      { "@type": "Question", "name": "¿Cuánto cuesta automatizar todas las persianas?",
         "acceptedAnswer": { "@type": "Answer", "text": "Piso típico español tiene 5-7 ventanas con persiana. Costes estimados por habitación: persiana eléctrica existente con Shelly 2PM (15 € por relé) → ~75-105 € total el piso. Persiana de cinta con motor externo Aqara (60 € por unidad) → ~300-420 €. Persiana sin motorizar con motor tubular Somfy + instalación profesional → 250-400 € por persiana, total 1.250-2.800 €. Recomendación práctica: si tu casa ya tiene persianas eléctricas (botonera), Shelly 2PM es de lejos la inversión más rentable. Si no, valora si compensa antes de motorizar todo." } },
       { "@type": "Question", "name": "¿Las persianas inteligentes ahorran energía realmente?",
         "acceptedAnswer": { "@type": "Answer", "text": "Sí, especialmente en verano en climas mediterráneos. Bajar persianas automáticamente entre 11:00 y 18:00 los días con temperatura exterior >30°C reduce la entrada de calor radiante hasta un 70 %, lo que se traduce en menor uso de aire acondicionado. Mediciones reales en Madrid (julio-agosto): ahorro 18-25 % en factura eléctrica de A/C respecto a verano anterior sin automatización. En invierno también ayuda: bajar al anochecer reduce pérdida de calor por la ventana hasta un 30 %. ROI energético en 2-4 años según número de ventanas." } },
-      { "@type": "Question", "name": "¿Es legal instalar relé Shelly en cuadro de persianas?",
+      { "@type": "Question", "name": "¿Es legal instalar Shelly en cuadro?",
         "acceptedAnswer": { "@type": "Answer", "text": "Sí, los relés Shelly están certificados CE para uso doméstico. La instalación es legal pero técnicamente compleja: hay que conectar el relé entre la botonera de pared y el motor existente, manipulando 230V. Si no tienes conocimientos eléctricos básicos, contrata un electricista (~50-80 € por punto, una vez). NUNCA trabajes con la corriente conectada al cuadro general. Una vez instalado, no requiere mantenimiento durante años." } },
-      { "@type": "Question", "name": "¿Funcionan las persianas inteligentes sin Wi-Fi?",
+      { "@type": "Question", "name": "¿Funcionan sin Wi-Fi?",
         "acceptedAnswer": { "@type": "Answer", "text": "Los motores Somfy y los relés Shelly funcionan localmente con sus mandos físicos siempre, independientemente del estado del Wi-Fi. Los motores Zigbee (Aqara, IKEA FYRTUR) funcionan también local vía hub local. Los Wi-Fi puros (Tapo KS200M, algunos Bosch) sí dependen de conexión activa para control remoto pero suelen tener botón físico para uso manual. Recomendación de seguridad: cualquier instalación domótica debe permitir control manual aunque internet caiga." } },
-      { "@type": "Question", "name": "¿Qué automatizaciones son útiles de verdad en persianas?",
+      { "@type": "Question", "name": "¿Qué automatizaciones son útiles?",
         "acceptedAnswer": { "@type": "Answer", "text": "Las cinco más probadas y de uso continuado real: 1) Subir todas al amanecer (despierta sin alarma estridente, sirve incluso si no hay sol detrás de nubes). 2) Bajar al anochecer (privacidad + aislamiento térmico). 3) Bajar persianas del sur cuando temperatura interior supera 26°C entre mayo y septiembre. 4) Subir 20 % las persianas del dormitorio al activar alarma para simular movimiento si nadie está. 5) Modo vacaciones con apertura aleatoria entre 8-10h y cierre entre 19-22h para disuadir robo. Las que parecen útiles pero usas dos veces y desactivas: persianas que siguen al sol astronómicamente (overkill), o que reaccionan al pronóstico meteorológico." } }
     ] }
   </script>
 
-  <!-- AdSense: loader activo; las ad units se crean tras la aprobación --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1131493800966237" crossorigin="anonymous"></script>
+  <!-- Google AdSense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1131493800966237" crossorigin="anonymous"></script>
   <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
@@ -309,7 +309,7 @@
         <p>Cinta enrolladora (Aqara Shade Driver), monoblock con cajón (motor tubular Somfy o Bubendorff), eléctrica con botonera (Shelly 2PM o Tapo KS200M).</p>
         <h3>¿Cuánto cuesta automatizar todas las persianas?</h3>
         <p>Piso con 5-7 persianas eléctricas: 75-105 € con Shelly 2PM. Con motorización profesional desde cero: 1.250-2.800 €.</p>
-        <h3>¿Ahorran energía?</h3>
+        <h3>¿Las persianas inteligentes ahorran energía realmente?</h3>
         <p>Sí. Verano en Madrid: -27 % consumo A/C. Invierno: -30 % pérdida térmica. ROI 1-4 años según solución.</p>
         <h3>¿Es legal instalar Shelly en cuadro?</h3>
         <p>Sí, certificación CE para uso doméstico. Manipulación 230V requiere conocimiento básico o electricista (~50-80 €/punto).</p>

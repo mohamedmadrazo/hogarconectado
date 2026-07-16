@@ -13,7 +13,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
 
-  <!-- AdSense: verificación de sitio (pub-ID activo) -->
+  <!-- Google AdSense -->
   <meta name="google-adsense-account" content="ca-pub-1131493800966237">
 
   <meta property="og:type" content="article">
@@ -75,7 +75,7 @@
         "acceptedAnswer": { "@type": "Answer", "text": "Matter es un protocolo abierto creado en 2022 por la Connectivity Standards Alliance (Apple, Google, Amazon, Samsung) que estandariza cómo los dispositivos de domótica se hablan entre sí. Antes de Matter, una bombilla Hue solo funcionaba con Hue app, Alexa, Google, HomeKit cada uno con bridge propio. Con Matter 1.3 (mayo 2026) la misma bombilla certificada Matter funciona con CUALQUIER hub Matter directamente. Esto reduce la dependencia del fabricante y futureproofs tu inversión. La pega: la adopción es desigual — solo el 60% de los dispositivos nuevos en 2026 están certificados Matter, y muchos antiguos requieren actualización de firmware." } },
       { "@type": "Question", "name": "¿Vale la pena Home Assistant para una casa española normal?",
         "acceptedAnswer": { "@type": "Answer", "text": "Home Assistant es la opción técnica más potente — todo procesado local, sin servidores externos, sin coste mensual, integración con prácticamente cualquier dispositivo del mercado vía 2.500+ integraciones de la comunidad. Pero requiere curva de aprendizaje de 20-40 horas para llegar a un nivel funcional cómodo, gestión activa de actualizaciones, y disposición a editar archivos YAML. Si tu nivel técnico es alto (sysadmin, dev, maker) y te diviertes optimizando, sí. Para usuarios normales, Aqara M3 o Apple HomePod son 95% del valor con 5% del esfuerzo de mantenimiento." } },
-      { "@type": "Question", "name": "¿Pierdo la app de Aqara/Hue/Tapo si paso todo a un hub Matter genérico?",
+      { "@type": "Question", "name": "¿Pierdo la app de Aqara/Hue si paso todo a un hub Matter?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. Los dispositivos siguen siendo accesibles desde sus apps propietarias en paralelo a Matter. Lo que ganas con el hub Matter es centralización: una sola app (Aqara Home, Apple Casa, Google Home, etc.) gestiona dispositivos de distintas marcas. Lo que pierdes con Matter pero conservas en las apps propietarias: funciones avanzadas como reconocimiento facial de cámaras, efectos Hue Sync con TV, programación granular de cerraduras. Estrategia recomendada: hub Matter para uso diario + apps propietarias para configuración inicial y funciones avanzadas." } },
       { "@type": "Question", "name": "¿Apple HomePod sirve solo si tengo iPhone?",
         "acceptedAnswer": { "@type": "Answer", "text": "Sí, hablando claro. HomePod gen 2 requiere un dispositivo iOS o macOS para la configuración inicial vía app Casa de Apple. Si tu familia mezcla iOS y Android, HomeKit como hub principal genera fricción — los miembros Android no pueden controlar nada desde la app Casa. Workaround: HomeKit centraliza pero exportas escenas críticas a Google Home o Alexa vía Matter para que todos puedan controlar lo esencial por voz. Para hogares 100% Apple, HomePod es el hub más limpio." } },
@@ -84,7 +84,7 @@
     ] }
   </script>
 
-  <!-- AdSense: loader activo; las ad units se crean tras la aprobación -->
+  <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1131493800966237" crossorigin="anonymous"></script>
   <link rel="manifest" href="/site.webmanifest">
 </head>
@@ -369,6 +369,9 @@
 
         <h3>¿Cuánto cuesta tener un sistema centralizado completo?</h3>
         <p>Hub 89-200€ + dispositivos 800-1.500€ adicionales. Total inicial 1.000-1.800€ para piso completo. <a href="/#calculadora">Calcula tu caso en nuestra calculadora</a>.</p>
+
+        <h3>¿Qué es Matter y por qué importa tanto en 2026?</h3>
+        <p>Matter es un protocolo abierto creado en 2022 por la Connectivity Standards Alliance (Apple, Google, Amazon, Samsung) que estandariza cómo los dispositivos de domótica se hablan entre sí. Antes de Matter, una bombilla Hue solo funcionaba con su app, Alexa, Google o HomeKit, cada uno con bridge propio. Con Matter 1.3 (mayo 2026) la misma bombilla certificada funciona con cualquier hub Matter directamente, lo que reduce la dependencia del fabricante y protege tu inversión. La pega: la adopción es desigual — solo el 60% de los dispositivos nuevos de 2026 están certificados, y muchos antiguos requieren actualización de firmware.</p>
       </section>
 
       <section id="veredicto">

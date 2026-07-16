@@ -28,7 +28,6 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- AdSense preconnects (CLAUDE.md §7.4) -->
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
   <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
   <link rel="preconnect" href="https://www.googletagservices.com" crossorigin>
@@ -128,13 +127,9 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#050714">
   <link rel="stylesheet" href="/assets/cookie-consent.css">
-
-  <!-- AdSense ownership verification (CLAUDE.md §11) -->
-  <!-- AdSense: verificación de sitio (pub-ID activo) -->
+  <!-- Google AdSense -->
   <meta name="google-adsense-account" content="ca-pub-1131493800966237">
-
-  <!-- Google AdSense (CLAUDE.md §5.3: async + crossorigin). Sustituye pub-1131493800966237 tras aprobación. -->
-  <!-- AdSense: loader activo; las ad units se crean tras la aprobación -->
+  <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1131493800966237" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -173,8 +168,6 @@
     </div>
   </div>
 </section>
-
-<!-- ========== Affiliate disclosure (CLAUDE.md §8.2) ========== -->
 <div class="container" style="max-width:860px">
   <p class="affiliate-disclosure" role="note">
     <strong>Transparencia:</strong> esta comparativa incluye enlaces de afiliación a Amazon.es.
@@ -416,6 +409,12 @@
       <h3>¿Necesito permiso de la comunidad de vecinos?</h3>
       <p>En España no necesitas permiso para instalar una alarma dentro de tu vivienda. Sí lo necesitas si quieres colocar una sirena en fachada o una cámara que grabe zonas comunes, por la Ley Orgánica de Protección de Datos (LOPDGDD).</p>
 
+      <h3>¿Cuánto cuesta una alarma para el hogar en España en 2026?</h3>
+      <p>Los kits sin cuota van desde 120€ (Blaupunkt, Garza) hasta 600€ (Ajax StarterKit Plus). Los sistemas con cuota tipo Securitas Direct o Movistar Prosegur cobran entre 40 y 60€/mes tras una instalación que suele incluirse en el contrato de permanencia.</p>
+
+      <h3>¿Las alarmas bonifican el seguro del hogar?</h3>
+      <p>Sí, la mayoría de aseguradoras españolas (Mapfre, Línea Directa, Mutua Madrileña) aplican descuentos del 5 al 15% si dispones de alarma conectada a una CRA acreditada. Las alarmas DIY sin conexión a CRA no suelen bonificar primas, aunque algunos productos del BBVA Allianz o Caser sí reconocen Ajax y Ring con el justificante de instalación.</p>
+
       <!-- ============================================= -->
       <h2 id="veredicto">Veredicto final</h2>
       <p>Tras un año revisando productos de esta categoría, una conclusión: <strong>la mayoría de hogares españoles no necesitan cuota mensual</strong>. Un kit Ajax bien configurado, una cámara interior decente y una rutina de avisar a vecinos o familiares cubren perfectamente el 95 % de los escenarios reales en vivienda habitada.</p>
@@ -481,6 +480,7 @@
           <input type="hidden" name="_subject" value="Nueva suscripción Hogar Conectado">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_autoresponse" value="¡Bienvenido a Hogar Conectado! Tres guías para empezar: (1) Mejores termostatos inteligentes: https://hogarconectado.co/guias/mejores-termostatos-inteligentes-2026 (2) Mejores alarmas para el hogar: https://hogarconectado.co/guias/mejores-alarmas-hogar-2026 (3) Índice de amortización por CCAA: https://hogarconectado.co/guias/indice-amortizacion-hogar-inteligente-ccaa-2026 - Un email al mes, sin ruido. Responde 'baja' cuando quieras para dejar de recibirlo.">
           <input type="hidden" name="_next" value="https://hogarconectado.co/?subscribed=1">
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
           <label for="news-email" class="visually-hidden">Email</label>
@@ -509,11 +509,7 @@
   </div>
 </footer>
 
-<!--
-  AdSense slot: anchor-mobile | format: anchor (Auto Ads) | pos: sticky-bottom-mobile | created: 2026-05
-  Activación recomendada desde AdSense → Anuncios → Configuración por sitio (Auto Ads),
-  marcando solo el formato Anchor y filtrando a mobile. CLAUDE.md §6.1: máximo 1 fixed format.
--->
+
 
 <script src="../assets/main.js" defer></script>
 <script src="/assets/cookie-consent.js" defer></script>
