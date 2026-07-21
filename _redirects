@@ -1,5 +1,5 @@
-# www → apex (301)
-https://www.hogarconectado.co/*   https://hogarconectado.co/:splat   301!
+# www → apex lo gestiona una Redirect Rule a nivel de zona en Cloudflare
+# (Pages no soporta hosts en _redirects — regla creada el 2026-07-21)
 
 # Common misspellings / legacy paths (extend as needed)
 /guia/*         /guias/:splat        301
