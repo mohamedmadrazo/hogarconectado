@@ -20,7 +20,7 @@
   <meta property="og:locale" content="es_ES">
   <meta property="og:site_name" content="Hogar Conectado">
   <meta property="og:title" content="Matter vs Zigbee vs Wi-Fi: la comparativa que decide tu domótica">
-  <meta property="og:description" content="Latencia medida, alcance probado, fiabilidad real en 47 dispositivos. Cuándo elegir cada protocolo en 2026.">
+  <meta property="og:description" content="Qué protocolo le conviene a cada dispositivo: control local o nube, consumo de pila, alcance y catálogo disponible en España. Wi-Fi, Zigbee o Matter en 2026.">
   <meta property="og:url" content="https://hogarconectado.co/guias/matter-vs-zigbee-vs-wifi-2026">
   <meta property="og:image" content="https://hogarconectado.co/assets/og-image-1200.jpg">
   <meta property="og:image:width" content="1200">
@@ -100,7 +100,7 @@
         "name": "¿Es Matter ya estable y vale la pena esperar?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Matter 1.4 (publicado noviembre 2024) y Matter 1.5 (junio 2025) son estables para los casos de uso de consumo: bombillas, enchufes, sensores básicos, termostatos, cerraduras y cámaras 2D. Lo que sigue sin ser maduro: cámaras de seguridad con eventos (1.4 lo introduce pero pocos fabricantes lo implementan bien todavía), electrodomésticos blancos, robots aspiradoras. Si compras hoy, Matter es seguro para los primeros 6 tipos. Para los otros, espera o usa la app del fabricante hasta que su Matter esté implementado por completo."
+          "text": "Para los tipos de dispositivo que lleva soportando desde sus primeras versiones —bombillas, enchufes, sensores de contacto y movimiento, termostatos, cerraduras y persianas— Matter es estable y se puede comprar sin reservas. Lo que todavía no está maduro es lo recién incorporado: las cámaras entran en la especificación con Matter 1.5 (noviembre de 2025) y en 2026 aún hay muy pocos modelos certificados que las implementen; con los electrodomésticos grandes pasa lo mismo desde Matter 1.2. Criterio práctico: si el tipo de producto lleva años en la especificación, compra Matter; si acaba de entrar, compra la versión Wi-Fi de la marca y usa su app hasta que el soporte Matter esté completo. Lo puedes comprobar tú mismo en el buscador de productos certificados de la Connectivity Standards Alliance."
         }
       },
       {
@@ -108,7 +108,7 @@
         "name": "¿Wi-Fi para domótica es mala idea?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No es mala idea, es una decisión condicionada. Para menos de 10 dispositivos repartidos en un piso pequeño, Wi-Fi funciona perfectamente y te ahorra un hub. A partir de 15 dispositivos empiezas a notar tres problemas: saturación del router (algunos routers básicos limitan a 25-30 clientes simultáneos), latencia variable (rutinas que tardan 1-3 segundos en activarse) y dependencia total de internet (si cae el ISP, deja de funcionar). Para sensores de batería el Wi-Fi es prohibitivo: un sensor PIR Wi-Fi dura semanas, su equivalente Zigbee dura años."
+          "text": "No es mala idea, es una decisión condicionada. Para menos de 10 dispositivos repartidos en un piso pequeño, Wi-Fi funciona perfectamente y te ahorra el hub. Según creces aparecen tres límites: el router de operador (consulta su ficha: casi todos declaran un máximo de clientes asociados, y la banda de 2,4 GHz —la única que usan los dispositivos domóticos— es la que antes se congestiona), la latencia variable de las órdenes que pasan por la nube del fabricante, y la dependencia de internet: si cae la línea, la mayoría de dispositivos Wi-Fi dejan de responder incluso desde el móvil que está en la misma habitación. Para dispositivos de pila el Wi-Fi es directamente prohibitivo: los fabricantes declaran semanas o pocos meses de autonomía en sus sensores Wi-Fi frente a uno o dos años en los equivalentes Zigbee o Thread."
         }
       },
       {
@@ -116,7 +116,7 @@
         "name": "¿Qué es Thread y dónde encaja?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Thread es el protocolo radio mesh de bajo consumo que usa Matter por defecto. Es la respuesta moderna a Zigbee, basado en IPv6 y diseñado para integrarse de forma transparente con el resto de la red. En la práctica del usuario es casi invisible: tu dispositivo dice Matter, pero por debajo viaja en Thread. Hubs como Apple HomePod mini, Aqara M3 o Nest Hub Max ya hacen de Thread Border Router. La pega: el catálogo de productos Thread nativos todavía es pequeño (40-50 SKUs en 2026)."
+          "text": "Thread es el protocolo radio mesh de bajo consumo que Matter usa por defecto en los dispositivos pequeños. Comparte capa radio con Zigbee (IEEE 802.15.4 en 2,4 GHz) pero su pila de red es IPv6, así que cada dispositivo es una dirección más de tu red. En la práctica del usuario es casi invisible: tu dispositivo dice Matter y por debajo viaja en Thread. Para que funcione necesitas un Thread Border Router, papel que ya hacen el HomePod mini, el Nest Hub, el Echo de 4.ª generación o el Aqara M3. La pega: el catálogo de productos Thread nativos sigue siendo una fracción pequeña del de Zigbee, y conviene comprobar cada modelo concreto en el buscador de productos certificados de la Connectivity Standards Alliance antes de comprar."
         }
       },
       {
@@ -160,7 +160,7 @@
     <a class="breadcrumb" href="/guias/">← Todas las guías</a>
     <span class="chip" style="margin-bottom:18px">Asistentes · Pilar técnico</span>
     <h1 class="h-display" style="margin-bottom:18px"><span class="text-grad">Matter vs Zigbee vs Wi-Fi</span> 2026</h1>
-    <p class="lead" style="max-width:760px">Tres protocolos, tres filosofías y un único objetivo: que tu domótica funcione hoy y siga funcionando en cinco años. Latencia medida en 47 dispositivos reales, alcance probado y compatibilidad cruzada actualizada a Matter 1.5.</p>
+    <p class="lead" style="max-width:760px">Tres protocolos, tres filosofías y un único objetivo: que tu domótica funcione hoy y siga funcionando en cinco años. Dónde se procesa cada orden, cuánta pila consume, qué necesita hub y qué catálogo existe de verdad en España, con la compatibilidad cruzada actualizada a Matter 1.5.</p>
         <div class="byline">
       <img class="byline__avatar" src="/assets/author-bruno.webp" alt="Bruno de Madrazo" width="40" height="40" loading="lazy" decoding="async">
       <div class="byline__text">
@@ -173,9 +173,9 @@
 
 <div class="container" style="max-width:860px">
   <p class="affiliate-disclosure" role="note">
-    <strong>Transparencia:</strong> esta guía incluye enlaces de afiliación a Amazon.es.
-    Si compras a través de ellos, ganamos una pequeña comisión sin coste adicional para ti.
-    Productos comprados con tarjeta personal; ningún cedido por fabricante.
+    <strong>Transparencia:</strong> esta guía contiene enlaces de afiliación a Amazon.es.
+    La comisión no cambia tu precio ni el orden de lo que recomendamos:
+    los criterios de ordenación están publicados en <a href="/metodologia">nuestra metodología</a>.
   </p>
 </div>
 
@@ -187,7 +187,7 @@
         <p class="toc-title">En esta guía</p>
         <ul>
           <li><a href="#resumen">Resumen rápido</a></li>
-          <li><a href="#metodologia">Cómo hemos probado</a></li>
+          <li><a href="#metodologia">Cómo hemos elaborado esta comparativa</a></li>
           <li><a href="#wifi">Wi-Fi: el omnipresente</a></li>
           <li><a href="#zigbee">Zigbee: el veterano</a></li>
           <li><a href="#matter">Matter: el unificador</a></li>
@@ -203,9 +203,9 @@
 
     <article class="article-body">
 
-      <p class="lede-body">El 80 % de las dudas que recibimos en hogarconectado.co son variaciones de una sola pregunta: "¿Qué protocolo elijo?". La respuesta corta es que ya no existe un único ganador, sino tres roles claros. La respuesta larga ocupa esta guía.</p>
+      <p class="lede-body">Casi todas las dudas que llegan al formulario de hogarconectado.co son variaciones de una sola pregunta: "¿Qué protocolo elijo?". La respuesta corta es que ya no existe un único ganador, sino tres roles claros. La respuesta larga ocupa esta guía.</p>
 
-      <p>Hemos pasado cuatro meses combinando 47 dispositivos reales en tres viviendas distintas, midiendo latencia con sniffer Wireshark, alcance con nRF Sniffer + Wireshark en banda 2,4 GHz y consumo de batería con instrumentación TI Power Studio. Lo que sigue son las decisiones que sobreviven a esa medición — sin marketing y sin "futurismo Matter" gratuito.</p>
+      <p>Esta comparativa no enfrenta tres marcas: enfrenta tres formas de construir la red de tu casa. Para escribirla hemos cruzado las especificaciones publicadas por la Connectivity Standards Alliance (Matter y Zigbee 3.0), por el Thread Group (Thread 1.4) y el estándar radio común de ambos, IEEE 802.15.4, con la documentación técnica de los productos que se venden en España. El resultado se traduce a la única pregunta que importa cuando ya tienes el carrito abierto: <strong>para este dispositivo concreto, ¿qué protocolo me conviene?</strong> Debajo de cada recomendación está el criterio, no una corazonada — y cuando un dato procede de un tercero, lo verás citado junto al dato.</p>
 
 
       <section id="resumen">
@@ -220,16 +220,15 @@
       </section>
 
       <section id="metodologia">
-        <h2>Cómo hemos probado</h2>
-        <p>El banco de pruebas combina:</p>
+        <h2>Cómo hemos elaborado esta comparativa</h2>
+        <p>Conviene decirlo antes que nada: <strong>no tenemos laboratorio de radiofrecuencia ni banco de pruebas propio</strong>. Esta guía es un trabajo de documentación técnica, y lo que aporta es el criterio de compra, no una medición de laboratorio. Estas son las cuatro fuentes con las que está construida:</p>
         <ul>
-          <li><strong>47 dispositivos en producción</strong> distribuidos entre los 3 pisos piloto (Madrid, Mallorca, Bilbao). Incluye 18 Wi-Fi, 22 Zigbee y 7 Matter/Thread.</li>
-          <li><strong>Medición de latencia</strong> con Wireshark + sniffer USB de 802.15.4 (Texas Instruments CC1352P) para Zigbee/Thread y Wi-Fi 6 en banda 2,4 y 5 GHz.</li>
-          <li><strong>Test de alcance</strong> con nRF Sniffer + Wireshark: distancia máxima fiable de cada protocolo en piso con paredes de carga (Madrid) y casa unifamiliar de dos plantas (Bilbao).</li>
-          <li><strong>Test de saturación</strong>: 30 órdenes simultáneas a 10 dispositivos del mismo protocolo, midiendo qué porcentaje se ejecuta en menos de 500 ms.</li>
-          <li><strong>Consumo de batería real</strong> en sensores idénticos (PIR Aqara Zigbee vs PIR Aqara Wi-Fi vs PIR Eve Thread) durante 60 días continuos.</li>
+          <li><strong>Las especificaciones oficiales de cada protocolo.</strong> Matter y Zigbee 3.0 los publica <a href="https://csa-iot.org/all-solutions/matter/" rel="nofollow noopener" target="_blank">Connectivity Standards Alliance</a>; Thread 1.4, el <a href="https://www.threadgroup.org/" rel="nofollow noopener" target="_blank">Thread Group</a>; y la capa radio que comparten Zigbee y Thread es IEEE 802.15.4-2020. Ahí está en negro sobre blanco qué puede y qué no puede hacer cada uno: topología, ancho de banda, seguridad, exigencia de control local y tipos de dispositivo soportados en cada versión.</li>
+          <li><strong>La documentación de los fabricantes.</strong> La autonomía declarada de pila, la banda de trabajo, si exige hub propio, el tipo de emparejamiento y la compatibilidad con cada ecosistema salen de la ficha técnica y del manual del producto, no de una impresión de uso.</li>
+          <li><strong>El buscador de productos certificados de la CSA.</strong> Es la forma de comprobar, marca a marca, qué existe realmente con certificación Matter o Zigbee 3.0 — el mejor antídoto contra el "compatible con Alexa" impreso en la caja, que a menudo significa solo que hay una skill de por medio.</li>
+          <li><strong>Análisis independientes publicados.</strong> Cuando una cifra procede de la medición de un tercero, la citamos por su nombre junto al dato. Si un número no se puede trazar a una especificación, a una ficha técnica o a una fuente publicada, no entra en esta guía.</li>
         </ul>
-        <p>Datos cruzados con las especificaciones oficiales de Matter 1.4/1.5 publicadas por <a href="https://csa-iot.org/all-solutions/matter/" rel="nofollow noopener" target="_blank">Connectivity Standards Alliance</a> y el draft Zigbee 3.0 R23.</p>
+        <p>Y estos son los <strong>cinco criterios</strong> con los que valoramos cada protocolo a lo largo del artículo, en este orden de importancia: (1) dónde se procesa la orden —hub local o nube del fabricante—, porque de ahí salen la latencia percibida y la dependencia de internet; (2) consumo, que decide de forma absoluta qué protocolo puede llevar un dispositivo de pila; (3) topología y alcance, es decir, si la red se refuerza sola al añadir aparatos enchufados o depende de un único punto; (4) catálogo real disponible en España y precio de entrada, incluido el hub cuando hace falta; y (5) interoperabilidad y salida de emergencia si el fabricante abandona el producto. Son criterios declarados, no un ranking de sensaciones: puedes aplicarlos tú mismo a cualquier dispositivo que estés mirando.</p>
       </section>
 
       <section id="wifi">
@@ -241,20 +240,20 @@
           <li><strong>Cero infraestructura adicional.</strong> Tu router ya está ahí. Ahorras 50–150 € de hub.</li>
           <li><strong>Ancho de banda alto.</strong> Para cámaras 2K/4K y altavoces es indispensable. Zigbee o Thread no pueden con ese volumen.</li>
           <li><strong>Mismo protocolo que tus dispositivos cotidianos.</strong> Diagnóstico fácil — si tu portátil va, tu enchufe Wi-Fi va.</li>
-          <li><strong>Catálogo enorme.</strong> El 70 % de los dispositivos del mercado en 2026 siguen siendo Wi-Fi puro.</li>
+          <li><strong>Catálogo enorme.</strong> Sigue siendo, con diferencia, el protocolo con más referencias a la venta en España, y el único donde encuentras producto de gama baja competente por menos de 15 €.</li>
         </ul>
 
         <h3>Problemas que no te cuentan en la caja</h3>
         <ul>
-          <li><strong>Saturación del router.</strong> Routers domésticos típicos (FRITZ!Box 7530, Mitrastar HGU operador) toleran 25–35 clientes simultáneos sin degradar latencia. Con 12 enchufes + 4 cámaras + 6 móviles + portátiles ya estás cerca del límite.</li>
-          <li><strong>Latencia variable.</strong> Una orden "apaga el enchufe" tarda entre 80 ms (red descongestionada) y 1.500 ms (router saturado, hora pico). Las rutinas multidispositivo se notan.</li>
-          <li><strong>Consumo de batería brutal.</strong> Un sensor Wi-Fi (PIR Tapo T100) consume entre 8 y 12 mA en standby. Su equivalente Zigbee, 0,2 mA. Un PIR Wi-Fi dura 2-3 meses, un Zigbee 2 años.</li>
-          <li><strong>Dependencia de internet.</strong> Si cae tu ISP, la mayoría de dispositivos Wi-Fi dejan de responder a comandos del propio móvil — porque la app pasa por la nube del fabricante.</li>
+          <li><strong>Saturación del router.</strong> El HGU que te instaló el operador tiene un máximo de clientes asociados declarado en su ficha técnica — búscalo antes de sumar aparatos. Y ese número es solo la mitad del problema: todos los dispositivos domóticos se cuelgan de la banda de 2,4 GHz, que en un bloque de pisos comparte tres canales útiles con los routers de todos tus vecinos.</li>
+          <li><strong>Latencia variable y dependiente de la nube.</strong> En la mayoría de dispositivos Wi-Fi de consumo, la orden "apaga el enchufe" no viaja de tu móvil al enchufe: sale a internet, llega al servidor del fabricante y vuelve. Por eso el mismo aparato responde al instante a mediodía y tarda un par de segundos en hora punta, y por eso una rutina que toca cinco dispositivos se ejecuta en cascada visible en lugar de a la vez.</li>
+          <li><strong>Consumo incompatible con las pilas.</strong> Mantener asociado un cliente Wi-Fi cuesta órdenes de magnitud más energía que despertar una radio 802.15.4 unos milisegundos. Se ve en las propias fichas: los fabricantes declaran semanas o pocos meses de autonomía en sensores Wi-Fi de pila, y entre uno y dos años en sus equivalentes Zigbee con la misma CR2032.</li>
+          <li><strong>Dependencia de internet.</strong> Consecuencia directa de lo anterior: si cae tu ISP, la mayoría de dispositivos Wi-Fi dejan de responder incluso al móvil que está en la misma habitación. Antes de comprar, busca en la ficha si el fabricante ofrece control local o API abierta (Shelly y Tasmota sí; la mayoría de marcas de gama baja, no).</li>
           <li><strong>Banda 2,4 GHz obligatoria.</strong> Casi ningún dispositivo Wi-Fi smart home funciona en 5 GHz (motivos de coste y alcance). En entornos con muchos vecinos, la banda 2,4 GHz está abarrotada.</li>
         </ul>
 
         <h3>Cuándo elegir Wi-Fi</h3>
-        <p>Piso pequeño (<70 m²), menos de 10 dispositivos, todos enchufados a corriente (no a pilas), no buscas latencia sub-100 ms. <strong>Tapo P110</strong> (13 €) y <strong>Tapo C520WS</strong> (60 €) son las opciones por defecto.</p>
+        <p>Piso pequeño (menos de 70 m²), no más de 10 dispositivos, todos enchufados a corriente (ninguno a pilas) y sin rutinas que disparen media casa a la vez. <strong>Tapo P110</strong> (13 €, con medidor de consumo integrado) y <strong>Tapo C520WS</strong> (60 €, cámara de exterior motorizada) son las opciones por defecto: <a href="https://www.amazon.es/s?k=tp+link+tapo+p110&amp;tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">ver precio actual en Amazon →</a>.</p>
       </section>
 
       <section id="zigbee">
@@ -263,8 +262,8 @@
 
         <h3>Ventajas reales en 2026</h3>
         <ul>
-          <li><strong>Latencia local baja.</strong> 30–80 ms en la mayoría de casos. La orden viaja entre tu móvil y el hub, no pasa por la nube.</li>
-          <li><strong>Consumo bajísimo.</strong> Sensores de pila CR2032 que duran 18 meses a 2 años. Imposible con Wi-Fi.</li>
+          <li><strong>Respuesta local.</strong> La orden va de tu móvil al hub y del hub al dispositivo, sin salir de casa. No hay viaje de ida y vuelta a un servidor, así que la respuesta es rápida y —más importante— constante a cualquier hora.</li>
+          <li><strong>Consumo bajísimo.</strong> Los fabricantes declaran entre uno y dos años de autonomía con una simple pila CR2032 en sensores de contacto y movimiento (Aqara declara hasta dos años en varios de sus sensores). Con Wi-Fi eso no existe.</li>
           <li><strong>Red mesh resistente.</strong> Si un nodo cae, los paquetes encuentran otro camino. Una red Zigbee de 30 nodos casi no se cae.</li>
           <li><strong>Independencia de internet.</strong> Funciona aunque tu router muera. Las rutinas locales se ejecutan en el hub.</li>
           <li><strong>Catálogo maduro.</strong> Aqara, Hue, Ikea Trådfri, Sonoff, Bosch Smart Home — el ecosistema más amplio de sensores asequibles.</li>
@@ -286,10 +285,18 @@
 
       <section id="matter">
         <h2>Matter: el unificador (por fin)</h2>
-        <p>Matter no es un protocolo radio. Es una capa de aplicación que se ejecuta sobre Wi-Fi o sobre Thread, definida por Connectivity Standards Alliance (Apple + Google + Amazon + Samsung + 280 empresas más). Su promesa es simple: que un dispositivo Matter funcione exactamente igual en Apple Home, Google Home, Alexa y SmartThings sin app intermedia.</p>
+        <p>Matter no es un protocolo radio. Es una capa de aplicación que se ejecuta sobre Wi-Fi o sobre Thread, definida por la Connectivity Standards Alliance (Apple, Google, Amazon, Samsung y varios cientos de empresas más). Su promesa es simple: que un dispositivo Matter funcione exactamente igual en Apple Home, Google Home, Alexa y SmartThings sin app intermedia.</p>
 
         <h3>Qué cambió de Matter 1.0 (2022) a Matter 1.5 (2025)</h3>
-        <p>Matter 1.0 fue el "release of intent" — apenas servía para bombillas y enchufes. Matter 1.4 (noviembre 2024) añade soporte robusto a termostatos, cerraduras, persianas, sensores de calidad de aire y robots aspiradoras. Matter 1.5 (junio 2025) introduce cámaras de seguridad con eventos y energía bidireccional (medidores tipo Shelly). En 2026 ya se puede comprar Matter con confianza para los primeros 6 tipos.</p>
+        <p>La versión importa mucho más de lo que parece, porque determina qué <em>tipos</em> de dispositivo puede describir el estándar. Esta es la línea temporal, según los anuncios de especificación de la propia CSA:</p>
+        <ul>
+          <li><strong>Matter 1.0 (octubre de 2022).</strong> La base sobre la que sigue funcionando casi todo lo que se vende: bombillas, enchufes, interruptores, sensores de contacto, movimiento y temperatura, termostatos, cerraduras, persianas y televisores.</li>
+          <li><strong>Matter 1.2 (octubre de 2023).</strong> El gran salto en electrodomésticos: frigoríficos, lavadoras, lavavajillas, robots aspiradores, purificadores, ventiladores, sensores de calidad del aire y detectores de humo y monóxido.</li>
+          <li><strong>Matter 1.3 (mayo de 2024).</strong> Medición de energía y agua, y aparatos de cocina (horno, encimera, campana, microondas), además de la gestión de carga de vehículo eléctrico.</li>
+          <li><strong>Matter 1.4 (noviembre de 2024).</strong> El bloque energético del hogar —bombas de calor, termos, inversores solares y baterías domésticas— más mejoras de gestión de red: emparejar el dispositivo en varios ecosistemas a la vez se vuelve mucho menos doloroso.</li>
+          <li><strong>Matter 1.5 (noviembre de 2025).</strong> Entra por fin la categoría que faltaba, las cámaras, junto con cierres y persianas más completos y sensores de riego. Es reciente: en 2026 el número de productos certificados que lo implementan sigue siendo muy corto.</li>
+        </ul>
+        <p>La lectura de compra es directa: cuantos más años lleve tu tipo de producto dentro de la especificación, más maduro estará su soporte real. Una bombilla o un enchufe Matter llevan tres años de rodaje; una cámara Matter, meses.</p>
 
         <h3>Lo que Matter resuelve</h3>
         <ul>
@@ -301,14 +308,14 @@
 
         <h3>Lo que Matter NO resuelve todavía</h3>
         <ul>
-          <li><strong>Cámaras avanzadas.</strong> Eventos básicos funcionan en 1.5 pero detección de objetos, ROI personalizada y visión nocturna IR siguen siendo dependientes de la app del fabricante.</li>
-          <li><strong>Electrodomésticos blancos.</strong> Lavadoras, secadoras, hornos — el estándar 1.5 los menciona pero los fabricantes no se han subido en masa.</li>
+          <li><strong>Cámaras avanzadas.</strong> Matter 1.5 define el tipo de dispositivo, pero lo que diferencia a una cámara de otra —detección de personas o vehículos en el propio aparato, zonas de actividad, enmascarado de privacidad, gestión del almacenamiento— sigue viviendo en la app del fabricante.</li>
+          <li><strong>Electrodomésticos grandes.</strong> Lavadoras, secadoras y hornos están en la especificación desde 1.2 y 1.3, pero los fabricantes de línea blanca no se han subido en masa: comprueba el modelo exacto antes de pagar por la etiqueta.</li>
           <li><strong>Funciones avanzadas Zigbee/marca.</strong> Un sensor FP2 controlado vía Matter pierde la diferenciación de zonas. Por eso conviene usar la app Aqara para configurarlo y exponerlo a Matter solo cuando necesites control desde otro ecosistema.</li>
           <li><strong>Configuración Thread Border Router.</strong> Si no tienes hub compatible (HomePod, Aqara M3, Nest Hub Max, Echo 4ª gen), Matter sobre Thread no funciona.</li>
         </ul>
 
         <h3>Cuándo elegir Matter</h3>
-        <p>Siempre que esté disponible. Si compras en 2026 una cerradura, termostato, enchufe o bombilla y existe una versión Matter del producto, cómprala — aunque cueste 5 € más. Te da independencia futura. Excepción: cámaras seguridad y robots — quédate con la versión Wi-Fi de la marca hasta Matter 2.0.</p>
+        <p>Siempre que esté disponible y el tipo de producto lleve tiempo en la especificación. Si compras en 2026 una cerradura, un termostato, un enchufe o una bombilla y existe versión Matter certificada, cómprala aunque cueste unos euros más: es lo que te permite cambiar de ecosistema dentro de tres años sin tirar el aparato. Excepción razonable: cámaras y robots aspiradores, donde de momento pierdes funciones si renuncias a la app del fabricante. Y una comprobación que evita disgustos — que la caja diga "Matter" no basta: busca el modelo en el listado de productos certificados de la CSA, porque hay aparatos anunciados como compatibles cuya certificación llega por una actualización de firmware que aún no ha salido.</p>
       </section>
 
       <section id="thread">
@@ -321,13 +328,14 @@
             <tr><th>Aspecto</th><th>Zigbee 3.0</th><th>Thread 1.4</th></tr>
           </thead>
           <tbody>
-            <tr><td>Pila de red</td><td>Propietaria 6LoWPAN</td><td>IPv6 nativo</td></tr>
-            <tr><td>Mesh</td><td>Sí, con coordinador</td><td>Sí, sin coordinador único</td></tr>
-            <tr><td>Border Router</td><td>Requiere hub fabricante</td><td>Cualquier dispositivo Thread enchufado</td></tr>
-            <tr><td>Catálogo (2026)</td><td>3.000+ SKUs</td><td>50–80 SKUs</td></tr>
-            <tr><td>Latencia típica</td><td>30–80 ms</td><td>20–60 ms</td></tr>
-            <tr><td>Recuperación de nodo caído</td><td>5–15 segundos</td><td>1–5 segundos</td></tr>
-            <tr><td>Interoperabilidad cross-marca</td><td>Buena entre Aqara/Hue/Ikea</td><td>Garantizada vía Matter</td></tr>
+            <tr><td>Capa radio</td><td>IEEE 802.15.4 en 2,4 GHz</td><td>IEEE 802.15.4 en 2,4 GHz (la misma)</td></tr>
+            <tr><td>Pila de red</td><td>Zigbee PRO, direccionamiento corto propio</td><td>IPv6 sobre 6LoWPAN</td></tr>
+            <tr><td>Mesh</td><td>Sí, con un coordinador único</td><td>Sí, con routers y líder elegido dinámicamente</td></tr>
+            <tr><td>Puerta de entrada a tu red</td><td>Hub o coordinador del fabricante</td><td>Thread Border Router (HomePod, Nest Hub, Echo 4.ª gen, Aqara M3)</td></tr>
+            <tr><td>Punto único de fallo</td><td>El coordinador: si cae, cae la red</td><td>No hay: otro router Thread asume el papel</td></tr>
+            <tr><td>Direccionamiento</td><td>Interno de la red Zigbee</td><td>Cada dispositivo es una IP más de tu casa</td></tr>
+            <tr><td>Catálogo (2026)</td><td>Miles de referencias y una década de producto</td><td>Bastante menor; verifícalo en el buscador de productos certificados de la CSA</td></tr>
+            <tr><td>Interoperabilidad entre marcas</td><td>Buena en funciones básicas (Aqara, Hue, Ikea); irregular en las avanzadas</td><td>Garantizada cuando el producto está certificado Matter</td></tr>
           </tbody>
         </table>
 
@@ -341,23 +349,25 @@
             <tr><th>Métrica</th><th>Wi-Fi 6 (2,4 GHz)</th><th>Zigbee 3.0</th><th>Matter sobre Thread</th></tr>
           </thead>
           <tbody>
-            <tr><td>Latencia local típica</td><td>80–300 ms</td><td>30–80 ms</td><td>20–60 ms</td></tr>
-            <tr><td>Alcance máx. fiable (paredes)</td><td>~12 m</td><td>~30 m con mesh</td><td>~35 m con mesh</td></tr>
-            <tr><td>Consumo dispositivo de pila</td><td>Muy alto</td><td>Bajo</td><td>Muy bajo</td></tr>
-            <tr><td>Vida pila CR2032 (PIR)</td><td>2–3 meses</td><td>18–24 meses</td><td>24–36 meses</td></tr>
-            <tr><td>Necesita hub</td><td>No</td><td>Sí (50–130 €)</td><td>Sí (HomePod / Echo 4 / Aqara M3)</td></tr>
-            <tr><td>Funciona sin internet</td><td>Limitado (depende de fabricante)</td><td>Sí (rutinas locales)</td><td>Sí (control local nativo)</td></tr>
-            <tr><td>Catálogo 2026</td><td>5.000+ SKUs</td><td>3.000+ SKUs</td><td>500+ SKUs (creciendo)</td></tr>
-            <tr><td>Cámaras / audio</td><td>Sí, único viable</td><td>No</td><td>Cámaras solo desde Matter 1.5</td></tr>
-            <tr><td>Setup típico</td><td>Wi-Fi + app fabricante</td><td>QR + app del hub</td><td>QR + ecosistema (Apple/Google/Alexa)</td></tr>
-            <tr><td>Multi-admin (varios ecosistemas)</td><td>No</td><td>Solo vía hub puente</td><td>Sí, nativo</td></tr>
-            <tr><td>Coste medio dispositivo equivalente</td><td>€</td><td>€€</td><td>€€</td></tr>
+            <tr><td>Dónde se procesa la orden</td><td>Nube del fabricante en la mayoría de marcas</td><td>En el hub, dentro de casa</td><td>En el hub o Border Router, dentro de casa</td></tr>
+            <tr><td>Latencia percibida</td><td>Variable: depende de tu línea y de la hora</td><td>Baja y, sobre todo, estable</td><td>Baja y estable</td></tr>
+            <tr><td>Cómo crece el alcance</td><td>Con repetidores o malla Wi-Fi (equipo aparte)</td><td>Cada dispositivo enchufado repite y refuerza la malla</td><td>Igual: cada Thread router enchufado refuerza la malla</td></tr>
+            <tr><td>Consumo en dispositivo de pila</td><td>Prohibitivo</td><td>Muy bajo</td><td>Muy bajo</td></tr>
+            <tr><td>Autonomía declarada por fabricantes (sensor de pila)</td><td>Semanas o pocos meses</td><td>1–2 años con CR2032</td><td>1–2 años con CR2032</td></tr>
+            <tr><td>Necesita hub</td><td>No</td><td>Sí (50–130 €)</td><td>Sí (HomePod / Nest Hub / Echo 4.ª gen / Aqara M3)</td></tr>
+            <tr><td>Funciona sin internet</td><td>Limitado y depende del fabricante</td><td>Sí, con rutinas locales en el hub</td><td>Sí: la especificación exige control local</td></tr>
+            <tr><td>Catálogo 2026 en España</td><td>El más amplio con diferencia</td><td>Muy amplio y maduro</td><td>En crecimiento; comprobable en el listado certificado de la CSA</td></tr>
+            <tr><td>Cámaras / audio</td><td>Sí, el único viable</td><td>No, ancho de banda insuficiente</td><td>Cámaras solo desde Matter 1.5, con muy pocos modelos aún</td></tr>
+            <tr><td>Setup típico</td><td>Wi-Fi + app del fabricante</td><td>QR + app del hub</td><td>QR + ecosistema (Apple / Google / Alexa)</td></tr>
+            <tr><td>Multi-admin (varios ecosistemas)</td><td>No</td><td>Solo a través de un hub puente</td><td>Sí, nativo</td></tr>
+            <tr><td>Coste medio del dispositivo equivalente</td><td>€</td><td>€€</td><td>€€</td></tr>
           </tbody>
         </table>
+        <p class="text-muted"><small>Los valores de esta tabla son cualitativos a propósito: describen comportamiento derivado de las especificaciones de cada protocolo y de la autonomía que declaran los fabricantes en sus fichas técnicas. No son mediciones nuestras — no tenemos banco de pruebas de radiofrecuencia, y preferimos decirlo a inventar decimales.</small></p>
       </section>
 
       <section id="decision">
-        <h2>Árbol de decisión — cómo elegir en 30 segundos</h2>
+        <h2>Árbol de decisión — cinco preguntas que resuelven cualquier compra</h2>
         <ol>
           <li><strong>¿El dispositivo va enchufado a corriente o a pilas?</strong>
             <ul>
@@ -394,15 +404,16 @@
 
         <div class="scenario">
           <span class="scenario__tag">Ejemplo práctico · tu caso paso a paso</span>
-          <h3>Piso de 70 m², 12 dispositivos: qué protocolo toca en cada uno</h3>
-          <p>Cogemos un piso realista con 12 aparatos y aplicamos el árbol de decisión de arriba dispositivo a dispositivo. La regla madre es la del resumen: <strong>Wi-Fi para lo que tiene corriente fija, Zigbee/Thread para lo que va a pilas, Matter como capa de control común</strong>. Así queda:</p>
+          <h3>Escenario A (piso de 75 m² en Madrid), 12 dispositivos: qué protocolo toca en cada uno</h3>
+          <p><em>Usamos escenarios tipo: viviendas de ejemplo con las que hacemos todos los cálculos del sitio, no viviendas de prueba del autor; los supuestos completos están en <a href="/metodologia">/metodologia</a>.</em></p>
+          <p>Cogemos el escenario A —piso de 75 m² en Madrid, distribución de tres estancias con paredes de carga— con 12 aparatos, y aplicamos el árbol de decisión de arriba dispositivo a dispositivo. La regla madre es la del resumen: <strong>Wi-Fi para lo que tiene corriente fija, Zigbee/Thread para lo que va a pilas, Matter como capa de control común</strong>. Así queda:</p>
           <table>
             <tr><td>2 cámaras + 1 altavoz — corriente fija, necesitan ancho de banda alto</td><td>Wi-Fi (único viable para cámaras/audio)</td></tr>
-            <tr><td>3 enchufes + 2 bombillas — corriente fija, latencia no crítica</td><td>Wi-Fi o Matter si hay versión disponible</td></tr>
-            <tr><td>4 sensores a pila (PIR, apertura, fuga) — <strong>nunca Wi-Fi</strong> (durarían 2-3 meses)</td><td>Zigbee: 18-24 meses de pila CR2032</td></tr>
-            <tr><td><strong>El hub que cubre los tres: Aqara M3</strong> (Zigbee + Thread + Matter)</td><td><strong>80 €</strong></td></tr>
+            <tr><td>3 enchufes + 2 bombillas — corriente fija, la latencia no es crítica</td><td>Wi-Fi, o Matter si existe versión certificada</td></tr>
+            <tr><td>4 sensores a pila (PIR, apertura, fuga) — <strong>nunca Wi-Fi</strong></td><td>Zigbee o Thread: 1–2 años de pila CR2032 declarados por el fabricante</td></tr>
+            <tr><td><strong>El hub que cubre los tres: Aqara M3</strong> (Zigbee + Thread Border Router + puente Matter)</td><td><strong>80 €</strong></td></tr>
           </table>
-          <div class="scenario__result"><strong>El resultado:</strong> con 4 sensores a pila el Wi-Fi queda descartado de raíz por consumo (2-3 meses frente a 18-24 de Zigbee, según la tabla). Sales con un solo hub de 80 € que hace de puente Zigbee y expone todo por Matter a Apple/Google/Alexa. Las 3 cámaras siguen en Wi-Fi porque ningún otro protocolo mueve ese ancho de banda. Si tuvieras menos de 8 dispositivos y ninguno a pila, te ahorrarías el hub y todo iría Wi-Fi puro.</div>
+          <div class="scenario__result"><strong>El resultado:</strong> con 4 sensores a pila, el Wi-Fi queda descartado de raíz por consumo (semanas frente a los uno o dos años que declaran los fabricantes en Zigbee). Sales con un solo hub de 80 € que hace de puente Zigbee y expone todo por Matter a Apple, Google y Alexa. Las cámaras siguen en Wi-Fi porque ningún otro protocolo mueve ese ancho de banda. Si tuvieras menos de 8 dispositivos y ninguno a pila, te ahorrarías el hub y todo iría Wi-Fi puro.</div>
           <p class="scenario__cta">¿Tu mezcla de dispositivos es otra? Contrasta tu caso con nuestra <a href="/guias/mejores-hubs-matter-2026">guía de hubs Matter</a> o afínalo en la <a href="/#calculadora">calculadora</a>.</p>
         </div>
       </section>
@@ -415,15 +426,15 @@
             <li>Va enchufado a corriente fija (cámara, altavoz, enchufe): el consumo alto no importa.</li>
             <li>Necesita ancho de banda que Zigbee/Thread no dan: cámaras 2K/4K y audio solo van por Wi-Fi.</li>
             <li>Tienes menos de 10 dispositivos en un piso pequeño y quieres ahorrarte el hub (50-150 €).</li>
-            <li>No te importa depender de internet ni una latencia de 80-300 ms.</li>
+            <li>No te importa depender de internet ni que la respuesta varíe según la hora y la carga de tu línea.</li>
           </ul>
         </div>
         <div class="verdict__col verdict__col--no">
           <h4>Te conviene Zigbee / Thread (con hub) si…</h4>
           <ul>
-            <li>El dispositivo va a pilas (sensor PIR, apertura, fuga, botón): <strong>nunca Wi-Fi</strong>, pasarías de 2-3 meses a 18-24 de autonomía.</li>
-            <li>Vas a superar los 10-15 dispositivos: evitas saturar el router (25-35 clientes fiables).</li>
-            <li>Quieres latencia baja (30-80 ms) y que las rutinas funcionen aunque caiga internet.</li>
+            <li>El dispositivo va a pilas (sensor PIR, apertura, fuga, botón): <strong>nunca Wi-Fi</strong>, pasarías de semanas a los uno o dos años de autonomía que declaran los fabricantes.</li>
+            <li>Vas a superar los 10-15 dispositivos: descargas la banda de 2,4 GHz de tu router, que es la que se congestiona.</li>
+            <li>Quieres que la orden se resuelva dentro de casa y que las rutinas sigan funcionando aunque caiga internet.</li>
             <li>Priorizas Matter/Thread cuando exista versión: te da control multi-ecosistema y futuro asegurado.</li>
           </ul>
         </div>
@@ -439,17 +450,17 @@
 
         <div class="faq-item">
           <h3>¿Es Matter ya estable y vale la pena esperar?</h3>
-          <p>Matter 1.4 (publicado noviembre 2024) y Matter 1.5 (junio 2025) son estables para los casos de uso de consumo: bombillas, enchufes, sensores básicos, termostatos, cerraduras y cámaras 2D. Lo que sigue sin ser maduro: cámaras de seguridad con eventos (1.4 lo introduce pero pocos fabricantes lo implementan bien todavía), electrodomésticos blancos, robots aspiradoras. Si compras hoy, Matter es seguro para los primeros 6 tipos. Para los otros, espera o usa la app del fabricante hasta que su Matter esté implementado por completo.</p>
+          <p>Para los tipos de dispositivo que lleva soportando desde sus primeras versiones —bombillas, enchufes, sensores de contacto y movimiento, termostatos, cerraduras y persianas— Matter es estable y se puede comprar sin reservas. Lo que todavía no está maduro es lo recién incorporado: las cámaras entran en la especificación con Matter 1.5 (noviembre de 2025) y en 2026 aún hay muy pocos modelos certificados que las implementen; con los electrodomésticos grandes pasa lo mismo desde Matter 1.2. Criterio práctico: si el tipo de producto lleva años en la especificación, compra Matter; si acaba de entrar, compra la versión Wi-Fi de la marca y usa su app hasta que el soporte Matter esté completo. Lo puedes comprobar tú mismo en el buscador de productos certificados de la <a href="https://csa-iot.org/all-solutions/matter/" rel="nofollow noopener" target="_blank">Connectivity Standards Alliance</a>.</p>
         </div>
 
         <div class="faq-item">
           <h3>¿Wi-Fi para domótica es mala idea?</h3>
-          <p>No es mala idea, es una decisión condicionada. Para menos de 10 dispositivos repartidos en un piso pequeño, Wi-Fi funciona perfectamente y te ahorra un hub. A partir de 15 dispositivos empiezas a notar tres problemas: saturación del router (algunos routers básicos limitan a 25-30 clientes simultáneos), latencia variable (rutinas que tardan 1-3 segundos en activarse) y dependencia total de internet (si cae el ISP, deja de funcionar). Para sensores de batería el Wi-Fi es prohibitivo: un sensor PIR Wi-Fi dura semanas, su equivalente Zigbee dura años.</p>
+          <p>No es mala idea, es una decisión condicionada. Para menos de 10 dispositivos repartidos en un piso pequeño, Wi-Fi funciona perfectamente y te ahorra el hub. Según creces aparecen tres límites: el router de operador (consulta su ficha: casi todos declaran un máximo de clientes asociados, y la banda de 2,4 GHz —la única que usan los dispositivos domóticos— es la que antes se congestiona), la latencia variable de las órdenes que pasan por la nube del fabricante, y la dependencia de internet: si cae la línea, la mayoría de dispositivos Wi-Fi dejan de responder incluso desde el móvil que está en la misma habitación. Para dispositivos de pila el Wi-Fi es directamente prohibitivo: los fabricantes declaran semanas o pocos meses de autonomía en sus sensores Wi-Fi frente a uno o dos años en los equivalentes Zigbee o Thread.</p>
         </div>
 
         <div class="faq-item">
           <h3>¿Qué es Thread y dónde encaja?</h3>
-          <p>Thread es el protocolo radio mesh de bajo consumo que usa Matter por defecto. Es la respuesta moderna a Zigbee, basado en IPv6 y diseñado para integrarse de forma transparente con el resto de la red. En la práctica del usuario es casi invisible: tu dispositivo dice Matter, pero por debajo viaja en Thread. Hubs como Apple HomePod mini, Aqara M3 o Nest Hub Max ya hacen de Thread Border Router. La pega: el catálogo de productos Thread nativos todavía es pequeño (40-50 SKUs en 2026).</p>
+          <p>Thread es el protocolo radio mesh de bajo consumo que Matter usa por defecto en los dispositivos pequeños. Comparte capa radio con Zigbee (IEEE 802.15.4 en 2,4 GHz) pero su pila de red es IPv6, así que cada dispositivo es una dirección más de tu red. En la práctica del usuario es casi invisible: tu dispositivo dice Matter y por debajo viaja en Thread. Para que funcione necesitas un Thread Border Router, papel que ya hacen el HomePod mini, el Nest Hub, el Echo de 4.ª generación o el <a href="/guias/mejores-hubs-matter-2026">Aqara M3</a>. La pega: el catálogo de productos Thread nativos sigue siendo una fracción pequeña del de Zigbee, y conviene comprobar cada modelo concreto en el buscador de productos certificados de la Connectivity Standards Alliance antes de comprar.</p>
         </div>
 
         <div class="faq-item">
@@ -466,7 +477,7 @@
           <li>Cuando pases de 10 dispositivos, añade un hub que cubra los 3 protocolos clave: <strong>Aqara M3</strong> (Zigbee + Thread Border Router + Matter Bridge) es la mejor relación calidad-precio del año.</li>
           <li>Cualquier compra nueva que tenga versión Matter, cómprala con Matter. Pago futuro asegurado.</li>
         </ol>
-        <p>El resultado de seis meses con esta combinación: una red domótica sólida, fácil de mantener y razonablemente preparada para los próximos 4-5 años de evolución del estándar.</p>
+        <p>Ese reparto sale de los cinco criterios declarados al principio: deja en Wi-Fi solo lo que no puede ir en otro sitio, pone en Zigbee o Thread todo lo que funciona con pila y usa Matter como capa de control para no quedar atado a la app de una marca. Es una red barata de empezar, fácil de mantener y razonablemente preparada para los próximos cuatro o cinco años de evolución del estándar. Si tu caso no encaja —tienes ya media casa en Hue, vives en una unifamiliar de dos plantas o dependes de un ecosistema concreto por el móvil de la familia—, escríbenos por el formulario y lo miramos contigo.</p>
 
         <p>
           <a class="btn btn-primary" href="/guias/mejores-hubs-matter-2026">Ver mejores hubs Matter →</a>
@@ -476,7 +487,7 @@
       <!-- Author bio -->
       <aside class="author-bio">
         <h4>Sobre Hogar Conectado</h4>
-        <p>Hogar Conectado combina pruebas reales de equipo en tres viviendas (Madrid, Mallorca y Bilbao) con datos compilados de fuentes públicas (especificaciones de CSA, Thread Group e IEEE). Lo que publicamos es el resumen sin patrocinios de ese trabajo. <a href="/about">Cómo trabajamos →</a></p>
+        <p>Hogar Conectado es una guía de compra documentada de domótica para el mercado español. Comparamos producto a partir de las especificaciones oficiales, la documentación de los fabricantes y los análisis independientes publicados, que citamos por su nombre. No tenemos laboratorio propio: cuando una cifra es un cálculo nuestro, publicamos la fórmula y los supuestos para que cualquiera pueda reproducirla. Ningún fabricante paga por posición ni ve un artículo antes de publicarse. <a href="/about">Cómo trabajamos →</a></p>
       </aside>
 
       <!-- Sources -->
@@ -486,9 +497,10 @@
           <li>CSA — Especificación Matter 1.4 y 1.5: <a href="https://csa-iot.org/all-solutions/matter/" rel="nofollow noopener" target="_blank">csa-iot.org/all-solutions/matter</a></li>
           <li>Thread Group — Especificación Thread 1.4: <a href="https://www.threadgroup.org/" rel="nofollow noopener" target="_blank">threadgroup.org</a></li>
           <li>IEEE 802.15.4-2020 — Base radio común para Zigbee y Thread.</li>
-          <li>Zigbee Alliance — Especificación Zigbee 3.0 R23.</li>
-          <li>Mediciones propias 2025-2026 con sniffer Texas Instruments CC1352P + Wireshark, nRF Sniffer for 802.15.4 + Wireshark en 2,4 GHz, TI Power Studio.</li>
-          <li>47 dispositivos en producción: <a href="/guias/mejores-hubs-matter-2026">guía hubs Matter</a> · <a href="/guias/hogar-conectado-por-habitaciones-2026">guía por habitaciones</a>.</li>
+          <li>Connectivity Standards Alliance — Especificación Zigbee 3.0 y anuncios de versión de Matter 1.0 a 1.5 (tipos de dispositivo soportados en cada una).</li>
+          <li>Buscador de productos certificados de la CSA — comprobación de qué modelos concretos tienen certificación Matter o Zigbee 3.0.</li>
+          <li>Fichas técnicas y manuales de fabricante (Aqara, TP-Link Tapo, Shelly, Eve, Philips Hue) para autonomía declarada de pila, banda de trabajo y requisitos de hub.</li>
+          <li>Guías relacionadas de este sitio: <a href="/guias/mejores-hubs-matter-2026">hubs Matter</a> · <a href="/guias/hogar-conectado-por-habitaciones-2026">domótica por habitaciones</a>.</li>
         </ul>
       </aside>
 
@@ -497,7 +509,7 @@
         <div>
           <span class="author-card__eyebrow">Escrito y revisado por</span>
           <div class="author-card__name">Bruno de Madrazo</div>
-          <p class="author-card__bio">Edita Hogar Conectado: coordina las pruebas en viviendas reales, contrasta cada cifra con fuentes públicas (IDAE, Red Eléctrica, CNMC, OCU) y las fichas técnicas de los fabricantes, y no acepta pago por posición. Si un dato no se puede verificar, no se publica.</p>
+          <p class="author-card__bio">Escribe y revisa las guías de Hogar Conectado: cada cifra traza a una fuente pública o a la ficha del fabricante, y los verdictos siguen los criterios publicados en la metodología. Ningún fabricante paga por aparecer.</p>
           <div class="author-card__links"><a href="/autor">Más sobre Bruno</a><span class="author-card__sep">·</span><a href="/metodologia">Cómo lo calculamos</a></div>
         </div>
       </aside>

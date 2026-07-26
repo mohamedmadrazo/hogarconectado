@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Metodología — cómo calculamos los números en Hogar Conectado</title>
-  <meta name="description" content="Las fuentes de datos, fórmulas y supuestos detrás de las guías y calculadoras de Hogar Conectado, más nuestro proceso editorial (IA asistida y revisada por un humano) y la política de actualización.">
+  <meta name="description" content="Fuentes, fórmulas, escenarios tipo y ponderación de las notas de Hogar Conectado. Comparamos con especificaciones oficiales y análisis independientes citados: no tenemos laboratorio propio y lo decimos.">
   <link rel="canonical" href="https://hogarconectado.co/metodologia">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -19,7 +19,7 @@
   <meta property="og:type" content="article">
   <meta property="og:locale" content="es_ES">
   <meta property="og:title" content="Metodología — cómo calculamos los números en Hogar Conectado">
-  <meta property="og:description" content="Fuentes, fórmulas, supuestos y nuestro proceso de IA + revisión humana.">
+  <meta property="og:description" content="Fuentes citadas, fórmulas reproducibles, escenarios tipo de cálculo y cómo se pondera cada nota editorial.">
   <meta property="og:url" content="https://hogarconectado.co/metodologia">
   <meta property="og:image" content="https://hogarconectado.co/assets/og-image-1200.jpg">
   <meta property="og:image:width" content="1200">
@@ -32,9 +32,9 @@
     "@context":"https://schema.org",
     "@type":"TechArticle",
     "headline":"Cómo Hogar Conectado calcula sus números",
-    "description":"Fuentes de datos, fórmulas, supuestos y el proceso editorial detrás de las guías y calculadoras de Hogar Conectado.",
+    "description":"Fuentes de datos, fórmulas, escenarios tipo de cálculo, ponderación de las notas editoriales y política de independencia de Hogar Conectado.",
     "datePublished":"2026-07-11",
-    "dateModified":"2026-07-11",
+    "dateModified":"2026-07-26",
     "author":{"@type":"Person","name":"Bruno de Madrazo","url":"https://hogarconectado.co/autor"},
     "publisher":{"@type":"Organization","name":"Hogar Conectado","logo":{"@type":"ImageObject","url":"https://hogarconectado.co/assets/og-image-1200.jpg"}},
     "mainEntityOfPage":"https://hogarconectado.co/metodologia"
@@ -72,11 +72,15 @@
     <span class="eyebrow">Metodología · Actualizado julio 2026</span>
     <h1>Cómo se hacen los números de <span class="text-grad">Hogar Conectado</span>.</h1>
     <p style="font-size:1.12rem; color:var(--text-muted); margin-top:18px; line-height:1.7;">
-      Cada cifra de coste o consumo de este sitio sale de una fuente pública o se calcula a partir de una con una fórmula que puedes comprobar. Esta página es el rastro de auditoría: de dónde vienen los datos, qué supuestos hay detrás de cada calculadora y cómo se escriben y revisan las guías. Escrita y mantenida por <a href="/autor" style="color:var(--accent);">Bruno de Madrazo</a>.
+      Hogar Conectado es una guía de compra documentada de domótica para el mercado español. Comparamos productos a partir de sus especificaciones oficiales, de la documentación del fabricante y de los análisis y mediciones publicados por terceros independientes, a los que citamos siempre por su nombre. Cada cifra de coste o consumo sale de una fuente pública o se calcula a partir de una con una fórmula que puedes reproducir. Esta página es el rastro de auditoría: de dónde vienen los datos, con qué viviendas de ejemplo se hacen los cálculos, cómo se pondera cada nota y cómo se escriben y revisan las guías. Escrita y mantenida por <a href="/autor" style="color:var(--accent);">Bruno de Madrazo</a>.
     </p>
 
+    <div class="disclosure" style="margin-top:26px;">
+      <strong>En claro: no tenemos laboratorio propio.</strong> Nuestra aportación original es el criterio de compra adaptado a la vivienda española —tarifa PVPC, tipos de caldera y radiador, persiana de cajón, cilindro europeo, comunidades de vecinos— y el cálculo abierto: el dataset de amortización por comunidad autónoma, las calculadoras y las fórmulas que las mueven. Cuando una cifra procede de la medición de un tercero, decimos de quién es; cuando es un cálculo nuestro, publicamos la fórmula y los supuestos para que cualquiera la rehaga. Las notas y los verdictos son valoración editorial declarada —una ponderación publicada de especificaciones, precio real en España, compatibilidad y consenso de análisis independientes—, no el resultado de un banco de pruebas físico. Ningún fabricante paga por posición ni ve un artículo antes de publicarse.
+    </div>
+
     <h2 id="fuentes" style="margin-top:52px;">1. De dónde vienen los datos</h2>
-    <p>Ninguna cifra se publica si no traza a una de estas fuentes. Cada guía también las cita en el texto.</p>
+    <p>Ninguna cifra se publica si no traza a una de estas fuentes. Cada guía también las cita en el texto, con nombre y enlace cuando la fuente es pública.</p>
     <table style="width:100%; margin-top:16px; border-collapse:collapse; font-size:0.94rem;">
       <thead><tr style="background:var(--bg-1);">
         <th style="text-align:left; padding:12px; border-bottom:1px solid var(--border);">Fuente</th>
@@ -87,38 +91,80 @@
         <tr><td style="padding:12px; border-bottom:1px solid var(--border);"><strong style="color:var(--text);">Red Eléctrica (REE) · ESIOS</strong></td><td style="padding:12px; border-bottom:1px solid var(--border); color:var(--text-muted);">Precio horario de la electricidad (PVPC), demanda y mix de generación.</td></tr>
         <tr><td style="padding:12px; border-bottom:1px solid var(--border);"><strong style="color:var(--text);">CNMC</strong></td><td style="padding:12px; border-bottom:1px solid var(--border); color:var(--text-muted);">Peajes, cargos regulados y precios medios del sector eléctrico y de telecomunicaciones.</td></tr>
         <tr><td style="padding:12px; border-bottom:1px solid var(--border);"><strong style="color:var(--text);">INE</strong></td><td style="padding:12px; border-bottom:1px solid var(--border); color:var(--text-muted);">Estadística de precios (IPC de electricidad), gasto de los hogares y datos de vivienda.</td></tr>
-        <tr><td style="padding:12px; border-bottom:1px solid var(--border);"><strong style="color:var(--text);">OCU</strong></td><td style="padding:12px; border-bottom:1px solid var(--border); color:var(--text-muted);">Ensayos independientes de consumo y fiabilidad de electrodomésticos y dispositivos.</td></tr>
+        <tr><td style="padding:12px; border-bottom:1px solid var(--border);"><strong style="color:var(--text);">OCU y otros análisis independientes</strong></td><td style="padding:12px; border-bottom:1px solid var(--border); color:var(--text-muted);">Ensayos y mediciones de terceros sobre consumo, autonomía y fiabilidad. Cuando usamos uno, citamos la publicación por su nombre: la medición es suya, no nuestra.</td></tr>
         <tr><td style="padding:12px; border-bottom:1px solid var(--border);"><strong style="color:var(--text);">CSA · Matter / Thread Group</strong></td><td style="padding:12px; border-bottom:1px solid var(--border); color:var(--text-muted);">Estándar de interoperabilidad (Matter, Thread): versiones, compatibilidades y perfiles de dispositivo.</td></tr>
-        <tr><td style="padding:12px;"><strong style="color:var(--text);">Fichas de fabricante</strong></td><td style="padding:12px; color:var(--text-muted);">Potencia nominal, consumo en reposo, autonomía de batería y especificaciones declaradas.</td></tr>
+        <tr><td style="padding:12px; border-bottom:1px solid var(--border);"><strong style="color:var(--text);">AEPD</strong></td><td style="padding:12px; border-bottom:1px solid var(--border); color:var(--text-muted);">Marco legal de videovigilancia doméstica: qué puede grabar una cámara particular y qué no (vía pública, zonas comunes, vivienda del vecino).</td></tr>
+        <tr><td style="padding:12px; border-bottom:1px solid var(--border);"><strong style="color:var(--text);">Normas UNE-EN (50131, cilindros EN 1303)</strong></td><td style="padding:12px; border-bottom:1px solid var(--border); color:var(--text-muted);">Grados de seguridad de sistemas de alarma y clasificación de cilindros y cerraduras. Es el criterio que usan las aseguradoras, no una etiqueta comercial.</td></tr>
+        <tr><td style="padding:12px;"><strong style="color:var(--text);">Fichas de fabricante</strong></td><td style="padding:12px; color:var(--text-muted);">Potencia nominal, consumo en reposo, autonomía de batería, grado IP, protocolo y demás especificaciones declaradas. Son datos <em>declarados</em> por la marca y así los presentamos.</td></tr>
       </tbody>
     </table>
 
-    <h2 id="formulas" style="margin-top:52px;">2. Qué asume cada calculadora</h2>
+    <h2 id="escenarios" style="margin-top:52px;">2. Los cuatro escenarios tipo</h2>
+    <p>Para que un presupuesto o un ahorro signifiquen algo hay que decir <em>en qué casa</em>. Usamos cuatro viviendas de ejemplo, siempre las mismas, con las que hacemos los cálculos de ahorro y los presupuestos por estancia de las <strong>comparativas de producto</strong>. Cuando una guía dice "escenario A" o "escenario D", se refiere exactamente a una de las cuatro filas de la tabla de abajo y a ninguna otra cosa.</p>
+    <p>Hay una excepción, y la declaramos aquí para que no haya lugar a confusión: el <a href="/guias/indice-amortizacion-hogar-inteligente-ccaa-2026">índice de amortización por comunidades autónomas</a> es un <strong>estudio territorial</strong>, no una comparativa de producto, y por su naturaleza necesita perfiles de cálculo agrupados por zona climática. Ese estudio define y detalla sus propios <em>perfiles regionales</em> dentro de la propia página, con sus supuestos a la vista; no son estos cuatro escenarios ni pretenden serlo. Lo que sí comparte con el resto del sitio es la política de cálculo de la sección siguiente: amortización simple, fuentes públicas citadas y ninguna cifra medida por nosotros.</p>
+    <div class="disclosure" style="margin-top:16px;">
+      <strong>Son escenarios de cálculo, no viviendas de prueba del autor.</strong> Ninguna de estas cuatro casas es "nuestra vivienda": son perfiles construidos con parámetros de vivienda española habituales (superficie, zona climática del CTE, sistema de calefacción, tipo de cerramiento) para que cualquiera pueda situarse en el más parecido al suyo y rehacer las cuentas con sus propios datos.
+    </div>
+    <table style="width:100%; margin-top:16px; border-collapse:collapse; font-size:0.94rem;">
+      <thead><tr style="background:var(--bg-1);">
+        <th style="text-align:left; padding:12px; border-bottom:1px solid var(--border);">Escenario</th>
+        <th style="text-align:left; padding:12px; border-bottom:1px solid var(--border);">Parámetros que usamos en los cálculos</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="padding:12px; border-bottom:1px solid var(--border);"><strong style="color:var(--text);">A · Piso urbano</strong></td><td style="padding:12px; border-bottom:1px solid var(--border); color:var(--text-muted);">75 m² en Madrid, zona climática CTE D3. Caldera de gas con termostato de pared, comunidad de vecinos, persianas de cajón exterior y puerta blindada con cilindro europeo. Es el escenario por defecto cuando una guía habla de "un piso español típico".</td></tr>
+        <tr><td style="padding:12px; border-bottom:1px solid var(--border);"><strong style="color:var(--text);">B · Casa del norte</strong></td><td style="padding:12px; border-bottom:1px solid var(--border); color:var(--text-muted);">110 m² en Bilbao, zona C1. Calefacción de agua con caldera y 7 radiadores con válvulas termostáticas, es decir, la instalación que permite control por zonas. Invierno largo y suave, verano sin apenas refrigeración.</td></tr>
+        <tr><td style="padding:12px; border-bottom:1px solid var(--border);"><strong style="color:var(--text);">C · Vivienda nueva mediterránea</strong></td><td style="padding:12px; border-bottom:1px solid var(--border); color:var(--text-muted);">Unifamiliar de 90 m² con aerotermia y suelo radiante, zona B3 (referencia Mallorca). Inercia térmica alta: los termostatos que anticipan la curva se comportan de forma distinta que sobre un radiador.</td></tr>
+        <tr><td style="padding:12px;"><strong style="color:var(--text);">D · Clima cálido</strong></td><td style="padding:12px; color:var(--text-muted);">Piso de 85 m² en Sevilla, zona B4, con split de pared y terraza o jardín pequeño. Se usa solo donde tiene sentido: aire acondicionado, protección solar y riego.</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="formulas" style="margin-top:52px;">3. Qué asume cada calculadora</h2>
     <p>Las herramientas son deliberadamente transparentes. Estos son los supuestos base; tú cambias los datos que importan en tu caso.</p>
 
     <h3 style="margin-top:28px;">Ahorro por electrodoméstico</h3>
-    <p style="color:var(--text-muted); line-height:1.7;">Coste = potencia (kW) × horas de uso × días × tu tarifa (€/kWh). Por defecto usamos el PVPC medio reciente (~0,16 €/kWh en 2026), pero deberías introducir tu precio real de la factura: es el factor que más pesa. Los consumos por defecto salen de IDAE y de las fichas de cada aparato.</p>
+    <p style="color:var(--text-muted); line-height:1.7;">Coste = potencia (kW) × horas de uso × días × tu tarifa (€/kWh). Por defecto usamos el PVPC medio de 2026 (0,165 €/kWh como mezcla de tramos, 0,07 €/kWh en valle y 0,21 €/kWh en punta), pero deberías introducir tu precio real de la factura: es el factor que más pesa. Los consumos por defecto salen de IDAE y de las fichas de cada aparato: 1,2 kWh por ciclo de lavadora a 40 °C, 1,3 kWh por ciclo eco de lavavajillas, 0,85 kW de consumo medio en un split de 9.000 BTU y el consumo anual de la etiqueta energética en el caso del frigorífico.</p>
+    <p style="color:var(--text-muted); line-height:1.7;">Hay un supuesto que conviene señalar porque no es una medición: en la calculadora de electrodomésticos asumimos que bajar la persiana durante las horas de sol recorta un 27 % el consumo del aire acondicionado. Es el coeficiente que usa nuestro modelo para cuantificar la protección solar, no un dato medido por nosotros; el ahorro real depende de la orientación de la fachada, del acristalamiento y de la temperatura exterior, y en una vivienda a la sombra o con doble acristalamiento bajo emisivo será bastante menor.</p>
 
     <h3 style="margin-top:24px;">Amortización de un dispositivo inteligente</h3>
     <p style="color:var(--text-muted); line-height:1.7;">Amortización = precio del dispositivo ÷ ahorro anual estimado. El ahorro valora el consumo evitado a tu tarifa (o al PVPC medio si no la introduces). Publicamos amortización <em>simple</em>: no asumimos inflación de la tarifa ni descuento financiero, porque añadirlos acorta artificialmente la amortización y es la forma más común de inflar estas cifras en otros sitios.</p>
 
     <h3 style="margin-top:24px;">Presupuesto por vivienda / por habitaciones</h3>
-    <p style="color:var(--text-muted); line-height:1.7;">Estimamos un presupuesto realista sumando dispositivos por estancia, con rangos "mínimo viable" y "completo". Los precios son PVP orientativos en euros verificados en el momento de la última revisión, no promedios opacos.</p>
+    <p style="color:var(--text-muted); line-height:1.7;">Estimamos un presupuesto realista sumando dispositivos por estancia, con rangos "mínimo viable" y "completo", sobre los escenarios tipo de la sección anterior. Los precios son PVP orientativos en euros verificados en el momento de la última revisión, no promedios opacos.</p>
 
-    <h2 id="ia" style="margin-top:52px;">3. Cómo se escriben las guías — y nuestra política de IA</h2>
+    <h2 id="ia" style="margin-top:52px;">4. Cómo se escriben las guías — y nuestra política de IA</h2>
     <div class="disclosure">
       <strong>En claro: la IA ayuda con el primer borrador; un humano es responsable del resultado.</strong> La investigación y el borrador inicial se hacen con ayuda de herramientas de IA. Después, cada cifra se contrasta con la fuente pública citada, se elimina toda afirmación que no se pueda respaldar, y el texto se reescribe y edita a mano (Bruno de Madrazo) antes de publicarse. No publicamos salida de IA sin verificar, y no ponemos una firma humana a nada que un humano no haya revisado de verdad.
     </div>
-    <p style="color:var(--text-muted); line-height:1.7;">Qué significa en la práctica: si una guía da un coste, puedes seguir el enlace hasta el dato que lo respalda. Si ordena productos, el orden refleja especificaciones publicadas y pruebas de uso —nunca el pago. Cuando nos apoyamos en la medición de un tercero en lugar de la nuestra, lo decimos en vez de dar a entender que lo probamos nosotros.</p>
+    <p style="color:var(--text-muted); line-height:1.7;">Qué significa en la práctica: si una guía da un coste, puedes seguir el enlace hasta el dato que lo respalda. Si ordena productos, el orden refleja especificaciones publicadas, precio real en España y análisis independientes citados —nunca el pago. Cuando nos apoyamos en la medición de un tercero, lo decimos y damos su nombre, en vez de dar a entender que la hicimos nosotros. Y cuando no hay ninguna fuente que respalde una cifra, la cifra no se publica: preferimos un criterio cualitativo explicado a un número con aspecto de precisión que nadie puede comprobar.</p>
 
-    <h2 id="frescura" style="margin-top:52px;">4. Actualización y correcciones</h2>
+    <h2 id="notas" style="margin-top:52px;">5. Cómo se decide una nota</h2>
+    <p>Las notas sobre 10 y los verdictos ("mejor para caldera de gas", "no merece la pena si…") son <strong>valoración editorial declarada</strong>. No salen de un banco de pruebas físico: son una ponderación publicada de cuatro bloques.</p>
+    <ul style="margin:14px 0 0 22px; color:var(--text-muted); line-height:1.85;">
+      <li><strong style="color:var(--text);">Especificaciones y prestaciones documentadas (35 %)</strong> — lo que la ficha oficial acredita: protocolo, autonomía declarada, grado IP, resolución, potencia, grado de certificación, condiciones de garantía.</li>
+      <li><strong style="color:var(--text);">Precio real en España y coste a 3 años (25 %)</strong> — PVP verificado aquí, no el de la web internacional, más cuotas, recambios y suscripciones obligatorias durante tres años.</li>
+      <li><strong style="color:var(--text);">Compatibilidad e instalación en vivienda española (20 %)</strong> — si encaja con caldera, radiador, persiana de cajón, cilindro europeo, telefonillo de comunidad o el ecosistema que ya tienes.</li>
+      <li><strong style="color:var(--text);">Consenso de análisis independientes (20 %)</strong> — qué dicen las publicaciones especializadas y los ensayos de terceros, sobre todo cuando discrepan entre sí.</li>
+    </ul>
+    <p style="color:var(--text-muted); line-height:1.7; margin-top:14px;">Esa es la ponderación por defecto; si una guía la ajusta porque su categoría lo pide (en alarmas pesa más la certificación, en robots el coste de recambios), lo indica junto a su ranking. Un producto que no tenga ficha desarrollada en la guía no lleva nota: aparece, si acaso, como alternativa a considerar.</p>
+
+    <h2 id="independencia" style="margin-top:52px;">6. Independencia</h2>
+    <p>Lo que sí podemos afirmar y puedes exigirnos:</p>
+    <ul style="margin:14px 0 0 22px; color:var(--text-muted); line-height:1.85;">
+      <li>No aceptamos muestras, pago ni patrocinio de fabricantes, y ningún fabricante ve un artículo antes de publicarse. Se enteran cuando te enteras tú.</li>
+      <li>El sitio se financia con publicidad contextual y con enlaces de afiliación a Amazon, declarados en cada guía. La comisión no altera tu precio ni el orden del ranking: el orden lo fija la ponderación de la sección anterior.</li>
+      <li>No hay contenido patrocinado, ni "colaboraciones", ni rankings vendidos. Si algún día lo hubiera, iría marcado como tal en la propia página.</li>
+      <li>Los precios son PVP verificados en la fecha de la última revisión que aparece en cada guía.</li>
+    </ul>
+
+    <h2 id="frescura" style="margin-top:52px;">7. Actualización y correcciones</h2>
     <ul style="margin:14px 0 0 22px; color:var(--text-muted); line-height:1.85;">
       <li>Las tarifas medias y los precios de referencia se refrescan de forma periódica; cada guía se revisa como máximo cada 6 meses.</li>
       <li>La fecha que ves en una guía es la de su última verificación, no la de su primera publicación.</li>
+      <li>Si una recomendación deja de tener sentido (sube de precio, el fabricante deja de actualizarla, aparece una suscripción obligatoria), la retiramos del ranking y explicamos por qué en lugar de borrarla sin más.</li>
       <li>¿Ves una cifra que crees mal? Escríbenos por el <a href="/contacto" style="color:var(--accent);">formulario de contacto</a>. Las correcciones de fondo se hacen enseguida y se dejan anotadas.</li>
     </ul>
 
-    <h2 id="datasets" style="margin-top:52px;">5. Datos propios</h2>
+    <h2 id="datasets" style="margin-top:52px;">8. Datos propios</h2>
     <p style="color:var(--text-muted); line-height:1.7;">Algunas páginas se apoyan en un conjunto de datos que compilamos y publicamos abiertamente, para que cualquiera pueda comprobar los números o reutilizarlos con atribución:</p>
     <ul style="margin:14px 0 0 22px; color:var(--text-muted); line-height:1.85;">
       <li><strong style="color:var(--text);">Índice de amortización del hogar inteligente por comunidad autónoma 2026</strong> — cuántos años tarda en amortizarse un termostato inteligente en las 17 CCAA, calculado con la tarifa PVPC, los consumos de referencia de IDAE y el clima de cada región. Es amortización <em>simple</em> (sin inflación ni descuento) y cada supuesto se explica en la página. <a href="/guias/indice-amortizacion-hogar-inteligente-ccaa-2026" style="color:var(--accent);">Ver el estudio</a> · <a href="/assets/data/indice-amortizacion-ccaa-2026.csv" style="color:var(--accent);">descargar el CSV</a>.</li>
@@ -143,7 +189,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="/" class="brand"><span class="brand-dot"></span><span>Hogar<span style="color:var(--accent)">Conectado</span></span></a>
-        <p>Guías y reviews independientes de domótica en español.</p>
+        <p>Guías de compra independientes de domótica en español.</p>
       </div>
       <div class="footer-col"><h4>Contenido</h4><ul><li><a href="/guias/">Guías</a></li><li><a href="/#categorias">Categorías</a></li><li><a href="/about">Nosotros</a></li><li><a href="/autor">Autor</a></li><li><a href="/metodologia">Metodología</a></li></ul></div>
       <div class="footer-col"><h4>Legal</h4><ul><li><a href="/privacidad">Privacidad</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/about#aviso">Aviso legal</a></li></ul></div>
