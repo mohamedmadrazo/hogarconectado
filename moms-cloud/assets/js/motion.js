@@ -219,6 +219,74 @@
       });
 
       /* -------------------------------------------------------------- *
+       * Carrusel: modo fijado, solo en escritorio con puntero fino.
+       *
+       * La sección se queda quieta y el scroll vertical escribe el
+       * scrollLeft de la pista. Se escribe scrollLeft en lugar de mover
+       * la pista con transform porque la pista YA es un contenedor
+       * desplazable: moverla por CSS y por scroll a la vez daría tirones.
+       * En móvil no se activa nada de esto y manda el deslizamiento
+       * nativo, que es lo que la gente espera con el dedo.
+       * -------------------------------------------------------------- */
+      gsap.matchMedia().add('(min-width: 900px) and (hover: hover)', function () {
+        var rails = Array.prototype.slice.call(document.querySelectorAll('[data-rail]'));
+        var creados = [];
+        var previos = [];
+
+        root.classList.add('mc-rail-pin');
+
+        rails.forEach(function (rail) {
+          var api = rail.mcRail;
+          if (!api) return;
+          var track = api.track;
+          var n = api.slides.length;
+          var seccion = rail.closest('section') || rail;
+
+          var recorrido = function () {
+            return Math.max(1, track.scrollWidth - track.clientWidth);
+          };
+
+          var st = ScrollTrigger.create({
+            trigger: seccion,
+            start: 'top top',
+            end: function () { return '+=' + Math.round(recorrido() * 1.15); },
+            pin: seccion,
+            pinSpacing: true,
+            anticipatePin: 1,
+            scrub: 0.55,
+            snap: {
+              snapTo: 1 / (n - 1),
+              duration: { min: 0.15, max: 0.4 },
+              ease: 'power2.inOut'
+            },
+            onUpdate: function (self) {
+              track.scrollLeft = self.progress * recorrido();
+              api.update();
+            },
+            onRefresh: function () { api.update(); }
+          });
+          creados.push(st);
+
+          // En modo fijado quien manda es el scroll de la ventana, así que
+          // los botones tienen que mover la ventana, no la pista.
+          previos.push([rail, api.irA]);
+          api.irA = function (i) {
+            var destino = Math.max(0, Math.min(n - 1, i));
+            var y = st.start + (destino / (n - 1)) * (st.end - st.start);
+            if (lenis) lenis.scrollTo(y, { duration: 0.7 });
+            else window.scrollTo({ top: y, behavior: 'smooth' });
+          };
+        });
+
+        // Limpieza al salir del rango: vuelve el carrusel nativo.
+        return function () {
+          root.classList.remove('mc-rail-pin');
+          creados.forEach(function (st) { st.kill(); });
+          previos.forEach(function (p) { if (p[0].mcRail) p[0].mcRail.irA = p[1]; });
+        };
+      });
+
+      /* -------------------------------------------------------------- *
        * Recalcular cuando cambian las métricas reales.
        * -------------------------------------------------------------- */
       document.fonts.ready.then(function () { ScrollTrigger.refresh(); });

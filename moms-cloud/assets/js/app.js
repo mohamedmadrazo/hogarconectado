@@ -141,6 +141,99 @@
   setInterval(renderStatus, 60000);
 
   /* ------------------------------------------------------------------ *
+   * Carrusel de producto
+   * Vive aquí y no en motion.js a propósito: no depende de GSAP, así que
+   * los botones, el contador y el efecto de foco funcionan aunque la capa
+   * de animación no llegue a cargar. motion.js solo añade el fijado.
+   * ------------------------------------------------------------------ */
+  document.querySelectorAll('[data-rail]').forEach(function (rail) {
+    var track  = rail.querySelector('[data-rail-track]');
+    var slides = Array.prototype.slice.call(rail.querySelectorAll('[data-slide]'));
+    if (!track || slides.length < 2) return;
+
+    var idxEl = rail.querySelector('[data-rail-index]');
+    var prev  = rail.querySelector('[data-rail-prev]');
+    var next  = rail.querySelector('[data-rail-next]');
+    var activo = -1;
+
+    /* El relleno lateral exacto: media pista menos medio slide.
+       Calculado desde clientWidth y no desde 50vw, porque vw incluye la
+       barra de scroll del sistema. Sin esto, el desplazamiento por scroll
+       no cae justo sobre el centro de cada producto. */
+    function medirRelleno() {
+      var anchoSlide = slides[0].getBoundingClientRect().width;
+      var pad = Math.max(0, (track.clientWidth - anchoSlide) / 2);
+      track.style.setProperty('--mc-rail-pad', pad.toFixed(2) + 'px');
+    }
+    medirRelleno();
+
+    function update() {
+      var centro = window.innerWidth / 2;
+      var alcance = window.innerWidth * 0.42;   // a partir de aquí, foco 0
+      var mejor = 0, menorDist = Infinity;
+
+      slides.forEach(function (s, i) {
+        var r = s.getBoundingClientRect();
+        var d = Math.abs((r.left + r.width / 2) - centro);
+        var f = Math.max(0, 1 - d / alcance);
+        // Curva suave: el foco cae rápido al salir del centro.
+        s.style.setProperty('--f', (f * f * (3 - 2 * f)).toFixed(3));
+        if (d < menorDist) { menorDist = d; mejor = i; }
+      });
+
+      if (mejor !== activo) {
+        activo = mejor;
+        if (idxEl) idxEl.textContent = String(mejor + 1);
+        if (prev) prev.disabled = mejor === 0;
+        if (next) next.disabled = mejor === slides.length - 1;
+      }
+    }
+
+    var esperando = false;
+    function programar() {
+      if (esperando) return;
+      esperando = true;
+      window.requestAnimationFrame(function () { update(); esperando = false; });
+    }
+
+    // El scroll de la pista mueve los slides; el de la ventana también
+    // cuenta, porque con la sección fijada el centro se recalcula igual.
+    track.addEventListener('scroll', programar, { passive: true });
+    window.addEventListener('scroll', programar, { passive: true });
+    window.addEventListener('resize', function () { medirRelleno(); programar(); }, { passive: true });
+    // El relleno depende del ancho del slide, que depende de la fuente ya
+    // cargada. Se vuelve a medir cuando las métricas son las definitivas.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { medirRelleno(); programar(); });
+    }
+
+    // API pública del carrusel. motion.js sustituye irA() al activar el
+    // modo fijado, porque allí quien manda es el scroll de la ventana.
+    rail.mcRail = {
+      track: track,
+      slides: slides,
+      update: update,
+      indice: function () { return activo; },
+      irA: function (i) {
+        var s = slides[Math.max(0, Math.min(slides.length - 1, i))];
+        if (s && s.scrollIntoView) {
+          s.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      }
+    };
+
+    if (prev) prev.addEventListener('click', function () { rail.mcRail.irA(activo - 1); });
+    if (next) next.addEventListener('click', function () { rail.mcRail.irA(activo + 1); });
+
+    update();
+  });
+
+  // Solo ahora se muestran los controles: sin JS serían botones muertos.
+  if (document.querySelector('[data-rail]')) {
+    document.documentElement.classList.add('mc-rail-js');
+  }
+
+  /* ------------------------------------------------------------------ *
    * Nav: se esconde al bajar, reaparece al subir
    * ------------------------------------------------------------------ */
   var nav = document.querySelector('[data-nav]');

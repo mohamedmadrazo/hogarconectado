@@ -259,55 +259,182 @@
 }
 
 /* ==========================================================================
-   REJILLAS DE PRODUCTO
+   CARRUSEL DE PRODUCTO  ·  .mc-rail
+   --------------------------------------------------------------------------
+   La base es CSS puro: una fila con anclaje de scroll. Sin JavaScript ya se
+   desliza con el dedo, ancla al centro y se recorre con el teclado.
+   GSAP solo añade encima el fijado de sección y el efecto de foco.
+
+   --f es el "grado de foco" de cada slide: 0 = lejos del centro, 1 = centrado.
+   Su valor por defecto es 1, así que SIN JavaScript todo se ve a tamaño y
+   opacidad plenos. El JS solo lo baja para los laterales.
    ========================================================================== */
-.mc-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: var(--mc-s-6) var(--mc-s-5);
-}
-@media (min-width: 900px) {
-  .mc-grid { grid-template-columns: repeat(5, 1fr); gap: var(--mc-s-6); }
+.mc-rail {
+  position: relative;
+  /* Se sale del ancho del contenedor para que la pista llegue a los bordes
+     de la ventana: es lo que permite centrar de verdad. */
+  margin-inline: calc(50% - 50vw);
 }
 
-.mc-card { text-align: center; }
+/* Selector con dos clases a propósito: el reset de base.css lleva
+   `ul[class] { padding: 0 }`, cuya especificidad (0,1,1) gana a una sola
+   clase (0,1,0). Con `.mc-rail .mc-rail__track` (0,2,0) el relleno lateral
+   sí se aplica; si no, se queda en cero y los extremos nunca se centran. */
+.mc-rail .mc-rail__track {
+  --mc-slide-w: clamp(190px, 58vw, 340px);
+  /* La mitad se declara como su propio clamp en vez de dividir la variable
+     dentro del calc(): `calc(50vw - var(--x) / 2)` se queda en "inválido en
+     tiempo de cómputo" y el relleno cae a 0, con lo que el primer y el último
+     producto no llegan nunca al centro. */
+  --mc-slide-half: clamp(95px, 29vw, 170px);
+  display: flex;
+  gap: clamp(20px, 4vw, 52px);
+  /* Relleno lateral = media pista menos medio slide. Es lo que permite
+     centrar también los extremos.
+     El valor de respaldo usa 50vw, que incluye la barra de scroll del
+     sistema y puede desviarse unos píxeles; app.js sobrescribe
+     --mc-rail-pad con la medida exacta del contenedor. */
+  padding-inline: var(--mc-rail-pad, calc(50vw - var(--mc-slide-half)));
+  padding-block: var(--mc-s-5);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  list-style: none;
+  margin: 0;
+}
+.mc-rail__track::-webkit-scrollbar { display: none; }
+.mc-rail__track:focus-visible { outline-offset: -3px; }
 
-/* El círculo es la forma de la propia marca: el logo es un círculo.
-   Enmascarar con border-radius evita transparencias y mantiene JPEG/WebP. */
-.mc-card picture { display: block; }
-.mc-card img {
+.mc-slide {
+  --f: 1;
+  flex: 0 0 var(--mc-slide-w);
+  scroll-snap-align: center;
+  text-align: center;
+}
+
+.mc-slide__media { position: relative; }
+.mc-slide__media picture { display: block; }
+
+/* Las fotos son recortes del producto sobre transparencia, así que la sombra
+   la proyecta el contorno real (drop-shadow), no la caja. Es lo que evita que
+   el producto parezca pegado sobre el fondo. */
+.mc-slide__media img {
   width: 100%;
   aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 1px solid var(--mc-teal-line);
-  box-shadow: 0 0 0 6px rgba(123, 187, 187, 0.05), var(--mc-sh-md);
-  transition:
-    transform var(--mc-dur-base) var(--mc-ease-puff),
-    box-shadow var(--mc-dur-base) var(--mc-ease-out);
-}
-.mc-card:hover img {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 0 0 6px rgba(123, 187, 187, 0.10), var(--mc-sh-md), var(--mc-glow-teal-soft);
+  object-fit: contain;
+  transform: scale(calc(0.80 + 0.20 * var(--f)));
+  opacity: calc(0.34 + 0.66 * var(--f));
+  filter:
+    drop-shadow(0 22px 26px rgba(0, 0, 0, 0.55))
+    blur(calc((1 - var(--f)) * 2.4px));
+  will-change: transform, opacity;
 }
 
-.mc-card__body { margin-block-start: var(--mc-s-4); }
-.mc-card__body h3 {
+/* El halo teal vive detrás de la imagen y solo se enciende en el centro.
+   Va en un pseudoelemento para no repintar la foto en cada frame. */
+.mc-slide__media::before {
+  content: '';
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(123,187,187,0.30) 0%, rgba(123,187,187,0.10) 45%, transparent 72%);
+  opacity: calc(var(--f) * var(--f));
+  transform: scale(calc(0.86 + 0.24 * var(--f)));
+}
+
+.mc-slide__body {
+  margin-block-start: var(--mc-s-4);
+  /* Nunca se oculta del todo: el texto tiene que seguir siendo legible y
+     estar en el DOM para Google y para los lectores de pantalla. */
+  opacity: calc(0.45 + 0.55 * var(--f));
+}
+.mc-slide__body h3 {
   font-size: var(--mc-fs-base);
   font-weight: 700;
   color: var(--mc-cream);
 }
-.mc-card__price {
+.mc-slide__price {
   margin-block-start: var(--mc-s-1);
   font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
-  font-size: var(--mc-fs-lg);
+  font-size: var(--mc-fs-xl);
   font-weight: 600;
   color: var(--mc-teal);
 }
-.mc-card__price--ask {
+.mc-slide__price--ask {
   font-size: var(--mc-fs-sm);
   font-weight: 500;
   color: var(--mc-cream-3);
+}
+
+/* ---------- Controles ----------
+   Ocultos por defecto: sin JavaScript no harían nada y un botón muerto es
+   peor que ningún botón. motion.js los muestra al activarse. */
+.mc-rail__ui {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mc-s-5);
+  margin-block-start: var(--mc-s-6);
+}
+html.mc-rail-js .mc-rail__ui { display: flex; }
+
+.mc-rail__btn {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: var(--mc-cream);
+  border: 1px solid var(--mc-teal-line);
+  border-radius: 50%;
+  font-size: var(--mc-fs-lg);
+  cursor: pointer;
+  transition:
+    background-color var(--mc-dur-fast) var(--mc-ease-out),
+    border-color var(--mc-dur-fast) var(--mc-ease-out),
+    transform var(--mc-dur-fast) var(--mc-ease-out);
+}
+.mc-rail__btn:hover:not(:disabled) {
+  background: var(--mc-teal-glass);
+  border-color: var(--mc-teal);
+  transform: scale(1.06);
+}
+.mc-rail__btn:disabled { opacity: 0.3; cursor: default; }
+
+.mc-rail__count {
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-sm);
+  color: var(--mc-cream-3);
+  font-variant-numeric: tabular-nums;
+  min-width: 4ch;
+  text-align: center;
+}
+.mc-rail__count [data-rail-index] { color: var(--mc-teal); font-weight: 600; }
+.mc-rail__sep { margin-inline: 0.4em; opacity: 0.5; }
+
+/* ---------- Modo fijado (lo activa motion.js solo en escritorio) ----------
+   Con la sección fijada, el desplazamiento lo escribe GSAP sobre scrollLeft.
+   Hay que desactivar el anclaje nativo o el navegador pelearía por el mismo
+   eje y daría tirones. */
+html.mc-rail-pin .mc-rail__track {
+  scroll-snap-type: none;
+  overflow-x: hidden;
+}
+
+/* Movimiento reducido: fila normal, sin escalados ni desenfoques. */
+@media (prefers-reduced-motion: reduce) {
+  /* Se quita el desenfoque y el escalado, pero la sombra se queda: no es
+     movimiento, es profundidad. */
+  .mc-slide__media img {
+    transform: none;
+    opacity: 1;
+    filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.55));
+  }
+  .mc-slide__body { opacity: 1; }
+  .mc-slide__media::before { opacity: 0.25; transform: none; }
 }
 
 /* ==========================================================================

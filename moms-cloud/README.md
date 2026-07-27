@@ -177,9 +177,26 @@ repositorio. Convivir con AdSense a largo plazo no aporta nada y sí añade ries
 ## Imágenes
 
 Todas las fotos son **reales**, del propio local y de la carta de Mom's Cloud.
-Las de producto están recortadas del cartel de la carta y las de ambiente son
-del rótulo del local. No hay ninguna imagen generada ni de banco.
+No hay ninguna imagen generada ni de banco.
 
-Cuando haya fotografía profesional, sustituir los archivos de `assets/img/`
-manteniendo los nombres y las proporciones (los productos son cuadrados, 560×560;
-el `<img>` lleva `width`/`height` explícitos para que no haya saltos de layout).
+Los diez productos se han **recortado del fondo** con un modelo de segmentación
+local (`rembg`, modelo `birefnet-general`), partiendo de la foto del cartel de
+la carta. Cada producto queda entero, ajustado a su contorno real y centrado en
+un lienzo cuadrado de 800×800 con transparencia.
+
+Formatos por producto:
+
+```
+producto-<slug>.webp       800×800 con canal alfa   ← el que se usa
+producto-<slug>-400.webp   400×400 con canal alfa   ← densidad baja
+producto-<slug>.jpg        800×800 sin alfa         ← respaldo, compuesto
+                                                      sobre #11161A
+```
+
+**Para sustituirlos por fotografía profesional** basta con reemplazar los
+archivos manteniendo nombre y proporción cuadrada. No hay que tocar ni una línea
+de código: el `<img>` lleva `width`/`height` explícitos y el CSS usa
+`object-fit: contain`, así que cualquier producto encaja sin recortarse.
+
+Lo ideal serían diez fotos sobre fondo liso oscuro; el recorte queda entonces
+perfecto y sin los límites de resolución de partir de un cartel impreso.
