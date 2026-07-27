@@ -400,8 +400,7 @@
   padding-block-start: var(--mc-s-4);
   border-top: 1px solid var(--mc-hairline-soft);
 }
-.mc-quotes cite {
-  font-style: normal;
+.mc-quote__source {
   font-weight: 700;
   font-size: var(--mc-fs-sm);
   color: var(--mc-cream);
