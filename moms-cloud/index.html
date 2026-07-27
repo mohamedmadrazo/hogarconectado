@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ⚠️ PRE-LANZAMIENTO — quitar esta línea el día que la landing tenga dominio propio.
+     Motivo: mientras conviva en el repositorio de hogarconectado.co (un sitio sin
+     relación alguna y monetizado con AdSense) no debe indexarse. Ver README.md. -->
+<meta name="robots" content="noindex, nofollow">
+
+<title>Mom's Cloud · Pancakes japoneses y batidos en Logroño</title>
+<meta name="description" content="Dulces japoneses en Logroño: nubes recién hechas, batidos y granizados para llevar. Av. Portugal 35, abierto de tarde hasta medianoche. 4,8★ en Google.">
+<meta name="theme-color" content="#090C0E">
+<meta name="author" content="Mom's Cloud">
+
+<!-- Open Graph · TODO al lanzar: og:url absoluta y og:image con el dominio real -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Mom's Cloud">
+<meta property="og:title" content="Mom's Cloud · Pancakes japoneses y batidos en Logroño">
+<meta property="og:description" content="Nubes japonesas recién hechas, batidos y granizados para llevar en Av. Portugal 35, Logroño. Abrimos por la tarde y cerramos a medianoche.">
+<meta property="og:image" content="assets/img/og-moms-cloud.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Rótulo de neón de Mom's Cloud sobre pared de ladrillo, con dos nubes japonesas en el mostrador">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mom's Cloud · Pancakes japoneses y batidos en Logroño">
+<meta name="twitter:description" content="Nubes japonesas recién hechas, batidos y granizados para llevar en Logroño.">
+<meta name="twitter:image" content="assets/img/og-moms-cloud.jpg">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Solo la display va en preload: es la fuente del LCP. -->
+<link rel="preload" href="assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/sections.css">
+
+<script defer src="assets/js/vendor/gsap.min.js"></script>
+<script defer src="assets/js/vendor/ScrollTrigger.min.js"></script>
+<script defer src="assets/js/vendor/SplitText.min.js"></script>
+<script defer src="assets/js/vendor/lenis.min.js"></script>
+<script defer src="assets/js/app.js"></script>
+<script defer src="assets/js/motion.js"></script>
+
+<!-- Datos estructurados.
+     Deliberadamente SIN aggregateRating: la valoración de 4,8 vive en Google, no
+     aquí. Marcar en la propia web reseñas alojadas en un tercero va contra las
+     directrices de Google y puede acarrear una acción manual. Se muestra visible
+     y enlazada a la ficha, que es la forma correcta. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "Mom's Cloud",
+  "description": "Pancakes japoneses soufflé, batidos y granizados para llevar en Logroño.",
+  "image": "assets/img/og-moms-cloud.jpg",
+  "telephone": "+34614102038",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Av. Portugal, 35",
+    "postalCode": "26001",
+    "addressLocality": "Logroño",
+    "addressRegion": "La Rioja",
+    "addressCountry": "ES"
+  },
+  "servesCuisine": ["Dulces japoneses", "Postres", "Batidos"],
+  "priceRange": "€",
+  "currenciesAccepted": "EUR",
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=Mom%27s%20Cloud%20Av.%20Portugal%2035%20Logro%C3%B1o",
+  "sameAs": ["https://www.instagram.com/moms_cloud_miase/"],
+  "hasMenu": {
+    "@type": "Menu",
+    "name": "Carta",
+    "inLanguage": "es-ES",
+    "hasMenuSection": [
+      {
+        "@type": "MenuSection",
+        "name": "Nuestras nubes",
+        "description": "Pancakes japoneses soufflé, hechos al momento.",
+        "hasMenuItem": [
+          { "@type": "MenuItem", "name": "Arándanos",       "offers": { "@type": "Offer", "price": "6.90", "priceCurrency": "EUR" } },
+          { "@type": "MenuItem", "name": "Cerezas",         "offers": { "@type": "Offer", "price": "6.90", "priceCurrency": "EUR" } },
+          { "@type": "MenuItem", "name": "Choco-Coco",      "offers": { "@type": "Offer", "price": "5.90", "priceCurrency": "EUR" } },
+          { "@type": "MenuItem", "name": "Limón",           "offers": { "@type": "Offer", "price": "5.90", "priceCurrency": "EUR" } },
+          { "@type": "MenuItem", "name": "Jarabe de arce",  "offers": { "@type": "Offer", "price": "5.90", "priceCurrency": "EUR" } }
+        ]
+      },
+      {
+        "@type": "MenuSection",
+        "name": "¿Algo fresquito?",
+        "description": "Batidos y granizados.",
+        "hasMenuItem": [
+          { "@type": "MenuItem", "name": "Piña y coco",           "offers": { "@type": "Offer", "price": "4.70", "priceCurrency": "EUR" } },
+          { "@type": "MenuItem", "name": "Cerezas y chocolate",   "offers": { "@type": "Offer", "price": "4.90", "priceCurrency": "EUR" } },
+          { "@type": "MenuItem", "name": "Sandía y limón",        "offers": { "@type": "Offer", "price": "4.30", "priceCurrency": "EUR" } },
+          { "@type": "MenuItem", "name": "Dalgona",               "offers": { "@type": "Offer", "price": "4.50", "priceCurrency": "EUR" } },
+          { "@type": "MenuItem", "name": "Frapé" }
+        ]
+      }
+    ]
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday"], "opens": "17:30", "closes": "23:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "17:30", "closes": "23:59" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "11:30", "closes": "14:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "17:30", "closes": "23:59" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "16:30", "closes": "23:00" }
+  ]
+}
+</script>
+</head>
+
+<body class="mc-grain">
+<a class="mc-skip" href="#contenido">Saltar al contenido</a>
+
+<!-- ====================== NAV ====================== -->
+<header class="mc-nav" role="banner" data-nav>
+  <div class="mc-nav__inner">
+    <a class="mc-brand" href="#inicio" aria-label="Mom's Cloud, inicio">
+      <svg class="mc-brand__mark" viewBox="0 0 128 96" aria-hidden="true" focusable="false">
+        <path d="M34 70 C18 70 11 57 20 46 C22 31 39 26 47 35 C51 14 80 12 88 31 C104 29 117 42 110 57 C107 67 99 70 91 70 Z"
+              fill="none" stroke="currentColor" stroke-width="8"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="mc-brand__word">Mom&#8217;s&nbsp;Cloud</span>
+    </a>
+
+    <p class="mc-status" data-status hidden>
+      <span class="mc-status__dot" aria-hidden="true"></span>
+      <span class="mc-status__text"></span>
+    </p>
+
+    <nav class="mc-nav__links" aria-label="Principal">
+      <a href="#nubes">Nubes</a>
+      <a href="#fresquito">Fresquito</a>
+      <a href="#horario">Horario</a>
+    </nav>
+
+    <a class="mc-btn mc-nav__cta"
+       href="https://www.google.com/maps/dir/?api=1&amp;destination=Mom%27s%20Cloud%2C%20Av.%20Portugal%2035%2C%2026001%20Logro%C3%B1o"
+       target="_blank" rel="noopener">Cómo llegar</a>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- ====================== HERO ====================== -->
+<section class="mc-hero" id="inicio">
+  <div class="mc-hero__glow" aria-hidden="true"></div>
+
+  <div class="mc-wrap mc-hero__inner">
+    <p class="mc-eyebrow mc-reveal">Av. Portugal 35 · Logroño</p>
+
+    <h1 class="mc-hero__title">
+      <!-- "Mom’s" no debe poder partirse por el apóstrofo: el navegador lo trata
+           como oportunidad de salto y dejaba "Mom’" / "s Cloud". Al bloquearlo,
+           el salto natural cae en el espacio y el titular queda apilado igual
+           que el logo de la marca. -->
+      <span class="mc-hero__word mc-glow-text" data-split><span class="mc-nb">Mom&#8217;s</span> Cloud</span>
+      <span class="mc-hero__sub">Pancakes japoneses, batidos y granizados. Para llevar.</span>
+    </h1>
+
+    <p class="mc-hero__claim mc-reveal">
+      Abrimos cuando cierran las cocinas.
+    </p>
+
+    <div class="mc-hero__actions mc-reveal">
+      <a class="mc-btn"
+         href="https://www.google.com/maps/dir/?api=1&amp;destination=Mom%27s%20Cloud%2C%20Av.%20Portugal%2035%2C%2026001%20Logro%C3%B1o"
+         target="_blank" rel="noopener">Cómo llegar</a>
+      <a class="mc-btn mc-btn--ghost" href="#nubes">Ver la carta</a>
+    </div>
+
+    <p class="mc-hero__proof mc-reveal">
+      <strong>4,8</strong><span class="mc-stars" aria-hidden="true">★★★★★</span>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Mom%27s%20Cloud%20Av.%20Portugal%2035%20Logro%C3%B1o"
+         target="_blank" rel="noopener">70 reseñas en Google</a>
+    </p>
+  </div>
+
+  <figure class="mc-hero__media mc-reveal">
+    <picture>
+      <source type="image/webp"
+              srcset="assets/img/local-neon-800.webp 800w,
+                      assets/img/local-neon-1200.webp 1200w,
+                      assets/img/local-neon-1600.webp 1600w"
+              sizes="(max-width: 900px) 92vw, 46vw">
+      <img src="assets/img/local-neon-1200.jpg"
+           width="1200" height="1583" fetchpriority="high" decoding="async"
+           alt="Rótulo de neón de Mom's Cloud iluminado sobre una pared de ladrillo, con dos nubes japonesas servidas en cajas sobre el mostrador">
+    </picture>
+    <figcaption>Av. Portugal 35, a las once de la noche.</figcaption>
+  </figure>
+</section>
+
+<!-- ====================== EL WOBBLE ====================== -->
+<section class="mc-wobble mc-section" aria-labelledby="wobble-h">
+  <div class="mc-wrap mc-wobble__inner">
+    <h2 class="mc-wobble__word" id="wobble-h" data-wobble>Tiembla</h2>
+    <p class="mc-lead mc-reveal mc-wobble__text">
+      Un pancake japonés no se hornea, se levanta. El merengue le mete aire hasta
+      que el bicho dobla su altura y se queda temblando en el plato. Por eso no
+      existe hasta que lo pides: si espera, se cae.
+    </p>
+  </div>
+</section>
+
+<!-- ====================== NUESTRAS NUBES ====================== -->
+<section class="mc-section" id="nubes" aria-labelledby="nubes-h">
+  <div class="mc-wrap">
+    <header class="mc-section-head mc-reveal">
+      <span class="mc-eyebrow">La carta</span>
+      <h2 id="nubes-h">Nuestras nubes</h2>
+      <p class="mc-lead">Cinco. Ni una más. Las que aguantan el listón.</p>
+    </header>
+
+    <!-- Precios confirmados por el negocio contra el cartel del local. -->
+    <div class="mc-rail" data-rail>
+      <ul class="mc-rail__track" data-rail-track tabindex="0"
+          role="group" aria-roledescription="carrusel" aria-label="Nuestras nubes">
+      <li class="mc-slide" data-slide>
+        <div class="mc-slide__media">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/img/producto-arandanos-400.webp 400w,
+                            assets/img/producto-arandanos.webp 800w"
+                    sizes="(max-width: 700px) 62vw, 340px">
+            <img src="assets/img/producto-arandanos.jpg" width="800" height="800"
+                 loading="eager" decoding="async" alt="Nube japonesa cubierta de compota de arándanos y nata">
+          </picture>
+        </div>
+        <div class="mc-slide__body">
+          <h3>Arándanos</h3>
+          <p class="mc-slide__price">6,90&nbsp;€</p>
+        </div>
+      </li>
+      <li class="mc-slide" data-slide>
+        <div class="mc-slide__media">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/img/producto-cerezas-400.webp 400w,
+                            assets/img/producto-cerezas.webp 800w"
+                    sizes="(max-width: 700px) 62vw, 340px">
+            <img src="assets/img/producto-cerezas.jpg" width="800" height="800"
+                 loading="lazy" decoding="async" alt="Nube japonesa con cerezas, chocolate y crujiente por encima">
+          </picture>
+        </div>
+        <div class="mc-slide__body">
+          <h3>Cerezas</h3>
+          <p class="mc-slide__price">6,90&nbsp;€</p>
+        </div>
+      </li>
+      <li class="mc-slide" data-slide>
+        <div class="mc-slide__media">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/img/producto-chocococo-400.webp 400w,
+                            assets/img/producto-chocococo.webp 800w"
+                    sizes="(max-width: 700px) 62vw, 340px">
+            <img src="assets/img/producto-chocococo.jpg" width="800" height="800"
+                 loading="lazy" decoding="async" alt="Nube japonesa con chocolate y coco rallado espolvoreado">
+          </picture>
+        </div>
+        <div class="mc-slide__body">
+          <h3>Choco-Coco</h3>
+          <p class="mc-slide__price">5,90&nbsp;€</p>
+        </div>
+      </li>
+      <li class="mc-slide" data-slide>
+        <div class="mc-slide__media">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/img/producto-limon-400.webp 400w,
+                            assets/img/producto-limon.webp 800w"
+                    sizes="(max-width: 700px) 62vw, 340px">
+            <img src="assets/img/producto-limon.jpg" width="800" height="800"
+                 loading="lazy" decoding="async" alt="Nube japonesa con crema de limón y ralladura">
+          </picture>
+        </div>
+        <div class="mc-slide__body">
+          <h3>Limón</h3>
+          <p class="mc-slide__price">5,90&nbsp;€</p>
+        </div>
+      </li>
+      <li class="mc-slide" data-slide>
+        <div class="mc-slide__media">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/img/producto-arce-400.webp 400w,
+                            assets/img/producto-arce.webp 800w"
+                    sizes="(max-width: 700px) 62vw, 340px">
+            <img src="assets/img/producto-arce.jpg" width="800" height="800"
+                 loading="lazy" decoding="async" alt="Nube japonesa de tres pisos regada con jarabe de arce">
+          </picture>
+        </div>
+        <div class="mc-slide__body">
+          <h3>Jarabe de arce</h3>
+          <p class="mc-slide__price">5,90&nbsp;€</p>
+        </div>
+      </li>
+      </ul>
+
+      <div class="mc-rail__ui">
+        <button class="mc-rail__btn" type="button" data-rail-prev aria-label="Producto anterior">
+          <span aria-hidden="true">&larr;</span>
+        </button>
+        <p class="mc-rail__count">
+          <span data-rail-index>1</span><span class="mc-rail__sep" aria-hidden="true">/</span><span>5</span>
+          <span class="mc-sr">Nuestras nubes</span>
+        </p>
+        <button class="mc-rail__btn" type="button" data-rail-next aria-label="Producto siguiente">
+          <span aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ¿ALGO FRESQUITO? ====================== -->
+<section class="mc-section mc-section--alt" id="fresquito" aria-labelledby="fresquito-h">
+  <div class="mc-wrap">
+    <header class="mc-section-head mc-reveal">
+      <span class="mc-eyebrow">Vaso alto</span>
+      <h2 id="fresquito-h">¿Algo fresquito?</h2>
+      <p class="mc-lead">Batidos y granizados. Lo que más piden cuando aprieta el calor.</p>
+    </header>
+
+    <div class="mc-rail" data-rail>
+      <ul class="mc-rail__track" data-rail-track tabindex="0"
+          role="group" aria-roledescription="carrusel" aria-label="¿Algo fresquito?">
+      <li class="mc-slide" data-slide>
+        <div class="mc-slide__media">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/img/producto-pina-400.webp 400w,
+                            assets/img/producto-pina.webp 800w"
+                    sizes="(max-width: 700px) 62vw, 340px">
+            <img src="assets/img/producto-pina.jpg" width="800" height="800"
+                 loading="eager" decoding="async" alt="Batido de piña y coco en vaso alto con pajita">
+          </picture>
+        </div>
+        <div class="mc-slide__body">
+          <h3>Piña y coco</h3>
+          <p class="mc-slide__price">4,70&nbsp;€</p>
+        </div>
+      </li>
+      <li class="mc-slide" data-slide>
+        <div class="mc-slide__media">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/img/producto-cerezaschoco-400.webp 400w,
+                            assets/img/producto-cerezaschoco.webp 800w"
+                    sizes="(max-width: 700px) 62vw, 340px">
+            <img src="assets/img/producto-cerezaschoco.jpg" width="800" height="800"
+                 loading="lazy" decoding="async" alt="Batido de cerezas y chocolate coronado con nata y fruta">
+          </picture>
+        </div>
+        <div class="mc-slide__body">
+          <h3>Cerezas y chocolate</h3>
+          <p class="mc-slide__price">4,90&nbsp;€</p>
+        </div>
+      </li>
+      <li class="mc-slide" data-slide>
+        <div class="mc-slide__media">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/img/producto-sandia-400.webp 400w,
+                            assets/img/producto-sandia.webp 800w"
+                    sizes="(max-width: 700px) 62vw, 340px">
+            <img src="assets/img/producto-sandia.jpg" width="800" height="800"
+                 loading="lazy" decoding="async" alt="Granizado de sandía y limón en vaso alto">
+          </picture>
+        </div>
+        <div class="mc-slide__body">
+          <h3>Sandía y limón</h3>
+          <p class="mc-slide__price">4,30&nbsp;€</p>
+        </div>
+      </li>
+      <li class="mc-slide" data-slide>
+        <div class="mc-slide__media">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/img/producto-dalgona-400.webp 400w,
+                            assets/img/producto-dalgona.webp 800w"
+                    sizes="(max-width: 700px) 62vw, 340px">
+            <img src="assets/img/producto-dalgona.jpg" width="800" height="800"
+                 loading="lazy" decoding="async" alt="Café dalgona con capa de crema batida sobre leche fría">
+          </picture>
+        </div>
+        <div class="mc-slide__body">
+          <h3>Dalgona</h3>
+          <p class="mc-slide__price">4,50&nbsp;€</p>
+        </div>
+      </li>
+      <li class="mc-slide" data-slide>
+        <div class="mc-slide__media">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/img/producto-frape-400.webp 400w,
+                            assets/img/producto-frape.webp 800w"
+                    sizes="(max-width: 700px) 62vw, 340px">
+            <img src="assets/img/producto-frape.jpg" width="800" height="800"
+                 loading="lazy" decoding="async" alt="Frapé con crema y chorretón de chocolate por encima">
+          </picture>
+        </div>
+        <div class="mc-slide__body">
+          <h3>Frapé</h3>
+          <p class="mc-slide__price mc-slide__price--ask" data-todo>Pregúntanos</p>
+        </div>
+      </li>
+      </ul>
+
+      <div class="mc-rail__ui">
+        <button class="mc-rail__btn" type="button" data-rail-prev aria-label="Producto anterior">
+          <span aria-hidden="true">&larr;</span>
+        </button>
+        <p class="mc-rail__count">
+          <span data-rail-index>1</span><span class="mc-rail__sep" aria-hidden="true">/</span><span>5</span>
+          <span class="mc-sr">¿Algo fresquito?</span>
+        </p>
+        <button class="mc-rail__btn" type="button" data-rail-next aria-label="Producto siguiente">
+          <span aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== RECIÉN HECHA ====================== -->
+<section class="mc-section mc-takeaway" aria-labelledby="takeaway-h">
+  <div class="mc-wrap-narrow mc-reveal">
+    <span class="mc-eyebrow">Cómo funciona</span>
+    <h2 id="takeaway-h">Recién hecha, en su caja</h2>
+    <p class="mc-lead">
+      Se pide en el mostrador y sale caliente, montada en el momento. No hay sala
+      ni terraza: es todo para llevar. Te la damos en su caja y decides tú dónde
+      te la comes. La nube es de camino, no de mantel.
+    </p>
+  </div>
+</section>
+
+<!-- ====================== EL MOMENTO MOM'S ====================== -->
+<!-- Por decisión del negocio, esta sección NO menciona a las personas que están
+     detrás ni ningún dato personal. Habla solo del producto y de la casa.
+     "Inspired by Miase" se deja como firma, sin explicación. -->
+<section class="mc-section mc-story" aria-labelledby="story-h">
+  <div class="mc-wrap-narrow">
+    <span class="mc-eyebrow mc-reveal">Inspired by Miase</span>
+    <h2 id="story-h" class="mc-reveal">De una en una</h2>
+    <p class="mc-lead mc-reveal">
+      No es una franquicia ni sale de una plancha en cadena. Cada nube se monta
+      cuando la pides, en Av. Portugal, y por eso tarda lo que tarda. Detrás hay
+      una receta y una historia. Si te pica la curiosidad, pregúntanos: es la
+      mejor parte.
+    </p>
+    <p class="mc-story__sig mc-reveal" aria-hidden="true">☁</p>
+  </div>
+</section>
+
+<!-- ====================== LO QUE DICEN ====================== -->
+<section class="mc-section mc-section--alt mc-social" aria-labelledby="social-h">
+  <div class="mc-wrap">
+    <header class="mc-section-head mc-reveal">
+      <span class="mc-eyebrow">En Google</span>
+      <h2 id="social-h">4,8 sobre 5, con 70 reseñas</h2>
+      <p class="mc-lead">Esto es lo que más repite la gente que ya ha venido.</p>
+    </header>
+
+    <!-- Términos y recuentos tomados literalmente del resumen de reseñas de la
+         ficha de Google del negocio. No son invenciones ni estimaciones. -->
+    <ul class="mc-chips mc-reveal">
+      <li><span>nubes</span><b>11</b></li>
+      <li><span>batidos</span><b>9</b></li>
+      <li><span>de limón</span><b>9</b></li>
+      <li><span>sandía</span><b>7</b></li>
+      <li><span>granizado</span><b>7</b></li>
+      <li><span>sabor</span><b>6</b></li>
+    </ul>
+
+    <!-- Reseñas públicas de Google.
+         PRIVACIDAD (decisión del negocio): no se publica el nombre de quien
+         reseña ni ninguna referencia identificable al personal. Los fragmentos
+         que describían a quien atiende se han omitido marcando el corte con
+         […]; el resto es LITERAL, con sus erratas y sus emojis, porque alterar
+         una cita deja de ser una cita.
+         Las fechas van en mes absoluto y no en "hace 2 semanas": en una página
+         estática una fecha relativa se queda obsoleta sola. -->
+    <ul class="mc-quotes">
+      <li class="mc-reveal">
+        <figure>
+          <p class="mc-quote__stars" aria-label="5 de 5 estrellas"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>
+            <p>La comida estaba espectacular, las bebidas buenísimas y el ambiente
+            era perfecto. De esos sitios que pruebas una vez y no puedes dejar de
+            recomendar. Sin duda, una joya. ☁️🤍</p>
+          </blockquote>
+          <figcaption><span class="mc-quote__source">Reseña en Google</span> <span class="mc-quote__meta">Junio de 2026</span></figcaption>
+        </figure>
+      </li>
+
+      <li class="mc-reveal">
+        <figure>
+          <p class="mc-quote__stars" aria-label="5 de 5 estrellas"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>
+            <p>El sabor está muy logrado, están súper suaves y súper esponjosas…
+            calentitas, recién hechas y a buen precio; volvería 100%!!!</p>
+          </blockquote>
+          <figcaption><span class="mc-quote__source">Reseña en Google</span> <span class="mc-quote__meta">Mayo de 2026</span></figcaption>
+        </figure>
+      </li>
+
+      <li class="mc-reveal">
+        <figure>
+          <p class="mc-quote__stars" aria-label="5 de 5 estrellas"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>
+            <p>Es toda una experiencia culinaria, […] he probado tanto nubes como
+            batidos y está todo de 10…</p>
+          </blockquote>
+          <figcaption><span class="mc-quote__source">Reseña en Google</span> <span class="mc-quote__meta">Julio de 2026</span></figcaption>
+        </figure>
+      </li>
+
+      <li class="mc-reveal">
+        <figure>
+          <p class="mc-quote__stars" aria-label="5 de 5 estrellas"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>
+            <p>Este local es un 10 los productos son de gran calidad y naturales
+            baratos y encima siempre hay una sonrisa en la tienda y buen rollo
+            100% vuelvo a repetir 😍😍🔥</p>
+          </blockquote>
+          <figcaption><span class="mc-quote__source">Reseña en Google</span> <span class="mc-quote__meta">Julio de 2026</span></figcaption>
+        </figure>
+      </li>
+
+      <li class="mc-reveal">
+        <figure>
+          <p class="mc-quote__stars" aria-label="5 de 5 estrellas"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>
+            <p>Todo riquísimo, mucha profesionalidad y el personal muy amable y
+            rápido atendiendo. Recomendado al 100%</p>
+          </blockquote>
+          <figcaption><span class="mc-quote__source">Reseña en Google</span> <span class="mc-quote__meta">Mayo de 2026</span></figcaption>
+        </figure>
+      </li>
+
+      <li class="mc-reveal">
+        <figure>
+          <p class="mc-quote__stars" aria-label="5 de 5 estrellas"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>
+            <p>Muy buen sitio para estar hambiente agradable buen trato al cliente
+            excepcional lo recomiendo muy bueno lo que sirven</p>
+          </blockquote>
+          <figcaption><span class="mc-quote__source">Reseña en Google</span> <span class="mc-quote__meta">Julio de 2026</span></figcaption>
+        </figure>
+      </li>
+    </ul>
+
+    <p class="mc-social__link mc-reveal">
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Mom%27s%20Cloud%20Av.%20Portugal%2035%20Logro%C3%B1o"
+         target="_blank" rel="noopener">Leer las reseñas en Google</a>
+    </p>
+  </div>
+</section>
+
+<!-- ====================== HORARIO ====================== -->
+<section class="mc-section" id="horario" aria-labelledby="horario-h">
+  <div class="mc-wrap mc-hours">
+    <header class="mc-section-head mc-reveal">
+      <span class="mc-eyebrow">Nuestro horario</span>
+      <h2 id="horario-h">Tarde y noche</h2>
+      <p class="mc-lead">Los lunes cerramos por descanso del personal.</p>
+    </header>
+
+    <!-- data-days usa la numeración de JavaScript: 0 = domingo … 6 = sábado.
+         data-ranges es la fuente que lee app.js para calcular si está abierto,
+         y vive junto al texto visible para que no puedan divergir. -->
+    <ul class="mc-hours__list mc-reveal" data-hours>
+      <li data-days="2,3,4" data-ranges="17:30-23:00">
+        <span class="mc-hours__day">Martes a jueves</span>
+        <span class="mc-hours__time">17:30 – 23:00</span>
+      </li>
+      <li data-days="5" data-ranges="17:30-24:00">
+        <span class="mc-hours__day">Viernes</span>
+        <span class="mc-hours__time">17:30 – 00:00</span>
+      </li>
+      <li data-days="6" data-ranges="11:30-14:00,17:30-24:00">
+        <span class="mc-hours__day">Sábado</span>
+        <span class="mc-hours__time">11:30 – 14:00 · 17:30 – 00:00</span>
+      </li>
+      <li data-days="0" data-ranges="16:30-23:00">
+        <span class="mc-hours__day">Domingo</span>
+        <span class="mc-hours__time">16:30 – 23:00</span>
+      </li>
+      <li data-days="1" data-ranges="" class="mc-hours__closed">
+        <span class="mc-hours__day">Lunes</span>
+        <span class="mc-hours__time">Cerrado</span>
+      </li>
+    </ul>
+
+    <p class="mc-hours__note mc-muted mc-reveal">
+      El horario puede cambiar en días festivos.
+    </p>
+  </div>
+</section>
+
+<!-- ====================== CÓMO LLEGAR ====================== -->
+<section class="mc-section mc-visit" id="visitanos" aria-labelledby="visit-h">
+  <div class="mc-wrap mc-visit__inner">
+    <div class="mc-visit__text mc-reveal">
+      <span class="mc-eyebrow">Estamos aquí</span>
+      <h2 id="visit-h">Av. Portugal, 35</h2>
+      <p class="mc-lead">26001 Logroño, La Rioja</p>
+
+      <div class="mc-visit__actions">
+        <a class="mc-btn"
+           href="https://www.google.com/maps/dir/?api=1&amp;destination=Mom%27s%20Cloud%2C%20Av.%20Portugal%2035%2C%2026001%20Logro%C3%B1o"
+           target="_blank" rel="noopener">Cómo llegar</a>
+        <a class="mc-btn mc-btn--ghost" href="tel:+34614102038">614 10 20 38</a>
+      </div>
+
+      <p class="mc-visit__ig">
+        <a href="https://www.instagram.com/moms_cloud_miase/" target="_blank" rel="noopener">
+          @moms_cloud_miase
+        </a>
+      </p>
+    </div>
+
+    <figure class="mc-visit__media mc-reveal">
+      <picture>
+        <source type="image/webp" srcset="assets/img/mostrador.webp">
+        <img src="assets/img/mostrador.jpg" width="1000" height="567" loading="lazy" decoding="async"
+             alt="Mostrador de Mom's Cloud con dos nubes japonesas recién servidas en sus cajas para llevar">
+      </picture>
+    </figure>
+  </div>
+</section>
+
+</main>
+
+<!-- ====================== FOOTER ====================== -->
+<footer class="mc-footer" role="contentinfo">
+  <div class="mc-wrap mc-footer__inner">
+    <p class="mc-footer__word mc-glow-text"><span class="mc-nb">Mom&#8217;s</span> Cloud</p>
+    <p class="mc-footer__meta">
+      Av. Portugal 35, 26001 Logroño ·
+      <a href="tel:+34614102038">614 10 20 38</a> ·
+      <a href="https://www.instagram.com/moms_cloud_miase/" target="_blank" rel="noopener">Instagram</a>
+    </p>
+    <p class="mc-footer__legal mc-muted">
+      Fotografías del propio local y de la carta de Mom's Cloud.
+      © <span data-year>2026</span> Mom's Cloud.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

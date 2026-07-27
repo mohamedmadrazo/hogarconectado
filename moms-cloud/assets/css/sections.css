@@ -1,0 +1,641 @@
+/* ==========================================================================
+   Mom's Cloud · sections.css
+   Un bloque por sección, en el mismo orden que el HTML.
+   Mobile-first: las media queries amplían, nunca corrigen.
+   ========================================================================== */
+
+/* ==========================================================================
+   NAV
+   ========================================================================== */
+.mc-nav {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: var(--mc-z-nav);
+  background: rgba(9, 12, 14, 0.72);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid transparent;
+  transition:
+    transform 420ms var(--mc-ease-out),
+    border-color var(--mc-dur-base) var(--mc-ease-out),
+    background-color var(--mc-dur-base) var(--mc-ease-out);
+}
+.mc-nav.is-stuck  { border-bottom-color: var(--mc-hairline); }
+.mc-nav.is-hidden { transform: translateY(-102%); }
+
+.mc-nav__inner {
+  width: var(--mc-wrap);
+  margin-inline: auto;
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  gap: var(--mc-s-4);
+}
+
+.mc-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mc-s-3);
+  color: var(--mc-teal-bright);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.mc-brand__mark {
+  width: 40px;
+  height: 30px;
+  filter: drop-shadow(0 0 6px rgba(123, 187, 187, 0.65));
+}
+.mc-brand__word {
+  font-family: 'Montserrat', 'Montserrat Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-sm);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mc-cream);
+}
+
+.mc-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mc-s-2);
+  font-size: var(--mc-fs-2xs);
+  font-weight: 600;
+  color: var(--mc-cream-2);
+  white-space: nowrap;
+}
+.mc-status__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--mc-cream-3);
+  flex-shrink: 0;
+}
+.mc-status.is-open .mc-status__dot {
+  background: var(--mc-teal-bright);
+  box-shadow: 0 0 0 0 rgba(182, 230, 230, 0.7);
+  animation: mc-pulse 2.6s var(--mc-ease-out) infinite;
+}
+@keyframes mc-pulse {
+  70%  { box-shadow: 0 0 0 9px rgba(182, 230, 230, 0); }
+  100% { box-shadow: 0 0 0 0  rgba(182, 230, 230, 0); }
+}
+
+.mc-nav__links { display: none; margin-inline-start: auto; gap: var(--mc-s-6); }
+.mc-nav__links a {
+  /* Área de activación cómoda (≥44px) sin agrandar el texto. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--mc-fs-sm);
+  font-weight: 600;
+  color: var(--mc-cream-2);
+  text-decoration: none;
+  transition: color var(--mc-dur-fast) var(--mc-ease-out);
+}
+.mc-nav__links a:hover { color: var(--mc-teal-bright); }
+
+.mc-nav__cta {
+  margin-inline-start: auto;
+  min-height: 42px;
+  padding-inline: var(--mc-s-5);
+  font-size: var(--mc-fs-2xs);
+}
+
+@media (min-width: 900px) {
+  .mc-nav__links { display: flex; }
+  .mc-nav__cta   { margin-inline-start: 0; }
+}
+@media (max-width: 560px) {
+  .mc-status { display: none; }
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.mc-hero {
+  position: relative;
+  padding-block: clamp(120px, 18vw, 200px) var(--mc-section-y);
+  display: grid;
+  gap: var(--mc-s-9);
+  overflow: hidden;
+}
+
+/* La marca es luz: el resplandor teal se pinta, no se fotografía. */
+.mc-hero__glow {
+  position: absolute;
+  inset-block-start: -22%;
+  inset-inline-start: 50%;
+  translate: -50% 0;
+  width: min(1500px, 190vw);
+  aspect-ratio: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(123, 187, 187, 0.24) 0%, rgba(123, 187, 187, 0.09) 34%, transparent 64%);
+  filter: blur(12px);
+}
+
+.mc-hero__inner { position: relative; z-index: var(--mc-z-base); }
+
+.mc-hero__title { margin-block: var(--mc-s-4) 0; }
+
+.mc-hero__word {
+  display: block;
+  font-size: var(--mc-fs-hero);
+  line-height: var(--mc-lh-tight);
+  letter-spacing: var(--mc-ls-hero);
+  color: var(--mc-cream);
+  /* La animación cinética escribe --mc-w; el CSS solo la consume. */
+  font-variation-settings: 'wght' var(--mc-w, 700);
+}
+
+.mc-hero__sub {
+  display: block;
+  margin-block-start: var(--mc-s-5);
+  max-width: 22ch;
+  font-family: 'Montserrat', 'Montserrat Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-lg);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0;
+  color: var(--mc-cream-2);
+}
+
+.mc-hero__claim {
+  margin-block-start: var(--mc-s-7);
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-xl);
+  font-weight: 500;
+  color: var(--mc-teal);
+}
+
+.mc-hero__actions {
+  margin-block-start: var(--mc-s-7);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mc-s-3);
+}
+
+.mc-hero__proof {
+  margin-block-start: var(--mc-s-6);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--mc-s-2);
+  font-size: var(--mc-fs-sm);
+  color: var(--mc-cream-2);
+}
+.mc-hero__proof strong {
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-lg);
+  color: var(--mc-cream);
+}
+.mc-stars { color: var(--mc-butter); letter-spacing: 0.08em; }
+.mc-hero__proof a { color: var(--mc-cream-2); }
+.mc-hero__proof a:hover { color: var(--mc-teal-bright); }
+
+.mc-hero__media {
+  position: relative;
+  z-index: var(--mc-z-base);
+  width: var(--mc-wrap);
+  margin-inline: auto;
+}
+.mc-hero__media img {
+  width: 100%;
+  border-radius: var(--mc-r-lg);
+  box-shadow: var(--mc-sh-lg), 0 0 90px -30px rgba(123, 187, 187, 0.5);
+}
+.mc-hero__media figcaption {
+  margin-block-start: var(--mc-s-3);
+  font-size: var(--mc-fs-2xs);
+  color: var(--mc-cream-3);
+  text-align: center;
+}
+
+@media (min-width: 960px) {
+  .mc-hero {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--mc-s-8);
+    width: var(--mc-wrap);
+    margin-inline: auto;
+    padding-inline: 0;
+  }
+  .mc-hero__inner  { width: 100%; }
+  .mc-hero__media  { width: 100%; margin: 0; }
+  .mc-hero__media img { aspect-ratio: 4 / 5; object-fit: cover; }
+}
+
+/* ==========================================================================
+   EL WOBBLE
+   ========================================================================== */
+.mc-wobble { text-align: center; }
+
+.mc-wobble__word {
+  font-size: clamp(4rem, 20vw, 15rem);
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  color: var(--mc-teal-bright);
+  text-shadow: var(--mc-textglow);
+  /* transform-origin bajo: al deformarse se hunde como algo con peso. */
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+
+.mc-wobble__text {
+  margin-inline: auto;
+  margin-block-start: var(--mc-s-7);
+  text-align: left;
+}
+@media (min-width: 720px) {
+  .mc-wobble__text { text-align: center; }
+}
+
+/* ==========================================================================
+   SECCIONES ALTERNAS
+   ========================================================================== */
+.mc-section--alt {
+  background: var(--mc-night-1);
+  border-block: 1px solid var(--mc-hairline-soft);
+}
+
+/* ==========================================================================
+   CARRUSEL DE PRODUCTO  ·  .mc-rail
+   --------------------------------------------------------------------------
+   La base es CSS puro: una fila con anclaje de scroll. Sin JavaScript ya se
+   desliza con el dedo, ancla al centro y se recorre con el teclado.
+   GSAP solo añade encima el fijado de sección y el efecto de foco.
+
+   --f es el "grado de foco" de cada slide: 0 = lejos del centro, 1 = centrado.
+   Su valor por defecto es 1, así que SIN JavaScript todo se ve a tamaño y
+   opacidad plenos. El JS solo lo baja para los laterales.
+   ========================================================================== */
+.mc-rail {
+  position: relative;
+  /* Se sale del ancho del contenedor para que la pista llegue a los bordes
+     de la ventana: es lo que permite centrar de verdad. */
+  margin-inline: calc(50% - 50vw);
+}
+
+/* Selector con dos clases a propósito: el reset de base.css lleva
+   `ul[class] { padding: 0 }`, cuya especificidad (0,1,1) gana a una sola
+   clase (0,1,0). Con `.mc-rail .mc-rail__track` (0,2,0) el relleno lateral
+   sí se aplica; si no, se queda en cero y los extremos nunca se centran. */
+.mc-rail .mc-rail__track {
+  --mc-slide-w: clamp(190px, 58vw, 340px);
+  /* La mitad se declara como su propio clamp en vez de dividir la variable
+     dentro del calc(): `calc(50vw - var(--x) / 2)` se queda en "inválido en
+     tiempo de cómputo" y el relleno cae a 0, con lo que el primer y el último
+     producto no llegan nunca al centro. */
+  --mc-slide-half: clamp(95px, 29vw, 170px);
+  display: flex;
+  gap: clamp(20px, 4vw, 52px);
+  /* Relleno lateral = media pista menos medio slide. Es lo que permite
+     centrar también los extremos.
+     El valor de respaldo usa 50vw, que incluye la barra de scroll del
+     sistema y puede desviarse unos píxeles; app.js sobrescribe
+     --mc-rail-pad con la medida exacta del contenedor. */
+  padding-inline: var(--mc-rail-pad, calc(50vw - var(--mc-slide-half)));
+  padding-block: var(--mc-s-5);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  list-style: none;
+  margin: 0;
+}
+.mc-rail__track::-webkit-scrollbar { display: none; }
+.mc-rail__track:focus-visible { outline-offset: -3px; }
+
+.mc-slide {
+  --f: 1;
+  flex: 0 0 var(--mc-slide-w);
+  scroll-snap-align: center;
+  text-align: center;
+}
+
+.mc-slide__media { position: relative; }
+.mc-slide__media picture { display: block; }
+
+/* Las fotos son recortes del producto sobre transparencia, así que la sombra
+   la proyecta el contorno real (drop-shadow), no la caja. Es lo que evita que
+   el producto parezca pegado sobre el fondo. */
+.mc-slide__media img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  transform: scale(calc(0.80 + 0.20 * var(--f)));
+  opacity: calc(0.34 + 0.66 * var(--f));
+  filter:
+    drop-shadow(0 22px 26px rgba(0, 0, 0, 0.55))
+    blur(calc((1 - var(--f)) * 2.4px));
+  will-change: transform, opacity;
+}
+
+/* El halo teal vive detrás de la imagen y solo se enciende en el centro.
+   Va en un pseudoelemento para no repintar la foto en cada frame. */
+.mc-slide__media::before {
+  content: '';
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(123,187,187,0.30) 0%, rgba(123,187,187,0.10) 45%, transparent 72%);
+  opacity: calc(var(--f) * var(--f));
+  transform: scale(calc(0.86 + 0.24 * var(--f)));
+}
+
+.mc-slide__body {
+  margin-block-start: var(--mc-s-4);
+  /* Nunca se oculta del todo: el texto tiene que seguir siendo legible y
+     estar en el DOM para Google y para los lectores de pantalla. */
+  opacity: calc(0.45 + 0.55 * var(--f));
+}
+.mc-slide__body h3 {
+  font-size: var(--mc-fs-base);
+  font-weight: 700;
+  color: var(--mc-cream);
+}
+.mc-slide__price {
+  margin-block-start: var(--mc-s-1);
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-xl);
+  font-weight: 600;
+  color: var(--mc-teal);
+}
+.mc-slide__price--ask {
+  font-size: var(--mc-fs-sm);
+  font-weight: 500;
+  color: var(--mc-cream-3);
+}
+
+/* ---------- Controles ----------
+   Ocultos por defecto: sin JavaScript no harían nada y un botón muerto es
+   peor que ningún botón. motion.js los muestra al activarse. */
+.mc-rail__ui {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mc-s-5);
+  margin-block-start: var(--mc-s-6);
+}
+html.mc-rail-js .mc-rail__ui { display: flex; }
+
+.mc-rail__btn {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: var(--mc-cream);
+  border: 1px solid var(--mc-teal-line);
+  border-radius: 50%;
+  font-size: var(--mc-fs-lg);
+  cursor: pointer;
+  transition:
+    background-color var(--mc-dur-fast) var(--mc-ease-out),
+    border-color var(--mc-dur-fast) var(--mc-ease-out),
+    transform var(--mc-dur-fast) var(--mc-ease-out);
+}
+.mc-rail__btn:hover:not(:disabled) {
+  background: var(--mc-teal-glass);
+  border-color: var(--mc-teal);
+  transform: scale(1.06);
+}
+.mc-rail__btn:disabled { opacity: 0.3; cursor: default; }
+
+.mc-rail__count {
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-sm);
+  color: var(--mc-cream-3);
+  font-variant-numeric: tabular-nums;
+  min-width: 4ch;
+  text-align: center;
+}
+.mc-rail__count [data-rail-index] { color: var(--mc-teal); font-weight: 600; }
+.mc-rail__sep { margin-inline: 0.4em; opacity: 0.5; }
+
+/* ---------- Modo fijado (lo activa motion.js solo en escritorio) ----------
+   Con la sección fijada, el desplazamiento lo escribe GSAP sobre scrollLeft.
+   Hay que desactivar el anclaje nativo o el navegador pelearía por el mismo
+   eje y daría tirones. */
+html.mc-rail-pin .mc-rail__track {
+  scroll-snap-type: none;
+  overflow-x: hidden;
+}
+
+/* Movimiento reducido: fila normal, sin escalados ni desenfoques. */
+@media (prefers-reduced-motion: reduce) {
+  /* Se quita el desenfoque y el escalado, pero la sombra se queda: no es
+     movimiento, es profundidad. */
+  .mc-slide__media img {
+    transform: none;
+    opacity: 1;
+    filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.55));
+  }
+  .mc-slide__body { opacity: 1; }
+  .mc-slide__media::before { opacity: 0.25; transform: none; }
+}
+
+/* ==========================================================================
+   PARA LLEVAR
+   ========================================================================== */
+.mc-takeaway { text-align: center; }
+.mc-takeaway .mc-eyebrow { display: block; margin-bottom: var(--mc-s-3); }
+.mc-takeaway .mc-lead { margin-block-start: var(--mc-s-5); margin-inline: auto; }
+
+/* ==========================================================================
+   PRUEBA SOCIAL
+   ========================================================================== */
+.mc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mc-s-3);
+}
+.mc-chips li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--mc-s-2);
+  padding: var(--mc-s-3) var(--mc-s-5);
+  background: var(--mc-teal-glass);
+  border: 1px solid var(--mc-teal-line);
+  border-radius: var(--mc-r-pill);
+  font-size: var(--mc-fs-sm);
+  color: var(--mc-cream);
+}
+.mc-chips b {
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-2xs);
+  color: var(--mc-teal);
+}
+
+.mc-social__link { margin-block-start: var(--mc-s-7); font-size: var(--mc-fs-sm); }
+.mc-social__link a { color: var(--mc-teal); }
+
+/* ---------- Muro de reseñas ----------
+   Columnas CSS en lugar de grid: las citas tienen alturas muy distintas y
+   así se empaquetan solas sin huecos. break-inside evita que una cita se
+   parta entre dos columnas. */
+.mc-quotes {
+  margin-block-start: var(--mc-s-8);
+  columns: 1;
+  column-gap: var(--mc-s-5);
+}
+@media (min-width: 700px)  { .mc-quotes { columns: 2; } }
+@media (min-width: 1080px) { .mc-quotes { columns: 3; } }
+
+.mc-quotes > li {
+  break-inside: avoid;
+  margin-block-end: var(--mc-s-5);
+}
+
+.mc-quotes figure {
+  padding: var(--mc-s-6);
+  background: var(--mc-night-2);
+  border: 1px solid var(--mc-hairline);
+  border-radius: var(--mc-r-md);
+  box-shadow: var(--mc-sh-sm);
+  transition:
+    border-color var(--mc-dur-base) var(--mc-ease-out),
+    transform var(--mc-dur-base) var(--mc-ease-out);
+}
+.mc-quotes figure:hover {
+  border-color: var(--mc-teal-line);
+  transform: translateY(-3px);
+}
+
+.mc-quote__stars {
+  color: var(--mc-butter);
+  font-size: var(--mc-fs-sm);
+  letter-spacing: 0.12em;
+  line-height: 1;
+}
+
+.mc-quotes blockquote {
+  margin-block: var(--mc-s-4) var(--mc-s-5);
+  color: var(--mc-cream-2);
+  font-size: var(--mc-fs-sm);
+  line-height: 1.68;
+}
+.mc-quotes blockquote p + p { margin-block-start: var(--mc-s-3); }
+
+.mc-quotes figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--mc-s-2);
+  padding-block-start: var(--mc-s-4);
+  border-top: 1px solid var(--mc-hairline-soft);
+}
+.mc-quote__source {
+  font-weight: 700;
+  font-size: var(--mc-fs-sm);
+  color: var(--mc-cream);
+}
+.mc-quote__meta { font-size: var(--mc-fs-2xs); color: var(--mc-cream-3); }
+
+/* ==========================================================================
+   EL MOMENTO MOM'S
+   Corte de ritmo: menos ancho, más aire, la nube como firma.
+   ========================================================================== */
+.mc-story { text-align: center; }
+.mc-story .mc-eyebrow { display: block; margin-bottom: var(--mc-s-3); }
+.mc-story .mc-lead { margin-block-start: var(--mc-s-5); margin-inline: auto; }
+.mc-story__sig {
+  margin-block-start: var(--mc-s-7);
+  font-size: var(--mc-fs-2xl);
+  color: var(--mc-teal);
+  text-shadow: var(--mc-glow-teal-soft);
+}
+
+/* ==========================================================================
+   HORARIO
+   ========================================================================== */
+.mc-hours__list {
+  border-top: 1px solid var(--mc-hairline);
+  max-width: 720px;
+}
+.mc-hours__list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--mc-s-3);
+  padding-block: var(--mc-s-5);
+  border-bottom: 1px solid var(--mc-hairline);
+  transition: background-color var(--mc-dur-base) var(--mc-ease-out);
+}
+/* app.js marca el día en curso; refuerza el ángulo "sitio de noche". */
+.mc-hours__list li.is-today {
+  background: linear-gradient(90deg, var(--mc-teal-glass), transparent 72%);
+  box-shadow: inset 3px 0 0 var(--mc-teal);
+  padding-inline-start: var(--mc-s-4);
+}
+.mc-hours__day {
+  font-weight: 600;
+  color: var(--mc-cream);
+}
+.mc-hours__time {
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-lg);
+  color: var(--mc-teal);
+  font-variant-numeric: tabular-nums;
+}
+.mc-hours__closed .mc-hours__time { color: var(--mc-cream-3); }
+
+.mc-hours__note { margin-block-start: var(--mc-s-5); font-size: var(--mc-fs-sm); }
+
+/* ==========================================================================
+   CÓMO LLEGAR
+   ========================================================================== */
+.mc-visit__inner {
+  display: grid;
+  gap: var(--mc-s-8);
+  align-items: center;
+}
+.mc-visit .mc-eyebrow { display: block; margin-bottom: var(--mc-s-3); }
+.mc-visit__actions {
+  margin-block-start: var(--mc-s-7);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mc-s-3);
+}
+.mc-visit__ig { margin-block-start: var(--mc-s-6); font-size: var(--mc-fs-sm); }
+.mc-visit__ig a { color: var(--mc-teal); font-weight: 600; }
+
+.mc-visit__media img {
+  width: 100%;
+  border-radius: var(--mc-r-lg);
+  border: 1px solid var(--mc-hairline);
+  box-shadow: var(--mc-sh-lg), 0 0 70px -34px rgba(123, 187, 187, 0.55);
+}
+
+@media (min-width: 900px) {
+  .mc-visit__inner { grid-template-columns: 1fr 1fr; gap: var(--mc-s-9); }
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.mc-footer {
+  padding-block: var(--mc-s-9) var(--mc-s-7);
+  border-top: 1px solid var(--mc-hairline);
+  background: var(--mc-night-0);
+  text-align: center;
+  overflow: hidden;
+}
+.mc-footer__word {
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-size: clamp(2.6rem, 12vw, 9rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: var(--mc-ls-hero);
+  color: var(--mc-teal-bright);
+}
+.mc-footer__meta {
+  margin-block-start: var(--mc-s-6);
+  font-size: var(--mc-fs-sm);
+  color: var(--mc-cream-2);
+}
+.mc-footer__meta a { color: var(--mc-teal); }
+.mc-footer__legal { margin-block-start: var(--mc-s-4); font-size: var(--mc-fs-2xs); }

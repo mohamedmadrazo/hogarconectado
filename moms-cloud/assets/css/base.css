@@ -1,0 +1,361 @@
+/* ==========================================================================
+   Mom's Cloud · base.css
+   Tokens, fuentes, reset y primitivas.
+   Dirección: "Neon Nocturno" — teal de marca (#7BBBBB, muestreado del logo)
+   sobre noche profunda, con la luz tratada como material.
+   Todos los tokens llevan prefijo --mc-* para no colisionar jamás con otros
+   sistemas que pudieran convivir en el mismo dominio.
+   ========================================================================== */
+
+/* ---------- Fuentes autohospedadas (sin dependencia de terceros) ---------- */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  src: url('../fonts/bricolage-grotesque-latin.woff2') format('woff2-variations');
+  font-weight: 200 800;
+  font-display: swap;
+  font-style: normal;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2122, U+2191, U+2193, U+2212, U+2215;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/montserrat-latin.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2122, U+2191, U+2193, U+2212, U+2215;
+}
+
+/* Métricas de fallback: reduce el reflow del swap a casi cero (CLS ≈ 0). */
+@font-face {
+  font-family: 'Bricolage Fallback';
+  src: local('Arial');
+  size-adjust: 96%;
+  ascent-override: 92%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Montserrat Fallback';
+  src: local('Arial');
+  size-adjust: 108%;
+  ascent-override: 88%;
+  descent-override: 23%;
+  line-gap-override: 0%;
+}
+
+/* ==========================================================================
+   TOKENS
+   ========================================================================== */
+:root {
+  /* ---------- Noche ---------- */
+  --mc-night-0:   #090C0E;   /* fondo dominante */
+  --mc-night-1:   #11161A;   /* superficies elevadas */
+  --mc-night-2:   #1A2227;   /* superficies dobles / hover */
+  --mc-night-3:   #243036;   /* bordes fuertes */
+
+  /* ---------- Marca (teal muestreado del logo real: rgb(123,187,187)) ---- */
+  --mc-teal:        #7BBBBB;
+  --mc-teal-bright: #B6E6E6;  /* núcleo del neón */
+  --mc-teal-dim:    #4E8083;
+  --mc-teal-glass:  rgba(123, 187, 187, 0.12);
+  --mc-teal-line:   rgba(123, 187, 187, 0.28);
+
+  /* ---------- Tinta sobre noche ---------- */
+  --mc-cream:     #F2EFE8;   /* texto principal · ~16.8:1 sobre --mc-night-0 */
+  --mc-cream-2:   #C3CBCE;   /* secundario     · ~10.2:1 */
+  --mc-cream-3:   #8D9A9F;   /* terciario      · ~5.6:1  → AA a 16px */
+  --mc-hairline:      rgba(242, 239, 232, 0.10);
+  --mc-hairline-soft: rgba(242, 239, 232, 0.06);
+
+  /* ---------- Acentos, tomados de los propios productos ---------- */
+  --mc-berry:   #E85C74;   /* sandía / arándanos — decorativo y botón sólido */
+  --mc-butter:  #E8B05A;   /* dalgona / jarabe de arce */
+  --mc-cocoa:   #7A5140;   /* choco-coco */
+
+  /* ---------- Luz de neón (la marca es luz, no relleno plano) ---------- */
+  --mc-glow-teal:
+    0 0 4px rgba(182, 230, 230, 0.90),
+    0 0 14px rgba(123, 187, 187, 0.62),
+    0 0 40px rgba(123, 187, 187, 0.34),
+    0 0 92px rgba(123, 187, 187, 0.16);
+  --mc-glow-teal-soft:
+    0 0 12px rgba(123, 187, 187, 0.34),
+    0 0 46px rgba(123, 187, 187, 0.18);
+  --mc-glow-berry: 0 0 28px rgba(232, 92, 116, 0.42), 0 0 68px rgba(232, 92, 116, 0.20);
+  --mc-textglow:
+    0 0 2px rgba(242, 239, 232, 0.55),
+    0 0 18px rgba(123, 187, 187, 0.45),
+    0 0 56px rgba(123, 187, 187, 0.22);
+
+  /* ---------- Escala tipográfica fluida (360px → 1440px) ---------- */
+  --mc-fs-2xs:  0.75rem;
+  --mc-fs-xs:   clamp(0.8125rem, 0.79rem + 0.12vw, 0.875rem);
+  --mc-fs-sm:   clamp(0.875rem,  0.85rem + 0.16vw, 0.9375rem);
+  --mc-fs-base: clamp(1rem,      0.96rem + 0.22vw, 1.125rem);
+  --mc-fs-lg:   clamp(1.125rem,  1.05rem + 0.38vw, 1.375rem);
+  --mc-fs-xl:   clamp(1.375rem,  1.20rem + 0.75vw, 1.95rem);
+  --mc-fs-2xl:  clamp(1.75rem,   1.42rem + 1.45vw, 2.85rem);
+  --mc-fs-3xl:  clamp(2.25rem,   1.62rem + 2.75vw, 4.25rem);
+  --mc-fs-hero: clamp(3.1rem,    1.20rem + 8.10vw, 9.8rem);
+
+  --mc-lh-tight: 0.90;
+  --mc-lh-snug:  1.14;
+  --mc-lh-base:  1.62;
+  --mc-ls-hero:  -0.035em;
+  --mc-ls-head:  -0.022em;
+  --mc-ls-label: 0.16em;
+
+  /* ---------- Espaciado ---------- */
+  --mc-s-1: 4px;  --mc-s-2: 8px;   --mc-s-3: 12px; --mc-s-4: 16px;
+  --mc-s-5: 24px; --mc-s-6: 32px;  --mc-s-7: 48px; --mc-s-8: 64px;
+  --mc-s-9: 96px; --mc-s-10: 128px;
+
+  --mc-section-y: clamp(76px, 11vw, 172px);
+  --mc-gutter:    clamp(20px, 5vw, 56px);
+  --mc-measure:   62ch;
+  --mc-wrap:        min(1240px, 100% - var(--mc-gutter) * 2);
+  --mc-wrap-narrow: min(720px,  100% - var(--mc-gutter) * 2);
+
+  /* ---------- Radios · lenguaje blando de nube ---------- */
+  --mc-r-xs: 8px;  --mc-r-sm: 14px; --mc-r-md: 22px;
+  --mc-r-lg: 34px; --mc-r-xl: 52px; --mc-r-pill: 999px;
+  --mc-r-blob: 62% 38% 46% 54% / 54% 42% 58% 46%;
+
+  /* ---------- Sombras ---------- */
+  --mc-sh-sm:    0 2px 10px rgba(0, 0, 0, 0.35);
+  --mc-sh-md:    0 14px 38px -14px rgba(0, 0, 0, 0.62);
+  --mc-sh-lg:    0 34px 76px -26px rgba(0, 0, 0, 0.74);
+  --mc-sh-inner: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* ---------- Easings y duraciones ---------- */
+  --mc-ease-out:  cubic-bezier(0.16, 1, 0.30, 1);
+  --mc-ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+  --mc-ease-puff: cubic-bezier(0.34, 1.42, 0.64, 1);
+  --mc-dur-fast: 180ms;
+  --mc-dur-base: 320ms;
+  --mc-dur-slow: 620ms;
+
+  /* ---------- Capas ---------- */
+  --mc-z-bg: 0; --mc-z-base: 1; --mc-z-sticky: 50; --mc-z-nav: 100; --mc-z-menu: 200;
+
+  /* Fondo de página animable por GSAP en la sección "tres mundos". */
+  --mc-page-bg: var(--mc-night-0);
+}
+
+/* ==========================================================================
+   RESET
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  /* Explícito: Lenis gestiona el scroll suave. Un scroll-behavior:smooth
+     heredado crearía dos motores de scroll compitiendo (saltos). */
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--mc-page-bg);
+  color: var(--mc-cream);
+  font-family: 'Montserrat', 'Montserrat Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-base);
+  line-height: var(--mc-lh-base);
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  transition: background-color 600ms var(--mc-ease-soft);
+}
+
+img, picture, svg, video, canvas {
+  display: block;
+  max-width: 100%;
+}
+img, video { height: auto; }
+
+input, button, textarea, select { font: inherit; color: inherit; }
+
+p, h1, h2, h3, h4, li { overflow-wrap: break-word; }
+
+ul[class], ol[class] { list-style: none; padding: 0; }
+
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
+
+/* ==========================================================================
+   TIPOGRAFÍA
+   ========================================================================== */
+h1, h2, h3, h4, .mc-display {
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-weight: 700;
+  line-height: var(--mc-lh-snug);
+  letter-spacing: var(--mc-ls-head);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--mc-fs-3xl); }
+h2 { font-size: var(--mc-fs-2xl); }
+h3 { font-size: var(--mc-fs-xl); }
+
+.mc-eyebrow {
+  font-family: 'Montserrat', 'Montserrat Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-2xs);
+  font-weight: 600;
+  letter-spacing: var(--mc-ls-label);
+  text-transform: uppercase;
+  color: var(--mc-teal);
+}
+
+.mc-lead {
+  font-size: var(--mc-fs-lg);
+  color: var(--mc-cream-2);
+  max-width: var(--mc-measure);
+  text-wrap: pretty;
+}
+
+.mc-muted { color: var(--mc-cream-3); }
+
+/* ==========================================================================
+   LAYOUT
+   ========================================================================== */
+.mc-wrap        { width: var(--mc-wrap);        margin-inline: auto; }
+.mc-wrap-narrow { width: var(--mc-wrap-narrow); margin-inline: auto; }
+
+.mc-section {
+  position: relative;
+  padding-block: var(--mc-section-y);
+}
+
+.mc-section-head { margin-bottom: var(--mc-s-8); }
+.mc-section-head .mc-eyebrow { display: block; margin-bottom: var(--mc-s-3); }
+.mc-section-head p { margin-top: var(--mc-s-4); }
+
+/* ==========================================================================
+   ACCESIBILIDAD
+   ========================================================================== */
+.mc-skip {
+  position: absolute;
+  left: var(--mc-s-4);
+  top: -100px;
+  z-index: 999;
+  padding: var(--mc-s-3) var(--mc-s-5);
+  background: var(--mc-teal-bright);
+  color: var(--mc-night-0);
+  border-radius: var(--mc-r-pill);
+  font-weight: 700;
+  text-decoration: none;
+  transition: top var(--mc-dur-fast) var(--mc-ease-out);
+}
+.mc-skip:focus { top: var(--mc-s-4); }
+
+:focus-visible {
+  outline: 3px solid var(--mc-teal-bright);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) { outline: none; }
+
+.mc-sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   BOTONES
+   ========================================================================== */
+.mc-btn {
+  --_bg: var(--mc-teal-bright);
+  --_fg: var(--mc-night-0);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mc-s-2);
+  min-height: 52px;
+  padding: var(--mc-s-3) var(--mc-s-6);
+  background: var(--_bg);
+  color: var(--_fg);
+  border: 1px solid transparent;
+  border-radius: var(--mc-r-pill);
+  font-size: var(--mc-fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  will-change: transform;
+  transition:
+    transform var(--mc-dur-fast) var(--mc-ease-out),
+    box-shadow var(--mc-dur-base) var(--mc-ease-out),
+    background-color var(--mc-dur-fast) var(--mc-ease-out);
+}
+.mc-btn:hover  { transform: translateY(-2px); box-shadow: var(--mc-glow-teal-soft); }
+.mc-btn:active { transform: translateY(0); }
+
+.mc-btn--ghost {
+  --_bg: transparent;
+  --_fg: var(--mc-cream);
+  border-color: var(--mc-teal-line);
+}
+.mc-btn--ghost:hover { --_bg: var(--mc-teal-glass); }
+
+/* ==========================================================================
+   REVELADO — LA REGLA ANTI-PANTALLA-EN-BLANCO
+   --------------------------------------------------------------------------
+   Todo el contenido es VISIBLE por defecto. La opacidad 0 solo puede
+   aplicarse cuando motion.js ha confirmado que puede animar y ha marcado
+   <html> con .mc-anim-ready. Si el JS falla, no carga, tarda o lanza una
+   excepción, estas reglas no llegan a existir y la página se lee entera.
+   No añadir NUNCA una regla `opacity: 0` fuera de este bloque.
+   ========================================================================== */
+.mc-reveal { opacity: 1; transform: none; }
+
+html.mc-anim-ready .mc-reveal:not(.mc-in) {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+}
+
+html.mc-anim-ready .mc-reveal {
+  transition:
+    opacity var(--mc-dur-slow) var(--mc-ease-out),
+    transform var(--mc-dur-slow) var(--mc-ease-out);
+}
+
+/* ==========================================================================
+   MOVIMIENTO REDUCIDO
+   No es una versión degradada: es una versión tranquila. Se eliminan
+   desplazamiento y parallax (los que causan mareo) y se conservan los
+   fundidos de opacidad, que son seguros.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html.mc-anim-ready .mc-reveal:not(.mc-in) { opacity: 1; transform: none; }
+}
+
+/* ==========================================================================
+   UTILIDADES
+   ========================================================================== */
+.mc-glow-text { text-shadow: var(--mc-textglow); }
+
+/* Impide que el navegador parta por el apóstrofo. */
+.mc-nb { white-space: nowrap; }
+
+.mc-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+}

@@ -1,0 +1,10 @@
+# Mom's Cloud — redirecciones de Cloudflare Pages
+# Inerte hasta que esta carpeta sea la raíz de su propio proyecto de Pages
+# (mismo motivo que en _headers).
+
+# Atajos cómodos para carteles, tarjetas y bio de Instagram.
+/carta      /#nubes       301
+/menu       /#nubes       301
+/horario    /#horario     301
+/donde      /#visitanos   301
+/comollegar /#visitanos   301

@@ -1,0 +1,10 @@
+# Mom's Cloud
+# Este archivo solo tiene efecto cuando moms-cloud/ sea la raíz de su propio
+# proyecto de Cloudflare Pages y dominio. Mientras tanto, la no indexación la
+# garantiza la etiqueta <meta name="robots" content="noindex"> de index.html.
+
+User-agent: *
+Allow: /
+
+# TODO al lanzar: descomentar con el dominio definitivo.
+# Sitemap: https://DOMINIO-PENDIENTE/sitemap.xml

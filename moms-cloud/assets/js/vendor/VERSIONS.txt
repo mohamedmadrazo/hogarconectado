@@ -1,0 +1,33 @@
+Librerías autohospedadas — Mom's Cloud
+Obtenidas del registro npm el 2026-07-27.
+
+gsap.min.js           GSAP 3.13.0            paquete npm `gsap`
+ScrollTrigger.min.js  GSAP 3.13.0            paquete npm `gsap`
+SplitText.min.js      GSAP 3.13.0            paquete npm `gsap`
+lenis.min.js          Lenis 1.3.11           paquete npm `lenis`  (build global/IIFE)
+
+Licencias
+---------
+GSAP: gratuito, uso comercial incluido, desde abril de 2025 (Webflow liberó
+      la librería completa, plugins de Club GreenSock incluidos). No es
+      código abierto: no se puede descompilar ni derivar un producto que
+      compita con él.  https://gsap.com/standard-license
+Lenis: MIT (Studio Freight / darkroom.engineering).
+
+Por qué autohospedadas y no por CDN
+-----------------------------------
+1. La CSP de este proyecto es `default-src 'self'`, la más estricta posible.
+   Con CDN habría que abrirla a terceros.
+2. Lenis no está disponible en cdnjs, que es el único CDN permitido por la
+   política de seguridad del repositorio anfitrión. Mezclar orígenes sería
+   la peor opción.
+3. Cero peticiones a terceros, cero conexiones TLS extra en la ruta crítica,
+   y funciona sin red.
+
+Cómo actualizar
+---------------
+  npm pack gsap@<version> lenis@<version>
+  tar xzf <paquete>.tgz
+  cp package/dist/{gsap,ScrollTrigger,SplitText,lenis}.min.js assets/js/vendor/
+Después, comprobar que la página sigue siendo legible con JavaScript
+desactivado (ver README.md).
