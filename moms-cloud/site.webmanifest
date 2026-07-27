@@ -1,0 +1,14 @@
+{
+  "name": "Mom's Cloud",
+  "short_name": "Mom's Cloud",
+  "description": "Pancakes japoneses, batidos y granizados para llevar en Logroño.",
+  "lang": "es-ES",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#090C0E",
+  "theme_color": "#090C0E",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

@@ -1,0 +1,438 @@
+/* ==========================================================================
+   Mom's Cloud · sections.css
+   Un bloque por sección, en el mismo orden que el HTML.
+   Mobile-first: las media queries amplían, nunca corrigen.
+   ========================================================================== */
+
+/* ==========================================================================
+   NAV
+   ========================================================================== */
+.mc-nav {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: var(--mc-z-nav);
+  background: rgba(9, 12, 14, 0.72);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid transparent;
+  transition:
+    transform 420ms var(--mc-ease-out),
+    border-color var(--mc-dur-base) var(--mc-ease-out),
+    background-color var(--mc-dur-base) var(--mc-ease-out);
+}
+.mc-nav.is-stuck  { border-bottom-color: var(--mc-hairline); }
+.mc-nav.is-hidden { transform: translateY(-102%); }
+
+.mc-nav__inner {
+  width: var(--mc-wrap);
+  margin-inline: auto;
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  gap: var(--mc-s-4);
+}
+
+.mc-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mc-s-3);
+  color: var(--mc-teal-bright);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.mc-brand__mark {
+  width: 40px;
+  height: 30px;
+  filter: drop-shadow(0 0 6px rgba(123, 187, 187, 0.65));
+}
+.mc-brand__word {
+  font-family: 'Montserrat', 'Montserrat Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-sm);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mc-cream);
+}
+
+.mc-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mc-s-2);
+  font-size: var(--mc-fs-2xs);
+  font-weight: 600;
+  color: var(--mc-cream-2);
+  white-space: nowrap;
+}
+.mc-status__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--mc-cream-3);
+  flex-shrink: 0;
+}
+.mc-status.is-open .mc-status__dot {
+  background: var(--mc-teal-bright);
+  box-shadow: 0 0 0 0 rgba(182, 230, 230, 0.7);
+  animation: mc-pulse 2.6s var(--mc-ease-out) infinite;
+}
+@keyframes mc-pulse {
+  70%  { box-shadow: 0 0 0 9px rgba(182, 230, 230, 0); }
+  100% { box-shadow: 0 0 0 0  rgba(182, 230, 230, 0); }
+}
+
+.mc-nav__links { display: none; margin-inline-start: auto; gap: var(--mc-s-6); }
+.mc-nav__links a {
+  /* Área de activación cómoda (≥44px) sin agrandar el texto. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--mc-fs-sm);
+  font-weight: 600;
+  color: var(--mc-cream-2);
+  text-decoration: none;
+  transition: color var(--mc-dur-fast) var(--mc-ease-out);
+}
+.mc-nav__links a:hover { color: var(--mc-teal-bright); }
+
+.mc-nav__cta {
+  margin-inline-start: auto;
+  min-height: 42px;
+  padding-inline: var(--mc-s-5);
+  font-size: var(--mc-fs-2xs);
+}
+
+@media (min-width: 900px) {
+  .mc-nav__links { display: flex; }
+  .mc-nav__cta   { margin-inline-start: 0; }
+}
+@media (max-width: 560px) {
+  .mc-status { display: none; }
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.mc-hero {
+  position: relative;
+  padding-block: clamp(120px, 18vw, 200px) var(--mc-section-y);
+  display: grid;
+  gap: var(--mc-s-9);
+  overflow: hidden;
+}
+
+/* La marca es luz: el resplandor teal se pinta, no se fotografía. */
+.mc-hero__glow {
+  position: absolute;
+  inset-block-start: -22%;
+  inset-inline-start: 50%;
+  translate: -50% 0;
+  width: min(1500px, 190vw);
+  aspect-ratio: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(123, 187, 187, 0.24) 0%, rgba(123, 187, 187, 0.09) 34%, transparent 64%);
+  filter: blur(12px);
+}
+
+.mc-hero__inner { position: relative; z-index: var(--mc-z-base); }
+
+.mc-hero__title { margin-block: var(--mc-s-4) 0; }
+
+.mc-hero__word {
+  display: block;
+  font-size: var(--mc-fs-hero);
+  line-height: var(--mc-lh-tight);
+  letter-spacing: var(--mc-ls-hero);
+  color: var(--mc-cream);
+  /* La animación cinética escribe --mc-w; el CSS solo la consume. */
+  font-variation-settings: 'wght' var(--mc-w, 700);
+}
+
+.mc-hero__sub {
+  display: block;
+  margin-block-start: var(--mc-s-5);
+  max-width: 22ch;
+  font-family: 'Montserrat', 'Montserrat Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-lg);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0;
+  color: var(--mc-cream-2);
+}
+
+.mc-hero__claim {
+  margin-block-start: var(--mc-s-7);
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-xl);
+  font-weight: 500;
+  color: var(--mc-teal);
+}
+
+.mc-hero__actions {
+  margin-block-start: var(--mc-s-7);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mc-s-3);
+}
+
+.mc-hero__proof {
+  margin-block-start: var(--mc-s-6);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--mc-s-2);
+  font-size: var(--mc-fs-sm);
+  color: var(--mc-cream-2);
+}
+.mc-hero__proof strong {
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-lg);
+  color: var(--mc-cream);
+}
+.mc-stars { color: var(--mc-butter); letter-spacing: 0.08em; }
+.mc-hero__proof a { color: var(--mc-cream-2); }
+.mc-hero__proof a:hover { color: var(--mc-teal-bright); }
+
+.mc-hero__media {
+  position: relative;
+  z-index: var(--mc-z-base);
+  width: var(--mc-wrap);
+  margin-inline: auto;
+}
+.mc-hero__media img {
+  width: 100%;
+  border-radius: var(--mc-r-lg);
+  box-shadow: var(--mc-sh-lg), 0 0 90px -30px rgba(123, 187, 187, 0.5);
+}
+.mc-hero__media figcaption {
+  margin-block-start: var(--mc-s-3);
+  font-size: var(--mc-fs-2xs);
+  color: var(--mc-cream-3);
+  text-align: center;
+}
+
+@media (min-width: 960px) {
+  .mc-hero {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--mc-s-8);
+    width: var(--mc-wrap);
+    margin-inline: auto;
+    padding-inline: 0;
+  }
+  .mc-hero__inner  { width: 100%; }
+  .mc-hero__media  { width: 100%; margin: 0; }
+  .mc-hero__media img { aspect-ratio: 4 / 5; object-fit: cover; }
+}
+
+/* ==========================================================================
+   EL WOBBLE
+   ========================================================================== */
+.mc-wobble { text-align: center; }
+
+.mc-wobble__word {
+  font-size: clamp(4rem, 20vw, 15rem);
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  color: var(--mc-teal-bright);
+  text-shadow: var(--mc-textglow);
+  /* transform-origin bajo: al deformarse se hunde como algo con peso. */
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+
+.mc-wobble__text {
+  margin-inline: auto;
+  margin-block-start: var(--mc-s-7);
+  text-align: left;
+}
+@media (min-width: 720px) {
+  .mc-wobble__text { text-align: center; }
+}
+
+/* ==========================================================================
+   SECCIONES ALTERNAS
+   ========================================================================== */
+.mc-section--alt {
+  background: var(--mc-night-1);
+  border-block: 1px solid var(--mc-hairline-soft);
+}
+
+/* ==========================================================================
+   REJILLAS DE PRODUCTO
+   ========================================================================== */
+.mc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--mc-s-6) var(--mc-s-5);
+}
+@media (min-width: 900px) {
+  .mc-grid { grid-template-columns: repeat(5, 1fr); gap: var(--mc-s-6); }
+}
+
+.mc-card { text-align: center; }
+
+/* El círculo es la forma de la propia marca: el logo es un círculo.
+   Enmascarar con border-radius evita transparencias y mantiene JPEG/WebP. */
+.mc-card picture { display: block; }
+.mc-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--mc-teal-line);
+  box-shadow: 0 0 0 6px rgba(123, 187, 187, 0.05), var(--mc-sh-md);
+  transition:
+    transform var(--mc-dur-base) var(--mc-ease-puff),
+    box-shadow var(--mc-dur-base) var(--mc-ease-out);
+}
+.mc-card:hover img {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 0 0 6px rgba(123, 187, 187, 0.10), var(--mc-sh-md), var(--mc-glow-teal-soft);
+}
+
+.mc-card__body { margin-block-start: var(--mc-s-4); }
+.mc-card__body h3 {
+  font-size: var(--mc-fs-base);
+  font-weight: 700;
+  color: var(--mc-cream);
+}
+.mc-card__price {
+  margin-block-start: var(--mc-s-1);
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-lg);
+  font-weight: 600;
+  color: var(--mc-teal);
+}
+.mc-card__price--ask {
+  font-size: var(--mc-fs-sm);
+  font-weight: 500;
+  color: var(--mc-cream-3);
+}
+
+/* ==========================================================================
+   PARA LLEVAR
+   ========================================================================== */
+.mc-takeaway { text-align: center; }
+.mc-takeaway .mc-eyebrow { display: block; margin-bottom: var(--mc-s-3); }
+.mc-takeaway .mc-lead { margin-block-start: var(--mc-s-5); margin-inline: auto; }
+
+/* ==========================================================================
+   PRUEBA SOCIAL
+   ========================================================================== */
+.mc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mc-s-3);
+}
+.mc-chips li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--mc-s-2);
+  padding: var(--mc-s-3) var(--mc-s-5);
+  background: var(--mc-teal-glass);
+  border: 1px solid var(--mc-teal-line);
+  border-radius: var(--mc-r-pill);
+  font-size: var(--mc-fs-sm);
+  color: var(--mc-cream);
+}
+.mc-chips b {
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-2xs);
+  color: var(--mc-teal);
+}
+
+.mc-social__link { margin-block-start: var(--mc-s-7); font-size: var(--mc-fs-sm); }
+.mc-social__link a { color: var(--mc-teal); }
+
+/* ==========================================================================
+   HORARIO
+   ========================================================================== */
+.mc-hours__list {
+  border-top: 1px solid var(--mc-hairline);
+  max-width: 720px;
+}
+.mc-hours__list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--mc-s-3);
+  padding-block: var(--mc-s-5);
+  border-bottom: 1px solid var(--mc-hairline);
+  transition: background-color var(--mc-dur-base) var(--mc-ease-out);
+}
+/* app.js marca el día en curso; refuerza el ángulo "sitio de noche". */
+.mc-hours__list li.is-today {
+  background: linear-gradient(90deg, var(--mc-teal-glass), transparent 72%);
+  box-shadow: inset 3px 0 0 var(--mc-teal);
+  padding-inline-start: var(--mc-s-4);
+}
+.mc-hours__day {
+  font-weight: 600;
+  color: var(--mc-cream);
+}
+.mc-hours__time {
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-size: var(--mc-fs-lg);
+  color: var(--mc-teal);
+  font-variant-numeric: tabular-nums;
+}
+.mc-hours__closed .mc-hours__time { color: var(--mc-cream-3); }
+
+.mc-hours__note { margin-block-start: var(--mc-s-5); font-size: var(--mc-fs-sm); }
+
+/* ==========================================================================
+   CÓMO LLEGAR
+   ========================================================================== */
+.mc-visit__inner {
+  display: grid;
+  gap: var(--mc-s-8);
+  align-items: center;
+}
+.mc-visit .mc-eyebrow { display: block; margin-bottom: var(--mc-s-3); }
+.mc-visit__actions {
+  margin-block-start: var(--mc-s-7);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mc-s-3);
+}
+.mc-visit__ig { margin-block-start: var(--mc-s-6); font-size: var(--mc-fs-sm); }
+.mc-visit__ig a { color: var(--mc-teal); font-weight: 600; }
+
+.mc-visit__media img {
+  width: 100%;
+  border-radius: var(--mc-r-lg);
+  border: 1px solid var(--mc-hairline);
+  box-shadow: var(--mc-sh-lg), 0 0 70px -34px rgba(123, 187, 187, 0.55);
+}
+
+@media (min-width: 900px) {
+  .mc-visit__inner { grid-template-columns: 1fr 1fr; gap: var(--mc-s-9); }
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.mc-footer {
+  padding-block: var(--mc-s-9) var(--mc-s-7);
+  border-top: 1px solid var(--mc-hairline);
+  background: var(--mc-night-0);
+  text-align: center;
+  overflow: hidden;
+}
+.mc-footer__word {
+  font-family: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  font-size: clamp(2.6rem, 12vw, 9rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: var(--mc-ls-hero);
+  color: var(--mc-teal-bright);
+}
+.mc-footer__meta {
+  margin-block-start: var(--mc-s-6);
+  font-size: var(--mc-fs-sm);
+  color: var(--mc-cream-2);
+}
+.mc-footer__meta a { color: var(--mc-teal); }
+.mc-footer__legal { margin-block-start: var(--mc-s-4); font-size: var(--mc-fs-2xs); }

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mom's Cloud">
+  <circle cx="32" cy="32" r="32" fill="#7BBBBB"/>
+  <g transform="translate(5.5 13) scale(0.4)">
+    <path d="M34 70 C18 70 11 57 20 46 C22 31 39 26 47 35 C51 14 80 12 88 31 C104 29 117 42 110 57 C107 67 99 70 91 70 Z"
+          fill="none" stroke="#FFFFFF" stroke-width="9"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
