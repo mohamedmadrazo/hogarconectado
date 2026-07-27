@@ -7,19 +7,46 @@ HTML + CSS + JavaScript vanilla. **Sin build step, sin dependencias que instalar
 
 ---
 
-## ⚠️ Antes de publicar: dos cosas que hay que confirmar
+## Estado del contenido
 
-1. **Los precios de las nubes.** En el cartel del local los globos de precio están
-   asociados a filas, no a platos. La lectura aplicada es **6,90 €** para
-   *Arándanos* y *Cerezas*, y **5,90 €** para *Choco-Coco*, *Limón* y
-   *Jarabe de arce*. Si no es así, corregir en `index.html` (sección `#nubes`).
-2. **El precio del frapé.** El cartel no lo muestra. En la web aparece como
-   *«Pregúntanos»* en lugar de un número inventado. Buscar `data-todo` en
-   `index.html` para localizarlo.
+Precios **confirmados por el negocio**: 6,90 € (Arándanos, Cerezas), 5,90 €
+(Choco-Coco, Limón, Jarabe de arce), 4,70 / 4,90 / 4,30 / 4,50 € en bebidas.
+Están en `index.html` y también en el `hasMenu` del JSON-LD; si cambia un
+precio hay que tocar los dos sitios.
+
+Queda un único hueco: **el frapé no tiene precio** (el cartel del local no lo
+muestra). Aparece como *«Pregúntanos»* y en el JSON-LD va como `MenuItem` sin
+`offers`, que es válido. Un precio inventado sí sería un problema.
 
 ```bash
 grep -n "data-todo" index.html     # lista todo lo que queda pendiente
 ```
+
+## Desplegar en Vercel
+
+El proyecto está listo: `vercel.json` ya lleva las cabeceras de seguridad, la
+CSP, la caché y las redirecciones. **No hay build step**, así que no hay nada
+que configurar más allá de la carpeta raíz.
+
+Importar el repositorio desde vercel.com → *Add New… → Project*:
+
+| Ajuste | Valor |
+|---|---|
+| Root Directory | **`moms-cloud`** ← lo único que no va por defecto |
+| Framework Preset | Other |
+| Build Command | *(vacío)* |
+| Output Directory | *(vacío)* |
+| Production Branch | `claude/moms-cloud-landing-page-nfl80x` |
+
+La rama de producción importa: `main` es hogarconectado.co, un sitio distinto.
+
+Después del primer despliegue hay que **poner `og:url` y `og:image` como URLs
+absolutas** con el dominio que asigne Vercel. Los previsualizadores de WhatsApp,
+Telegram y Facebook no resuelven rutas relativas, así que hasta entonces el
+enlace se comparte sin tarjeta.
+
+`_headers` y `_redirects` son formato Cloudflare Pages y Vercel los ignora. Se
+conservan para no cerrar esa vía: los dos despliegues pueden convivir.
 
 ---
 

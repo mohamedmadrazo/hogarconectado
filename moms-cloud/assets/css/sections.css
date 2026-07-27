@@ -345,6 +345,83 @@
 .mc-social__link { margin-block-start: var(--mc-s-7); font-size: var(--mc-fs-sm); }
 .mc-social__link a { color: var(--mc-teal); }
 
+/* ---------- Muro de reseñas ----------
+   Columnas CSS en lugar de grid: las citas tienen alturas muy distintas y
+   así se empaquetan solas sin huecos. break-inside evita que una cita se
+   parta entre dos columnas. */
+.mc-quotes {
+  margin-block-start: var(--mc-s-8);
+  columns: 1;
+  column-gap: var(--mc-s-5);
+}
+@media (min-width: 700px)  { .mc-quotes { columns: 2; } }
+@media (min-width: 1080px) { .mc-quotes { columns: 3; } }
+
+.mc-quotes > li {
+  break-inside: avoid;
+  margin-block-end: var(--mc-s-5);
+}
+
+.mc-quotes figure {
+  padding: var(--mc-s-6);
+  background: var(--mc-night-2);
+  border: 1px solid var(--mc-hairline);
+  border-radius: var(--mc-r-md);
+  box-shadow: var(--mc-sh-sm);
+  transition:
+    border-color var(--mc-dur-base) var(--mc-ease-out),
+    transform var(--mc-dur-base) var(--mc-ease-out);
+}
+.mc-quotes figure:hover {
+  border-color: var(--mc-teal-line);
+  transform: translateY(-3px);
+}
+
+.mc-quote__stars {
+  color: var(--mc-butter);
+  font-size: var(--mc-fs-sm);
+  letter-spacing: 0.12em;
+  line-height: 1;
+}
+
+.mc-quotes blockquote {
+  margin-block: var(--mc-s-4) var(--mc-s-5);
+  color: var(--mc-cream-2);
+  font-size: var(--mc-fs-sm);
+  line-height: 1.68;
+}
+.mc-quotes blockquote p + p { margin-block-start: var(--mc-s-3); }
+
+.mc-quotes figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--mc-s-2);
+  padding-block-start: var(--mc-s-4);
+  border-top: 1px solid var(--mc-hairline-soft);
+}
+.mc-quotes cite {
+  font-style: normal;
+  font-weight: 700;
+  font-size: var(--mc-fs-sm);
+  color: var(--mc-cream);
+}
+.mc-quote__meta { font-size: var(--mc-fs-2xs); color: var(--mc-cream-3); }
+
+/* ==========================================================================
+   EL MOMENTO MOM'S
+   Corte de ritmo: menos ancho, más aire, la nube como firma.
+   ========================================================================== */
+.mc-story { text-align: center; }
+.mc-story .mc-eyebrow { display: block; margin-bottom: var(--mc-s-3); }
+.mc-story .mc-lead { margin-block-start: var(--mc-s-5); margin-inline: auto; }
+.mc-story__sig {
+  margin-block-start: var(--mc-s-7);
+  font-size: var(--mc-fs-2xl);
+  color: var(--mc-teal);
+  text-shadow: var(--mc-glow-teal-soft);
+}
+
 /* ==========================================================================
    HORARIO
    ========================================================================== */
