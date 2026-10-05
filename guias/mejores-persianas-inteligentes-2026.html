@@ -265,8 +265,7 @@
         <p>El Shelly Plus 2PM es la mejor inversión por euro de toda la guía sin discusión. Se instala detrás de la botonera existente en la caja de pared, conecta entre los cables 230V y los cables del motor tubular. La botonera física sigue funcionando exactamente como antes (subir, bajar, parar), pero ahora puedes controlar la persiana por Wi-Fi desde la app Shelly, Alexa, Google Home, HomeKit (vía Matter), Home Assistant.</p>
         <p>Lo que documenta el fabricante y por qué importa: el 2PM trabaja en <strong>modo persiana</strong>, con las dos salidas enclavadas para que subir y bajar no puedan activarse a la vez —la protección que evita quemar un motor tubular— y con calibración automática del recorrido tras un ciclo completo, que es lo que le permite después posicionarse en porcentaje y no solo abrir o cerrar del todo. Lleva medición de consumo en cada canal, así que puedes detectar por software una persiana que se atasca porque empieza a tirar más amperios de lo normal. Y es de los pocos módulos de esta guía con <strong>control local completo</strong>: API HTTP y MQTT dentro de tu red, sin pasar por nube, más Matter en firmware reciente para exponerlo a HomeKit y al resto de ecosistemas. Eso pesa más de lo que parece cuando lo que automatizas es un elemento fijo de la vivienda: la persiana tiene que seguir obedeciendo aunque el fabricante cierre su servidor o se caiga la fibra.</p>
         <p>Pegas: la instalación exige manipular 230 V detrás de la pared y es una intervención sobre la instalación fija, sujeta al REBT; si no tienes experiencia, electricista (~50 €/punto, una vez). Y hay dos comprobaciones muy españolas antes de comprar seis de golpe. La primera, <strong>el neutro</strong>: el módulo lo necesita y en cajas de persiana de instalaciones antiguas no siempre llega, porque la botonera original solo maneja fases. La segunda, <strong>el fondo útil de la caja de mecanismo</strong>: una vez metidos los cables de subida, bajada, común y neutro, muchas cajas empotradas viejas dejan muy poco hueco. Mide el fondo de la tuya y compáralo con las cotas que Shelly publica en la ficha. Si no cabe, la alternativa habitual es alojarlo en la caja de derivación del techo o pasarte a la solución de cinta.</p>
-        <p><a class="btn btn-primary" href="https://www.amazon.es/s?k=shelly+plus+2pm&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Shelly Plus 2PM en Amazon</a></p>
-      </section>
+              </section>
 
       <section id="aqara">
         <h2>#2 — Aqara Roller Shade Driver E1: salvación para persianas de cinta</h2>
@@ -274,8 +273,7 @@
         <p>El Roller Shade Driver E1 es la solución más inteligente para persianas de cinta enrolladora — el tipo más común en pisos españoles antiguos. <strong>No reemplaza la cinta, la mantiene</strong>. El motor se instala en la pared al lado del agujero por donde sale la cinta, "tira" de ella mediante una pequeña polea con velcro reforzado. Mantiene el uso manual de la cinta original si quieres.</p>
         <p>Cómo se monta y qué mirar antes de encargarlo. El motor se fija junto a la salida de la cinta y arrastra de ella con un rodillo, así que <strong>conserva el tiro manual</strong>: si se queda sin batería, la persiana sigue subiendo a mano como toda la vida. Se alimenta con batería recargable por USB-C —no lleva pilas de botón que cambiar—, va por Zigbee 3.0 y necesita un hub Aqara (M2, M3 o equivalente) para salir a HomeKit, Alexa o Google. Tres comprobaciones deciden si funcionará en tu ventana, y las tres se resuelven con una cinta métrica y la ficha del fabricante: <strong>el peso de tu persiana</strong> —las de lama de aluminio de piso moderno van sobradas, pero las de madera antigua de balcón pesan mucho más y el arrastre por cinta se queda corto, así que compara con el peso máximo y el par que Aqara publica para la referencia—, <strong>el hueco de pared libre</strong> junto a la salida de la cinta, porque el motor es una caja visible que se atornilla o se pega ahí y necesita su sitio, y <strong>el estado del recogedor y de la propia cinta</strong>: si la cinta patina o está deshilachada, cámbiala antes o el motor heredará el problema.</p>
         <p>Pegas: obliga a hub Aqara (~80 € extra si no lo tienes), lo que dispara el coste de entrada si solo vas a automatizar una o dos ventanas. La batería hay que recargarla periódicamente, una tarea recurrente que el módulo cableado no tiene. Y estéticamente no es invisible: el motor queda a la vista en la pared del salón, en blanco, junto al marco.</p>
-        <p><a class="btn btn-primary" href="https://www.amazon.es/s?k=aqara+roller+shade+driver+e1&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Aqara Roller Shade Driver E1 en Amazon</a></p>
-      </section>
+              </section>
 
       <section id="somfy">
         <h2>#3 — Somfy Oximo io: el motor tubular profesional</h2>
@@ -283,8 +281,7 @@
         <p>Somfy es la marca histórica de motorización europea, líder absoluto en el segmento profesional. El Oximo io es su motor tubular para persianas enrollables, compatible con cualquier cajón de persiana estándar (40-60 mm de tubo). Para persianas sin motorizar o para sustituir un motor viejo Somfy, es la opción premium.</p>
         <p>Pros reales: es la única opción de esta guía concebida para vivir <em>dentro</em> del tubo de la persiana, con finales de carrera electrónicos y detección de obstáculos —si la lama tropieza con algo, el motor para en lugar de forzar hasta romper—. El protocolo io-homecontrol es bidireccional y cifrado, de modo que el motor confirma su posición real en vez de que el sistema la suponga por tiempo de marcha, que es la diferencia entre saber si la persiana está a medio bajar o solo creerlo. Y Somfy mantiene servicio técnico y recambios en España, algo que ninguna alternativa barata garantiza a diez años vista. Antes de comprar, mira en la ficha de la referencia concreta <strong>el par en Nm y el diámetro de tubo</strong> (los cajones españoles suelen llevar tubo octogonal de 40 o 60 mm): elegir mal el par para el peso de la persiana es el error clásico de las motorizaciones DIY.</p>
         <p>Pegas reales: precio prohibitivo. Motor + puente TaHoma + instalación se va a ~280-380 € por persiana; para una casa de 6 huecos, presupuesta 2.000-2.500 €. Además, el control por Alexa, Google o HomeKit no sale del motor: pasa obligatoriamente por el puente TaHoma, otra caja y otra cuenta. Solo lo recomendamos si ya tienes algún motor Somfy y quieres mantener ecosistema, o en obra nueva y reforma donde es la solución profesional estándar y el instalador ya trabaja con ella. Para el caso doméstico corriente, un Shelly 2PM sobre una persiana ya motorizada hace lo mismo por una fracción del precio.</p>
-        <p><a class="btn btn-primary" href="https://www.amazon.es/s?k=somfy+oximo+io&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Somfy Oximo io en Amazon</a></p>
-      </section>
+              </section>
 
       <section id="ikea">
         <h2>#4 — IKEA FYRTUR: estores motorizados asequibles</h2>
@@ -292,8 +289,7 @@
         <p>FYRTUR no es una solución para persianas españolas tradicionales — es un <strong>estor enrollable motorizado</strong> que se cuelga delante de la ventana, opaco al 100 %. Ideal cuando la persiana existente no es automatizable (alquiler, no quieres tocar instalación) o como solución intermedia en habitaciones específicas.</p>
         <p>Qué es exactamente: un estor opaco con motor integrado y batería recargable que se cuelga en el hueco de la ventana con los soportes que trae. Va por Zigbee y necesita una pasarela IKEA (DIRIGERA) para llegar después a HomeKit, Alexa o Google. Su virtud diferencial no es el precio, es que <strong>se monta y se desmonta sin obra y sin tocar la instalación eléctrica</strong>: es la única opción de esta guía que puedes instalar en un alquiler y llevarte cuando te vayas sin dejar rastro ni discutir con la propiedad. Se vende en anchos estándar de catálogo, así que mide el hueco antes de ir a la tienda: en pisos antiguos españoles las medidas rara vez caen justas y a veces la diferencia se resuelve montándolo por fuera del hueco, sobre el dintel, en lugar de dentro.</p>
         <p>Pegas: es sombreamiento <strong>interior</strong>, y eso lo cambia todo en términos térmicos. La radiación ya ha atravesado el cristal cuando el estor la frena, de modo que el calor se queda dentro de la habitación entre vidrio y tela. Sirve para oscurecer y para privacidad —para lo que está pensado—, no para bajar la factura del aire acondicionado como una persiana exterior. Súmale que la batería hay que recargarla cada cierto tiempo y que dependes del ecosistema IKEA para automatizarlo.</p>
-        <p><a class="btn btn-primary" href="https://www.amazon.es/s?k=ikea+fyrtur&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver IKEA FYRTUR en Amazon</a></p>
-      </section>
+              </section>
 
       <section id="bosch">
         <h2>#5 — Bosch Smart Home Roller Shutter Control II</h2>
@@ -301,8 +297,7 @@
         <p>La Roller Shutter Control II de Bosch hace exactamente lo mismo que un Shelly 2PM (relé tras la botonera para persiana eléctrica existente) pero con precio 7 veces mayor. ¿Por qué incluirla? Porque si ya tienes ecosistema Bosch Smart Home (termostato, hub Controller II, sensores) la integración es perfecta, app unificada, sin necesidad de aprender otro sistema más.</p>
         <p>Qué aporta frente al Shelly: exactamente la misma función —módulo detrás de la botonera de una persiana ya eléctrica— pero dentro de un sistema cerrado y coherente. Zigbee propio en lugar de Wi-Fi, alta desde la app Bosch Smart Home sin crear otra cuenta, el mismo panel donde ya tienes el termostato y los sensores, y un fabricante con red de servicio en España y un compromiso largo de actualizaciones. En una casa con seis o siete dispositivos Bosch, ese «no añadir otra app más» tiene un valor real que no aparece en la ficha técnica.</p>
         <p>Pegas: 110 € frente a 15 € por la misma función efectiva, y la factura de la dependencia: sin API local abierta ni Matter, todo pasa por el Controller II, así que el día que quieras migrar a Home Assistant o mezclar marcas te lo llevas puesto. Solo tiene sentido en una casa ya invertida en Bosch Smart Home. Partiendo de cero, Shelly más el ecosistema abierto cubre lo mismo por mucho menos.</p>
-        <p><a class="btn btn-primary" href="https://www.amazon.es/s?k=bosch+smart+home+roller+shutter&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Bosch Smart Home en Amazon</a></p>
-      </section>
+              </section>
 
       <section id="tapo">
         <h2>#6 — TP-Link Tapo KS200M: la opción Wi-Fi directa</h2>
@@ -310,8 +305,7 @@
         <p>El Tapo KS200M es la alternativa al Shelly 2PM para quien no quiere meterse con Home Assistant ni Matter avanzado. Se instala detrás de la botonera, Wi-Fi directo al router, app Tapo (la misma de enchufes/cámaras), compatible con Alexa y Google Home sin hub. Mantiene botones físicos funcionando.</p>
         <p>Qué aporta: Wi-Fi directo al router sin hub ni pasarela, alta en la misma app Tapo donde ya tienes los enchufes y las cámaras, compatibilidad declarada con Alexa y Google Home, y la botonera física operativa como siempre. Es la opción para quien quiere automatizar la persiana y no quiere aprender nada más: una app, una cuenta, un asistente. La app Tapo está claramente mejor acabada que la de Shelly, con widgets decentes en iOS y Android, y eso importa en un dispositivo que la familia va a usar a diario sin leer manuales.</p>
         <p>Pegas: cuesta el doble que el Shelly por menos capacidad técnica. El control remoto pasa por la nube de TP-Link y no expone API local, HomeKit ni Matter, así que el día que quieras montar Home Assistant o unificarlo todo bajo un estándar abierto te encontrarás con un dispositivo que no se deja. Sumado a que un módulo de persiana es de los que instalas una vez y dejas ahí una década, esa falta de salida técnica pesa. La elección entre Shelly y Tapo es exactamente esa: app cómoda hoy frente a flexibilidad dentro de cinco años.</p>
-        <p><a class="btn btn-primary" href="https://www.amazon.es/s?k=tapo+ks200m&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver Tapo KS200M en Amazon</a></p>
-      </section>
+              </section>
 
 
       <section id="faq">
@@ -351,8 +345,6 @@
 
         <p>Si tu piso tiene persianas eléctricas con botonera, no busques más: <strong>Shelly Plus 2PM a 15 € por persiana</strong>, empezando por sur y oeste y ampliando después al resto si te gusta el resultado. Si tienes persianas de cinta y lo que buscas es comodidad, <strong>Aqara Roller Shade Driver E1</strong>, contando el hub en el presupuesto desde el principio. Si vas a motorizar de cero en una reforma y quieres que dure, <strong>Somfy Oximo io</strong> con instalador. Y si estás de alquiler, el estor <strong>IKEA FYRTUR</strong> es lo único que puedes montar y llevarte contigo.</p>
         <p>
-          <a class="btn btn-primary" href="https://www.amazon.es/s?k=shelly+plus+2pm&tag=hogarconect05-21" rel="sponsored nofollow noopener" target="_blank">Ver precio actual del Shelly Plus 2PM en Amazon</a>
-          &nbsp;
           <a class="btn" href="/contacto">¿Tu caso no encaja? Escríbenos</a>
         </p>
       </section>
